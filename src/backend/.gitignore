@@ -20,5 +20,10 @@ local.properties
 .settings/
 .loadpath
 
+# idea
+.idea
+build
+out
+
 # Gradle
 .gradle

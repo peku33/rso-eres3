@@ -1,4 +1,4 @@
-package hello;
+package pl.edu.pw.elka.rso.eres3;
 
 public class Greeting {
     private final long id;
