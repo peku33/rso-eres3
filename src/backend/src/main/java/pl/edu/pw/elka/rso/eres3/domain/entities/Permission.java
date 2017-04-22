@@ -1,12 +1,12 @@
-package pl.edu.pw.elka.rso.eres3.domain;
-
-import java.io.Serializable;
+package pl.edu.pw.elka.rso.eres3.domain.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Class that represents a permission in a system. Permission is simply a name
@@ -41,5 +41,19 @@ public class Permission implements Serializable {
 
 	public void setDescription(final String description) {
 		this.description = description;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Permission that = (Permission) o;
+		return Objects.equals(name, that.name) &&
+				Objects.equals(description, that.description);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name, description);
 	}
 }
