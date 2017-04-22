@@ -6,5 +6,8 @@ import pl.edu.pw.elka.rso.eres3.domain.entities.Person;
 /**
  * Created by Jakub Lorenc on 21.04.17.
  */
-public interface PersonRepository extends CrudRepository<Person, String> {
+public interface PersonRepository extends CrudRepository<Person, Long> {
+    default boolean nullableExists(final Long id){
+        return id != null && exists(id);
+    }
 }
