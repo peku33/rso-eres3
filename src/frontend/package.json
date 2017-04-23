@@ -5,7 +5,9 @@
   "scripts": {
     "build": "webpack --progress",
     "build:prod": "webpack -p --progress",
-    "start": "http-server ./dist -a 0.0.0.0 -p 9000",
+    "serve": "http-server ./dist -a 0.0.0.0 -p 9000",
+    "start": "npm run build && npm run serve",
+    "start:prod": "npm run build:prod && npm run serve",
     "postinstall": "typings install"
   },
   "dependencies": {
