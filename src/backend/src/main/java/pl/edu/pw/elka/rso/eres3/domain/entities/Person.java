@@ -1,5 +1,7 @@
 package pl.edu.pw.elka.rso.eres3.domain.entities;
 
+import pl.edu.pw.elka.rso.eres3.domain.entities.abstractions.SimpleIdEntity;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -11,7 +13,7 @@ import java.util.Set;
  * Class that represents a user of the system.
  */
 @Entity
-public class Person implements Serializable {
+public class Person implements Serializable, SimpleIdEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -48,14 +50,7 @@ public class Person implements Serializable {
 	@OneToMany
 	private Set<PersonPermissionOnUnit> permissions;
 
-	public Person(){
-		//for hibernate
-	}
-
-	public Person(Long id){
-		this.id = id;
-	}
-
+	@Override
 	public Long getId() {
 		return id;
 	}

@@ -1,5 +1,7 @@
 package pl.edu.pw.elka.rso.eres3.domain.entities;
 
+import pl.edu.pw.elka.rso.eres3.domain.entities.abstractions.SimpleIdEntity;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -10,7 +12,7 @@ import java.io.Serializable;
  * be assigned for people. In this system it simply identifies a faculty.
  */
 @Entity
-public class OrganizationalUnit implements Serializable {
+public class OrganizationalUnit implements Serializable, SimpleIdEntity<Short> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,6 +30,7 @@ public class OrganizationalUnit implements Serializable {
 	@Column(length = 20, nullable = false)
 	private String shortName;
 
+	@Override
 	public Short getId() {
 		return id;
 	}

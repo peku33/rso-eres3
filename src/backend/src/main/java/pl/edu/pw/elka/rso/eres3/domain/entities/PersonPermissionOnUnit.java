@@ -23,7 +23,6 @@ public class PersonPermissionOnUnit implements Serializable {
 	private Person person;
 
 	@Id
-
 	@ManyToOne
 	private Permission permission;
 

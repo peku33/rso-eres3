@@ -1,5 +1,7 @@
 package pl.edu.pw.elka.rso.eres3.domain.entities;
 
+import pl.edu.pw.elka.rso.eres3.domain.entities.abstractions.SimpleIdEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,7 +15,7 @@ import java.util.Objects;
  * by which it is identified.
  */
 @Entity
-public class Permission implements Serializable {
+public class Permission implements Serializable, SimpleIdEntity<String> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,6 +28,11 @@ public class Permission implements Serializable {
 	@Size(max = 200)
 	@Column(length = 200)
 	private String description;
+
+	@Override
+	public String getId(){
+		return name;
+	}
 
 	public String getName() {
 		return name;
