@@ -1,39 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {Http} from "@angular/http";
-import {Person} from "./person";
-import "rxjs/add/operator/toPromise";
-
+import {Component} from "@angular/core";
 
 @Component({
-    selector: 'my-app',
-    template: `
-        <h1>My App: {{name}}</h1>
-        <router-outlet></router-outlet>
-    `
+  selector: 'my-app',
+  styleUrls: ['./app.component.css'],
+  template: `
+    <h1>{{title}}</h1>
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+      <a routerLink="/login" routerLinkActive="active">Log in</a>
+    </nav>
+    <router-outlet></router-outlet>
+  `
 })
-export class AppComponent implements OnInit {
-    name = 'eres 3.0';
-    people: Person[];
 
-    private personsUrl = 'http://localhost:8080/persons';
-
-    constructor(private http: Http) {
-    }
-
-    // Line below are temporary, for testing the connection with BE
-    ngOnInit(): void {
-        //this.getPersons().then(people => this.people = people);
-    }
-
-    getPersons(): Promise<Person[]> {
-        return this.http.get(this.personsUrl)
-            .toPromise()
-            .then(response => response.json().data as Person[])
-            .catch(this.handleError);
-    }
-
-    private handleError(error: any): Promise<any> {
-        console.error('An error occurred', error);
-        return Promise.reject(error.message || error);
-    }
+export class AppComponent {
+  title = 'Tour of Heroes';
 }

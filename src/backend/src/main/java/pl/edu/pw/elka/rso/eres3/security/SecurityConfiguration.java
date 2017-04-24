@@ -12,29 +12,42 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.httpBasic()
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/")
+//                    .permitAll()
+//                    .anyRequest()
+//                    .authenticated();
+//    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/")
-                    .permitAll()
-                    .anyRequest()
-                    .authenticated();
+        http.authorizeRequests().antMatchers("/").permitAll()
+                .and().authorizeRequests().antMatchers("/persons").hasRole("ADMIN")
+                .and().formLogin();
     }
 
-    @Configuration
-    protected static class AuthenticationConfiguration extends
-            GlobalAuthenticationConfigurerAdapter {
-
-        @Autowired
-        JpaBasedUserDetailsService userDetailsService;
-
-        @Override
-        public void init(AuthenticationManagerBuilder auth) throws Exception {
-            auth
-                    .userDetailsService(userDetailsService)
-                    .passwordEncoder(new BCryptPasswordEncoder());
-        }
+    @Autowired
+    private void configureGlobal(AuthenticationManagerBuilder builder) throws Exception {
+        builder.inMemoryAuthentication().withUser("aaa").password("sss").roles("USER", "ADMIN")
+                .and().withUser("bbb").password("nnn").roles("USER");
     }
+
+    //    @Configuration
+//    protected static class AuthenticationConfiguration extends
+//            GlobalAuthenticationConfigurerAdapter {
+//
+//        @Autowired
+//        JpaBasedUserDetailsService userDetailsService;
+//
+//        @Override
+//        public void init(AuthenticationManagerBuilder auth) throws Exception {
+//            auth
+//                    .userDetailsService(userDetailsService)
+//                    .passwordEncoder(new BCryptPasswordEncoder());
+//        }
+//    }
 }
