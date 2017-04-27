@@ -1,5 +1,18 @@
 {
-  "globalDependencies": {
-    "core-js": "registry:dt/core-js#0.9.0+20170310221640"
-  }
+	"globalDependencies":
+	{
+		"node": "registry:dt/node",
+		"zone.js": "registry:dt/zone.js",
+		
+		"es6-collections": "registry:dt/es6-collections"
+	},
+	"dependencies":
+	{
+		"express": "registry:dt/express",
+		"express-serve-static-core": "registry:dt/express-serve-static-core",
+		"serve-static": "registry:dt/serve-static",
+		"finalhandler": "registry:dt/finalhandler",
+		"mime": "registry:dt/mime",
+		"websocket": "registry:dt/websocket"
+	}
 }

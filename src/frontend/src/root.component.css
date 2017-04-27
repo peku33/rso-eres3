@@ -1,0 +1,41 @@
+:host
+{
+	display: block;
+	width: 800px;
+	margin: auto;
+	padding: 25px;
+
+	border: solid 1px black;
+}
+.Block
+{
+	display: block;
+	padding: 10px;
+	border: solid 1px black;
+	margin-bottom: 10px;
+}
+#Messages
+{
+	height: 300px;
+	overflow-y: scroll;
+}
+.Message
+{
+	border-bottom: solid 1px #AAAAAA;
+	padding: 5px;
+}
+.Message .Author
+{
+	font-weight: bold;
+}
+
+#SendMessage table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+#SendMessage table td
+{
+	padding: 10px;
+	border: solid 1px black;
+}

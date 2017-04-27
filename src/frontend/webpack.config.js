@@ -1,58 +1,54 @@
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = {
-    entry: './src/main.ts',
-    output: {
-        path: './dist',
-        filename: 'app.bundle.js'
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.ts$/,
-                loader: 'ts-loader'
-            },
-            {
-                test: /\.css$/,
-                loader: ['style-loader', 'css-loader']
-            },
-            {
-                test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "url-loader?limit=10000&mimetype=application/font-woff"
-            },
-            {
-                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "url-loader?limit=10000&mimetype=application/octet-stream"
-            },
-            {
-                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "file-loader"
-            },
-            {
-                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                loader: "url-loader?limit=10000&mimetype=image/svg+xml"
-            },
-            {
-                test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-                loader: 'file-loader'
-            }
-        ]
-    },
-    resolve: {
-        extensions: ['.js', '.ts']
-    }
-    ,
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html'
-        }),
-        new webpack.ProvidePlugin({
-            'jQuery': 'jquery',
-            'window.jQuery': 'jquery',
-            'Tether': 'tether',
-            'window.Tether': 'tether'
-        })
-    ]
-}
-;
+module.exports =
+{
+	entry:
+	{
+		'polyfills': './polyfills.ts',
+		'vendor': './vendor.ts',
+		'app': './src/main.ts',
+	},
+	output:
+	{
+		path: path.resolve(__dirname, './dist'),
+		filename: '[name].js'
+	},
+	resolve:
+	{
+    	extensions: ['.ts', '.js']
+  	},
+  	module:
+  	{
+		loaders:
+		[
+		  	{
+				test: /\.ts$/,
+				loaders: ['awesome-typescript-loader', 'angular2-template-loader']
+			},
+			{ 
+				test: /\.(html|css)$/, 
+				loader: 'raw-loader'
+			}
+		]
+  	},
+	plugins:
+	[
+		/*new webpack.optimize.UglifyJsPlugin(
+		{
+			compress:
+			{
+				warnings: false
+			}
+		}),*/
+		new webpack.optimize.CommonsChunkPlugin(
+		{
+			name: ['app', 'vendor', 'polyfills']
+		}),
+		new CopyWebpackPlugin(
+		[
+			{ from: 'src/index.html' },
+		])
+	]
+};
