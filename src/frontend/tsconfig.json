@@ -1,13 +1,43 @@
 {
   "compilerOptions": {
+    "baseUrl": "",
     "target": "es6",
-    "lib": ["es6", "dom"],
     "module": "commonjs",
     "moduleResolution": "node",
+    "declaration": true,
+    "noImplicitAny": false,
     "sourceMap": true,
+    "mapRoot": "",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": false,
-    "noImplicitAny": false
+    "outDir": "./build",
+    "rootDir": "./src/app",
+    "skipLibCheck": true,
+    "typeRoots": [ "./node_modules/@types" ],
+    "types": [
+      "node"
+    ],
+    "lib": [
+      "dom",
+      "es6"
+    ]
+  },
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.ngfactory.ts",
+    "**/*.shim.ts",
+    "src/app/main*.ts",
+    "src/app/polyfill.ts"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "forkChecker": true,
+    "useWebpackText": true
+  },
+  "angularCompilerOptions": {
+    "genDir": ".",
+    "entryModule": "src/app/modules/main.module#MainModule"
   }
 }
