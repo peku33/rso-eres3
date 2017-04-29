@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -42,6 +43,18 @@ public class Subject implements Serializable {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	private SubjectType type;
+
+	@NotNull
+	@ManyToOne
+	private OrganizationalUnit unit;
+
+	public Subject() {
+		//for hibernate
+	}
+
+	public Subject(final int id) {
+		setId(id);
+	}
 
 	public Integer getId() {
 		return id;
@@ -89,6 +102,14 @@ public class Subject implements Serializable {
 
 	public void setType(final SubjectType type) {
 		this.type = type;
+	}
+
+	public OrganizationalUnit getUnit() {
+		return unit;
+	}
+
+	public void setUnit(final OrganizationalUnit unit) {
+		this.unit = unit;
 	}
 
 	public enum SubjectType {
