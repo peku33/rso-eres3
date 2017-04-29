@@ -28,6 +28,14 @@ public class Semester implements Serializable {
 	@NotNull
 	private SemesterType type;
 
+	public Semester() {
+		//for hibernate
+	}
+
+	public Semester(final Short id) {
+		setId(id);
+	}
+
 	public Short getId() {
 		return id;
 	}
