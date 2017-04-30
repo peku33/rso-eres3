@@ -1,10 +1,14 @@
 package pl.edu.pw.elka.rso.eres3.domain.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import pl.edu.pw.elka.rso.eres3.domain.compositeids.PersonPermissionOnUnitId;
+
 import java.io.Serializable;
 import java.util.Objects;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
 
 /**
  * A class representing a permission on a unit assigned to a person.
@@ -14,6 +18,7 @@ import java.util.Objects;
  * organizational tree of given organizational unit.
  */
 @Entity
+@IdClass(PersonPermissionOnUnitId.class)
 public class PersonPermissionOnUnit implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -55,10 +60,10 @@ public class PersonPermissionOnUnit implements Serializable {
 	}
 
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals(final Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		PersonPermissionOnUnit that = (PersonPermissionOnUnit) o;
+		final PersonPermissionOnUnit that = (PersonPermissionOnUnit) o;
 		return Objects.equals(person, that.person) &&
 				Objects.equals(permission, that.permission) &&
 				Objects.equals(unit, that.unit);
