@@ -1,18 +1,16 @@
 package pl.edu.pw.elka.rso.eres3.controllers;
 
-import java.util.List;
-
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.google.common.collect.Lists;
-
 import pl.edu.pw.elka.rso.eres3.domain.entities.Semester;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.SemesterRepository;
+
+import java.util.List;
 
 /**
  * Rest controller for semesters, read only operations.

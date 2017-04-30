@@ -1,20 +1,18 @@
 package pl.edu.pw.elka.rso.eres3.controllers;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import com.google.common.collect.ImmutableSet;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.http.ResponseEntity;
+import pl.edu.pw.elka.rso.eres3.domain.entities.Subject;
+import pl.edu.pw.elka.rso.eres3.domain.repositories.SubjectRepository;
 
 import java.net.URI;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.http.ResponseEntity;
-
-import com.google.common.collect.ImmutableSet;
-
-import pl.edu.pw.elka.rso.eres3.domain.entities.Subject;
-import pl.edu.pw.elka.rso.eres3.domain.repositories.SubjectRepository;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Subject rest controller tests.

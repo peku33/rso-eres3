@@ -6,20 +6,20 @@ import java.util.Objects;
 /**
  * Created by Jakub Lorenc on 30.04.17.
  */
-public class PersonPermissionOnUnitId implements Serializable {
+public class GrantedPermissionId implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private long person;
+    private Long person;
 
     private String permission;
 
-    private short unit;
+    private Short unit;
 
-    public long getPerson() {
+    public Long getPerson() {
         return person;
     }
 
-    public void setPerson(long person) {
+    public void setPerson(Long person) {
         this.person = person;
     }
 
@@ -31,11 +31,11 @@ public class PersonPermissionOnUnitId implements Serializable {
         this.permission = permission;
     }
 
-    public short getUnit() {
+    public Short getUnit() {
         return unit;
     }
 
-    public void setUnit(short unit) {
+    public void setUnit(Short unit) {
         this.unit = unit;
     }
 
@@ -43,9 +43,9 @@ public class PersonPermissionOnUnitId implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PersonPermissionOnUnitId that = (PersonPermissionOnUnitId) o;
-        return person == that.person &&
-                unit == that.unit &&
+        GrantedPermissionId that = (GrantedPermissionId) o;
+        return person.equals(that.person) &&
+                unit.equals(that.unit) &&
                 Objects.equals(permission, that.permission);
     }
 

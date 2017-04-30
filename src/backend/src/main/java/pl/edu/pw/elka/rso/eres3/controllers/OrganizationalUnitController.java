@@ -34,7 +34,7 @@ public class OrganizationalUnitController extends AbstractCrudController<Organiz
     }
 
     @RequestMapping(value = mapping + "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<OrganizationalUnit> getUnit(@PathVariable() short id) {
+    public ResponseEntity<OrganizationalUnit> getUnit(@PathVariable final short id) {
         return getEntity(id);
     }
 

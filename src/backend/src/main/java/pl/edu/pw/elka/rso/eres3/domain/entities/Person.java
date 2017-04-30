@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Class that represents a user of the system.
@@ -46,9 +45,6 @@ public class Person implements Serializable, SimpleIdEntity<Long> {
 	@Size(min = 11, max = 11)
 	@Column(length = 11)
 	private String pesel;
-
-	@OneToMany
-	private Set<PersonPermissionOnUnit> permissions;
 
 	@Override
 	public Long getId() {
@@ -97,14 +93,6 @@ public class Person implements Serializable, SimpleIdEntity<Long> {
 
 	public void setPesel(final String pesel) {
 		this.pesel = pesel;
-	}
-
-	public Set<PersonPermissionOnUnit> getPermissions() {
-		return permissions;
-	}
-
-	public void setPermissions(final Set<PersonPermissionOnUnit> permissions) {
-		this.permissions = permissions;
 	}
 
 	public String getPassword() {
