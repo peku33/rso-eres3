@@ -1,69 +1,61 @@
 package pl.edu.pw.elka.rso.eres3.controllers;
 
-import com.google.common.collect.Lists;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import pl.edu.pw.elka.rso.eres3.domain.entities.Subject;
-import pl.edu.pw.elka.rso.eres3.domain.repositories.SubjectRepository;
+import java.util.List;
 
 import javax.transaction.Transactional;
-import java.net.URI;
-import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import pl.edu.pw.elka.rso.eres3.controllers.abstractions.AbstractCrudController;
+import pl.edu.pw.elka.rso.eres3.domain.entities.Subject;
+import pl.edu.pw.elka.rso.eres3.domain.repositories.SubjectRepository;
 
 /**
  * Rest controller for subjects.
  */
 @RestController
 @Transactional
-public class SubjectController {
-	private final SubjectRepository subjectRepository;
+public class SubjectController extends AbstractCrudController<Subject, Integer> {
+	private static final String mapping = "/subjects";
 
 	@Autowired
 	public SubjectController(final SubjectRepository subjectRepository) {
-		this.subjectRepository = subjectRepository;
+		super(subjectRepository, true);
 	}
 
-	@RequestMapping(value = "/subjects/unit/{id}", method = RequestMethod.GET)
+	@RequestMapping(value =  mapping + "/unit/{id}", method = RequestMethod.GET)
 	public List<Subject> getAllSubjectsOnUnit(@PathVariable final short id) {
-		return Lists.newArrayList(subjectRepository.findByUnitId(id));
+		return getAll();
 	}
 
-	@RequestMapping(value = "/subjects/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = mapping + "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Subject> getSubject(@PathVariable final int id){
-		final Subject subject = subjectRepository.findOne(id);
-		if(subject == null) {
-			return ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.ok(subject);
+		return getSubject(id);
 	}
 
-	@RequestMapping(value = "/subjects", method = RequestMethod.POST)
+	@RequestMapping(value = mapping, method = RequestMethod.POST)
 	public ResponseEntity<Subject> addSubject(@RequestBody final Subject subject){
-		if(subject.getId() != null) {
-			return ResponseEntity.badRequest().build();
-		}
-		final Subject createdSubject = subjectRepository.save(subject);
-		return ResponseEntity.created(URI.create("/subjects/" + createdSubject.getId())).body(createdSubject);
+		return addEntity(subject);
 	}
 
-	@RequestMapping(value = "/subjects", method = RequestMethod.PUT)
+	@RequestMapping(value = mapping, method = RequestMethod.PUT)
 	public ResponseEntity<Subject> updateSubject(@RequestBody final Subject subject) {
-		if(subject.getId() == null){
-			return ResponseEntity.badRequest().build();
-		}
-		if(!subjectRepository.exists(subject.getId())){
-			return ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.ok(subjectRepository.save(subject));
+		return updateEntity(subject);
 	}
 
-	@RequestMapping(value = "/subjects/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = mapping + "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Subject> deleteSubject(@PathVariable final int id) {
-		if(!subjectRepository.exists(id)){
-			return ResponseEntity.notFound().build();
-		}
-		subjectRepository.delete(id);
-		return ResponseEntity.noContent().build();
+		return deleteEntity(id);
+	}
+
+	@Override
+	protected String getControllerMapping() {
+		return mapping;
 	}
 }
