@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -18,7 +19,7 @@ import pl.edu.pw.elka.rso.eres3.domain.entities.abstractions.SimpleIdEntity;
  * A version of a subject.
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "id", "version_code" }))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "subject_id", "version_code" }))
 public class SubjectVersion implements Serializable, SimpleIdEntity<Integer> {
 	private static final long serialVersionUID = 1L;
 
@@ -33,6 +34,7 @@ public class SubjectVersion implements Serializable, SimpleIdEntity<Integer> {
 
 	@NotNull
 	@ManyToOne
+	@JoinColumn(name="subject_id")
 	private Subject subject;
 
 	@Override

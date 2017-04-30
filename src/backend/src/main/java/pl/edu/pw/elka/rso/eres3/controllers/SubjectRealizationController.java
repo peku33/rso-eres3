@@ -2,6 +2,7 @@ package pl.edu.pw.elka.rso.eres3.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -30,6 +31,11 @@ public class SubjectRealizationController extends AbstractCrudController<Subject
 	@RequestMapping(value = mapping + "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<SubjectRealization> getSubjectRealization(@PathVariable final int id){
 		return getEntity(id);
+	}
+
+	@RequestMapping(value = mapping, method = RequestMethod.POST)
+	public ResponseEntity<SubjectRealization> addSubjectRealization(@RequestBody final SubjectRealization realization){
+		return addEntity(realization);
 	}
 
 	@RequestMapping(value = mapping + "/{id}", method = RequestMethod.DELETE)

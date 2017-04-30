@@ -19,7 +19,7 @@ import pl.edu.pw.elka.rso.eres3.domain.entities.abstractions.SimpleIdEntity;
  * Realization of a subject's version on a given semester.
  */
 @Entity
-@Table(uniqueConstraints=@UniqueConstraint(columnNames={"id", "subject_version_id", "semester_id"}))
+@Table(uniqueConstraints=@UniqueConstraint(columnNames={"subject_version_id", "semester_id"}))
 public class SubjectRealization implements Serializable, SimpleIdEntity<Integer> {
 	private static final long serialVersionUID = 1L;
 
