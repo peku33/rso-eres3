@@ -9,7 +9,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -19,6 +22,7 @@ import pl.edu.pw.elka.rso.eres3.domain.entities.abstractions.SimpleIdEntity;
  * A subject on a faculty.
  */
 @Entity
+@Table(uniqueConstraints=@UniqueConstraint(columnNames={"unit_id", "short_name"}))
 public class Subject implements Serializable, SimpleIdEntity<Integer> {
 	private static final long serialVersionUID = 1L;
 
@@ -33,7 +37,7 @@ public class Subject implements Serializable, SimpleIdEntity<Integer> {
 
 	@NotNull
 	@Size(min = 1, max = 20)
-	@Column(length = 20, nullable = false)
+	@Column(length = 20, nullable = false, name="short_name")
 	private String shortName;
 
 	@NotNull
@@ -48,6 +52,7 @@ public class Subject implements Serializable, SimpleIdEntity<Integer> {
 
 	@NotNull
 	@ManyToOne
+	@JoinColumn(name="unit_id")
 	private OrganizationalUnit unit;
 
 	public Subject() {

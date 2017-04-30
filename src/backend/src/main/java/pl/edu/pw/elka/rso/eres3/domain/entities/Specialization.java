@@ -9,7 +9,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -17,6 +20,7 @@ import javax.validation.constraints.Size;
  * Specialization on a faculty.
  */
 @Entity
+@Table(uniqueConstraints=@UniqueConstraint(columnNames={"unit_id", "short_name"}))
 public class Specialization implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +35,7 @@ public class Specialization implements Serializable {
 
 	@NotNull
 	@Size(min = 1, max = 20)
-	@Column(length = 20, nullable = false)
+	@Column(length = 20, nullable = false, name="short_name")
 	private String shortName;
 
 	@NotNull
@@ -40,6 +44,7 @@ public class Specialization implements Serializable {
 
 	@NotNull
 	@ManyToOne
+	@JoinColumn(name="unit_id")
 	private OrganizationalUnit unit;
 
 	@ManyToOne
@@ -89,7 +94,7 @@ public class Specialization implements Serializable {
 		return superSpecialization;
 	}
 
-	public void setSuperSpecialization(Specialization superSpecialization) {
+	public void setSuperSpecialization(final Specialization superSpecialization) {
 		this.superSpecialization = superSpecialization;
 	}
 

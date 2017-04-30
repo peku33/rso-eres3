@@ -1,17 +1,25 @@
 package pl.edu.pw.elka.rso.eres3.domain.entities;
 
-import pl.edu.pw.elka.rso.eres3.domain.entities.abstractions.SimpleIdEntity;
+import java.io.Serializable;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
+
+import pl.edu.pw.elka.rso.eres3.domain.entities.abstractions.SimpleIdEntity;
 
 /**
  * An organizational unit, which is a root institution to which permissions can
  * be assigned for people. In this system it simply identifies a faculty.
  */
 @Entity
+@Table(uniqueConstraints=@UniqueConstraint(columnNames={"short_name"}))
 public class OrganizationalUnit implements Serializable, SimpleIdEntity<Short> {
 
 	private static final long serialVersionUID = 1L;
@@ -27,7 +35,7 @@ public class OrganizationalUnit implements Serializable, SimpleIdEntity<Short> {
 
 	@NotNull
 	@Size(min = 1, max = 20)
-	@Column(length = 20, nullable = false)
+	@Column(length = 20, nullable = false, name="short_name")
 	private String shortName;
 
 	@Override

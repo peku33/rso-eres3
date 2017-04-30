@@ -1,17 +1,25 @@
 package pl.edu.pw.elka.rso.eres3.domain.entities;
 
-import pl.edu.pw.elka.rso.eres3.domain.entities.abstractions.SimpleIdEntity;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import pl.edu.pw.elka.rso.eres3.domain.entities.abstractions.SimpleIdEntity;
 
 /**
  * Class that represents a user of the system.
  */
 @Entity
+@Table(uniqueConstraints=@UniqueConstraint(columnNames={"login"}))
 public class Person implements Serializable, SimpleIdEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
@@ -104,10 +112,10 @@ public class Person implements Serializable, SimpleIdEntity<Long> {
 	}
 
 	@Override
-	public boolean equals(Object o) {
+	public boolean equals(final Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		Person person = (Person) o;
+		final Person person = (Person) o;
 		return Objects.equals(id, person.id);
 	}
 
