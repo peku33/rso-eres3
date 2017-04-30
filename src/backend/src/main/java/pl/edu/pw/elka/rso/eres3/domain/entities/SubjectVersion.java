@@ -1,14 +1,21 @@
 package pl.edu.pw.elka.rso.eres3.domain.entities;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+
+import pl.edu.pw.elka.rso.eres3.domain.entities.abstractions.SimpleIdEntity;
 
 /**
  * A version of a subject.
  */
 @Entity
-public class SubjectVersion implements Serializable {
+public class SubjectVersion implements Serializable, SimpleIdEntity<Integer> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -22,6 +29,7 @@ public class SubjectVersion implements Serializable {
 	@ManyToOne
 	private Subject subject;
 
+	@Override
 	public Integer getId() {
 		return id;
 	}

@@ -1,7 +1,5 @@
 package pl.edu.pw.elka.rso.eres3.controllers;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,20 +21,22 @@ import pl.edu.pw.elka.rso.eres3.domain.repositories.SubjectRepository;
 @Transactional
 public class SubjectController extends AbstractCrudController<Subject, Integer> {
 	private static final String mapping = "/subjects";
+	private final SubjectRepository subjectRepository;
 
 	@Autowired
 	public SubjectController(final SubjectRepository subjectRepository) {
 		super(subjectRepository, true);
+		this.subjectRepository = subjectRepository;
 	}
 
-	@RequestMapping(value =  mapping + "/unit/{id}", method = RequestMethod.GET)
-	public List<Subject> getAllSubjectsOnUnit(@PathVariable final short id) {
-		return getAll();
+	@RequestMapping(value =  "/units/{id}/subjects", method = RequestMethod.GET)
+	public Iterable<Subject> getAllSubjectsOnUnit(@PathVariable final short id) {
+		return subjectRepository.findByUnitId(id);
 	}
 
 	@RequestMapping(value = mapping + "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Subject> getSubject(@PathVariable final int id){
-		return getSubject(id);
+		return getEntity(id);
 	}
 
 	@RequestMapping(value = mapping, method = RequestMethod.POST)

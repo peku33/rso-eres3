@@ -1,9 +1,17 @@
 package pl.edu.pw.elka.rso.eres3.domain.entities;
 
-import javax.persistence.*;
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 /**
  * Specialization on a faculty.
@@ -33,6 +41,9 @@ public class Specialization implements Serializable {
 	@NotNull
 	@ManyToOne
 	private OrganizationalUnit unit;
+
+	@ManyToOne
+	private Specialization superSpecialization;
 
 	public Integer getId() {
 		return id;
@@ -72,6 +83,14 @@ public class Specialization implements Serializable {
 
 	public void setUnit(final OrganizationalUnit unit) {
 		this.unit = unit;
+	}
+
+	public Specialization getSuperSpecialization() {
+		return superSpecialization;
+	}
+
+	public void setSuperSpecialization(Specialization superSpecialization) {
+		this.superSpecialization = superSpecialization;
 	}
 
 	public enum SpecializationType {
