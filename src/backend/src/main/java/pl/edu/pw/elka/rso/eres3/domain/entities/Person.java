@@ -1,17 +1,18 @@
 package pl.edu.pw.elka.rso.eres3.domain.entities;
 
+import pl.edu.pw.elka.rso.eres3.domain.entities.abstractions.SimpleIdEntity;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * Class that represents a user of the system.
  */
 @Entity
-public class Person implements Serializable {
+public class Person implements Serializable, SimpleIdEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -45,17 +46,7 @@ public class Person implements Serializable {
 	@Column(length = 11)
 	private String pesel;
 
-	@OneToMany
-	private Set<PersonPermissionOnUnit> permissions;
-
-	public Person(){
-		//for hibernate
-	}
-
-	public Person(Long id){
-		this.id = id;
-	}
-
+	@Override
 	public Long getId() {
 		return id;
 	}
@@ -102,14 +93,6 @@ public class Person implements Serializable {
 
 	public void setPesel(final String pesel) {
 		this.pesel = pesel;
-	}
-
-	public Set<PersonPermissionOnUnit> getPermissions() {
-		return permissions;
-	}
-
-	public void setPermissions(final Set<PersonPermissionOnUnit> permissions) {
-		this.permissions = permissions;
 	}
 
 	public String getPassword() {

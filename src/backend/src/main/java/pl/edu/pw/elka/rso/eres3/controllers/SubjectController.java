@@ -1,21 +1,15 @@
 package pl.edu.pw.elka.rso.eres3.controllers;
 
-import java.net.URI;
-import java.util.List;
-
-import javax.transaction.Transactional;
-
-import org.assertj.core.util.Lists;
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import pl.edu.pw.elka.rso.eres3.domain.entities.Subject;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.SubjectRepository;
+
+import javax.transaction.Transactional;
+import java.net.URI;
+import java.util.List;
 
 /**
  * Rest controller for subjects.

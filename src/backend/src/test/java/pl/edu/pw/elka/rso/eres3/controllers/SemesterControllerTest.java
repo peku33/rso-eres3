@@ -1,19 +1,17 @@
 package pl.edu.pw.elka.rso.eres3.controllers;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.util.List;
-
+import com.google.common.collect.ImmutableSet;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.ResponseEntity;
-
-import com.google.common.collect.ImmutableSet;
-
 import pl.edu.pw.elka.rso.eres3.domain.entities.Semester;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.SemesterRepository;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Semester rest controller tests.
