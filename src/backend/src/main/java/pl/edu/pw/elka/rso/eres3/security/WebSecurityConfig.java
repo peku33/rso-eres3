@@ -1,7 +1,10 @@
 package pl.edu.pw.elka.rso.eres3.security;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,14 +21,9 @@ import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	/**
-	 * Added for testing purposes
-	 * @todo: Both should be enabled on production
-	 */
-	static final boolean REQUIRE_AUTHENTICATION = true;
-	static final boolean ENABLE_CSRF_PROTECTION = false;
-	
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {	
+	private static final Logger logger = LoggerFactory.getLogger(DomainPermissionEvaluator.class);
+
 	@Autowired
 	@Qualifier("userDetailsService")
 	UserDetailsService userDetailsService;
@@ -40,12 +38,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		/**
 		 * Config for authentication and CSRF tokens handling. 
 		 */
-		if(REQUIRE_AUTHENTICATION)
+		if(securitySettings().getRequireAuthentication())
 		{
+			logger.info("Authentication requirement enabled.");
 			http.authorizeRequests()
 				.anyRequest().authenticated();
 		} else
 		{
+			logger.warn("Authentication requirement disabled!");
 			http.authorizeRequests()
 				.anyRequest().permitAll();
 		}
@@ -66,12 +66,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.exceptionHandling()
 			.authenticationEntryPoint(new RestAuthenticationEntryPoint());
 		
-		if(ENABLE_CSRF_PROTECTION)
+		if(securitySettings().getEnableCSRFProtection())
 		{
+			logger.info("CSRF protection enabled.");
 			http.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
             .csrf().csrfTokenRepository(csrfTokenRepository());
 		} else
 		{
+			logger.warn("CSRF protection disabled!");
 			http.csrf().disable();
 		}
 	}
@@ -93,5 +95,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	public SecuritySettings securitySettings() {
+		return new SecuritySettings();
 	}
 }
