@@ -1,4 +1,4 @@
-package pl.edu.pw.elka.rso.eres3.authentication;
+package pl.edu.pw.elka.rso.eres3.security;
 
 import java.io.IOException;
 
