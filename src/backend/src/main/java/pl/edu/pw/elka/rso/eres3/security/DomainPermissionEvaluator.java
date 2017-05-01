@@ -9,10 +9,14 @@ import org.springframework.security.core.Authentication;
 import pl.edu.pw.elka.rso.eres3.domain.entities.GrantedPermission;
 import pl.edu.pw.elka.rso.eres3.domain.entities.OrganizationalUnit;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.GrantedPermissionRepository;
+import pl.edu.pw.elka.rso.eres3.domain.repositories.OrganizationalUnitRepository;
 
 public class DomainPermissionEvaluator implements PermissionEvaluator {
 	@Autowired
 	private GrantedPermissionRepository repository;
+	
+	@Autowired
+	private OrganizationalUnitRepository domainRepository;
 	
 	private boolean checkPermission(long userId, 
 									OrganizationalUnit domain,
@@ -42,11 +46,11 @@ public class DomainPermissionEvaluator implements PermissionEvaluator {
 	
 	@Override
     public boolean hasPermission(Authentication authentication, 
-    		Serializable targetId, String targetType, Object permissionText) 
+    		Serializable targetId, String targetType, Object permissionName) 
     {
-		/**
-		 * I don't think it'll be needed
-		 */
-		throw new UnsupportedOperationException("Domain selection by id isn't supported");
+		assert(targetType.equals("OrganizationalUnit"));
+		AuthenticatedUser user = (AuthenticatedUser)authentication.getPrincipal();
+		OrganizationalUnit domain = domainRepository.findOne((Short)targetId);
+		return checkPermission(user.getId(), domain, (String)permissionName);
     }
 }
