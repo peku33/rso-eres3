@@ -10,6 +10,8 @@ repositories {
 dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web:1.5.2.RELEASE'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.5.2.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-security:1.5.2.RELEASE'
+    
     compile 'mysql:mysql-connector-java:6.0.6'
     compile group: 'com.google.guava', name: 'guava', version: '21.0'
 
