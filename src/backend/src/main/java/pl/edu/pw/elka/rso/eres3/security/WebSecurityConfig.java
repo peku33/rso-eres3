@@ -19,6 +19,13 @@ import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	/**
+	 * Added for testing purposes
+	 * @todo: Both should be enabled on production
+	 */
+	static final boolean REQUIRE_AUTHENTICATION = true;
+	static final boolean ENABLE_CSRF_PROTECTION = false;
+	
 	@Autowired
 	@Qualifier("userDetailsService")
 	UserDetailsService userDetailsService;
@@ -33,11 +40,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		/**
 		 * Config for authentication and CSRF tokens handling. 
 		 */
-		http
-			.authorizeRequests()
-			.anyRequest().authenticated()
-		.and()
-			.formLogin()
+		if(REQUIRE_AUTHENTICATION)
+		{
+			http.authorizeRequests()
+				.anyRequest().authenticated();
+		} else
+		{
+			http.authorizeRequests()
+				.anyRequest().permitAll();
+		}
+		http.formLogin()
 			.usernameParameter("username") /* These might be just a default, dk */
 			.passwordParameter("password")
 			.loginPage("/login")
@@ -52,11 +64,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.deleteCookies("JSESSIONID")
 		.and()
 			.exceptionHandling()
-			.authenticationEntryPoint(new RestAuthenticationEntryPoint())
-		.and()
-			.csrf().disable();
-		/*.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
-            .csrf().csrfTokenRepository(csrfTokenRepository());*/
+			.authenticationEntryPoint(new RestAuthenticationEntryPoint());
+		
+		if(ENABLE_CSRF_PROTECTION)
+		{
+			http.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
+            .csrf().csrfTokenRepository(csrfTokenRepository());
+		} else
+		{
+			http.csrf().disable();
+		}
 	}
 
 	private CsrfTokenRepository csrfTokenRepository() {

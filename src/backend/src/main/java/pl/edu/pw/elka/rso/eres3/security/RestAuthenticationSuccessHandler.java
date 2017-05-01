@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RestAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
-	
+
 	@Override
 	public void onAuthenticationSuccess(
 			final HttpServletRequest request,
@@ -19,7 +19,7 @@ public class RestAuthenticationSuccessHandler implements AuthenticationSuccessHa
 			final Authentication authentication) 
 					throws IOException 
 	{
-		 response.getWriter().append("OK");
-	     response.setStatus(HttpServletResponse.SC_OK);
+		response.getWriter().append("OK");
+		response.setStatus(HttpServletResponse.SC_OK);
 	}
 }

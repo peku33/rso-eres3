@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RestAuthenticationFailureHandler implements AuthenticationFailureHandler {
-	
+
 	@Override
 	public void onAuthenticationFailure(final HttpServletRequest request, 
-										final HttpServletResponse response,
-										final AuthenticationException exception) 
-												throws IOException, ServletException 
+			final HttpServletResponse response,
+			final AuthenticationException exception) 
+					throws IOException, ServletException 
 	{
 		response.getWriter().append("Bad credentials");
-	    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 	}
 }
