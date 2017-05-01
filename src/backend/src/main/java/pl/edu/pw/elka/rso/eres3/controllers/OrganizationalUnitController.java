@@ -2,6 +2,7 @@ package pl.edu.pw.elka.rso.eres3.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pl.edu.pw.elka.rso.eres3.controllers.abstractions.AbstractCrudController;
 import pl.edu.pw.elka.rso.eres3.domain.entities.OrganizationalUnit;
@@ -34,6 +35,7 @@ public class OrganizationalUnitController extends AbstractCrudController<Organiz
     }
 
     @RequestMapping(value = mapping + "/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasPermission(#id, 'OrganizationalUnit', 'read')")
     public ResponseEntity<OrganizationalUnit> getUnit(@PathVariable final short id) {
         return getEntity(id);
     }

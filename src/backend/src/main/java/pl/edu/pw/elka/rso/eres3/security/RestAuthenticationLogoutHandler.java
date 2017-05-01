@@ -9,7 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 
 public class RestAuthenticationLogoutHandler extends SimpleUrlLogoutSuccessHandler {
-	
+
 	@Override
 	public void onLogoutSuccess(
 			final HttpServletRequest request,
@@ -17,8 +17,8 @@ public class RestAuthenticationLogoutHandler extends SimpleUrlLogoutSuccessHandl
 			final Authentication authentication) 
 					throws IOException 
 	{
-		 response.getWriter().append("OK");
-	     response.setStatus(HttpServletResponse.SC_OK);
+		response.getWriter().append("OK");
+		response.setStatus(HttpServletResponse.SC_OK);
 	}
 
 }

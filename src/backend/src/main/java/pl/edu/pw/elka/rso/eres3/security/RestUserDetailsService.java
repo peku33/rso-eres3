@@ -18,24 +18,24 @@ import pl.edu.pw.elka.rso.eres3.domain.repositories.PersonRepository;
 public class RestUserDetailsService implements UserDetailsService {
 	@Autowired
 	private PersonRepository repository;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Person person = repository.findByLogin(username);
 		if(person == null)
-			throw new UsernameNotFoundException(String.format("User {} not found", username));
-		
+			throw new UsernameNotFoundException(String.format("User %s not found", username));
+
 		List<GrantedAuthority> authorities = buildUserAuthority(person);
 		return buildUserForAuthentication(person, authorities);
 	}
-	
+
 	private User buildUserForAuthentication(Person user, List<GrantedAuthority> authorities) {
 		return new AuthenticatedUser(
-					    user.getId(),
-				        user.getLogin(), 
-						user.getPassword(),
-						true, true, true, true,
-						authorities);
+				user.getId(),
+				user.getLogin(), 
+				user.getPassword(),
+				true, true, true, true,
+				authorities);
 	}
 
 	private List<GrantedAuthority> buildUserAuthority(Person user) 
