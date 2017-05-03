@@ -1,12 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AppComponent } from '../components/app.component';
 import { HelloWorldComponent } from '../components/hello-world/hello-world.component';
 
-export { HelloWorldComponent };
+export { AppComponent };
 
 @NgModule({
-    bootstrap: [HelloWorldComponent],
-    declarations: [HelloWorldComponent],
+    bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        HelloWorldComponent
+    ],
     imports: [BrowserModule],
     providers: []
 })
