@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,9 +18,11 @@ import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
+import pl.edu.pw.elka.rso.eres3.security.domain.DomainPermissionEvaluator;
+
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {	
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final Logger logger = LoggerFactory.getLogger(DomainPermissionEvaluator.class);
 
 	@Autowired
@@ -29,14 +30,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	UserDetailsService userDetailsService;
 
 	@Override
-	public void configure(WebSecurity web) throws Exception {
+	public void configure(final WebSecurity web) throws Exception {
 		web.debug(true);
 	}
 
 	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+	protected void configure(final HttpSecurity http) throws Exception {
 		/**
-		 * Config for authentication and CSRF tokens handling. 
+		 * Config for authentication and CSRF tokens handling.
 		 */
 		if(securitySettings().getRequireAuthentication())
 		{
@@ -65,7 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 			.exceptionHandling()
 			.authenticationEntryPoint(new RestAuthenticationEntryPoint());
-		
+
 		if(securitySettings().getEnableCSRFProtection())
 		{
 			logger.info("CSRF protection enabled.");
@@ -82,21 +83,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		/**
 		 * Angular sends CSRF token in X-XSRF-TOKEN header instead of X-CSRF-TOKEN
 		 */
-		HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
+		final HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
 		repository.setHeaderName("X-XSRF-TOKEN");
 		return repository;
 	}
 
 	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+	public void configureGlobal(final AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
+
 	@Bean
 	public SecuritySettings securitySettings() {
 		return new SecuritySettings();
