@@ -13,6 +13,7 @@ export { AppComponent };
 
 
 const appRoutes: Routes = [
+    { path: '', component: LoginPageComponent },
     { path: 'login', component: LoginPageComponent },
     { path: '**', component: PageNotFoundComponent }
 ];
