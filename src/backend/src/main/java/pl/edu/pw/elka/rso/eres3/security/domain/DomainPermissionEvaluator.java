@@ -20,7 +20,7 @@ public class DomainPermissionEvaluator implements PermissionEvaluator {
 	@Autowired private GrantedPermissionRepository repository;
 	@Autowired private EntityUnitRecognizerCollection entityUnitRecognizers;
 
-	private boolean checkPermissionOnUnit(final Authentication authentication, final Short organizationalUnitId, final String permissionName)
+	private boolean hasPermissionOnUnit(final Authentication authentication, final Short organizationalUnitId, final String permissionName)
 	{
 		final AuthenticatedUser user = (AuthenticatedUser)authentication.getPrincipal();
 		final long userId = user.getId();
@@ -44,22 +44,51 @@ public class DomainPermissionEvaluator implements PermissionEvaluator {
 		return false;
 	}
 
+	private boolean hasPermissionOnAnyUnit(final Authentication authentication, final String permissionName)
+	{
+		final AuthenticatedUser user = (AuthenticatedUser)authentication.getPrincipal();
+		final long userId = user.getId();
+		logger.info(String.format("Checking uid %s permission on any unit for %s operation", userId, permissionName));
+		/**
+		 * @todo: It should be replaced with some fancy WHERE clause.
+		 * Iterating manually over a list isn't sexy.
+		 * Remember to use getGrantedPermissionsByPersonId, when it will be implemented
+		 */
+		for(final GrantedPermission grantedPermission: repository.findAll())
+		{
+			if(grantedPermission.getPerson().getId() == userId &&
+					grantedPermission.getPermission().getName().equals(permissionName))
+			{
+				logger.info(String.format("Permission %s to orgUnitId %s granted", permissionName, grantedPermission.getUnit().getId()));
+				return true;
+			}
+		}
+		logger.info(String.format("%s access on all units forbidden", permissionName));
+		return false;
+	}
+
 	@Override
 	public boolean hasPermission(final Authentication authentication,
 			final Object targetDomainObject, final Object permissionName)
 	{
+		if(targetDomainObject == null) {
+			return hasPermissionOnAnyUnit(authentication, (String)permissionName);
+		}
 		final Class<?> classToRecognize = targetDomainObject.getClass();
 		final EntityUnitRecognizer unitRecognizer = entityUnitRecognizers.getByClass(classToRecognize);
 		final Short unitId = unitRecognizer.getUnitIdByEntity(targetDomainObject);
-		return checkPermissionOnUnit(authentication, unitId, (String)permissionName);
+		return hasPermissionOnUnit(authentication, unitId, (String)permissionName);
 	}
 
 	@Override
 	public boolean hasPermission(final Authentication authentication,
 			final Serializable targetId, final String targetType, final Object permissionName)
 	{
+		if(targetId == null) {
+			return hasPermissionOnAnyUnit(authentication, (String)permissionName);
+		}
 		final EntityUnitRecognizer unitRecognizer = entityUnitRecognizers.getByClassName(targetType);
 		final Short unitId = unitRecognizer.getUnitIdByEntityId(targetId);
-		return checkPermissionOnUnit(authentication, unitId, (String)permissionName);
+		return hasPermissionOnUnit(authentication, unitId, (String)permissionName);
 	}
 }

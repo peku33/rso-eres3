@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.assertj.core.util.Lists;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,16 +34,19 @@ public class SubjectVersionController extends AbstractCrudController<SubjectVers
 	}
 
 	@RequestMapping(value =  "/subjects/{id}/versions", method = RequestMethod.GET)
-	public Iterable<SubjectVersion> getAllSubjectVersions(@PathVariable final int id) {
+    @PreAuthorize("hasPermission(#id, 'Subject', 'SubjectVersionRead')")
+	public Iterable<SubjectVersion> getAllSubjectVersionsBySubjectId(@PathVariable final int id) {
 		return versionRepository.findBySubjectId(id);
 	}
 
 	@RequestMapping(value = mapping + "/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasPermission(#id, 'SubjectVersion', 'SubjectVersionRead')")
 	public ResponseEntity<SubjectVersion> getSubjectVerion(@PathVariable final int id){
 		return getEntity(id);
 	}
 
 	@RequestMapping(value = mapping, method = RequestMethod.POST)
+    @PreAuthorize("hasPermission(#version, 'SubjectVersionCreate')")
 	public ResponseEntity<SubjectVersion> addSubjectVerion(@RequestBody final SubjectVersion version){
 		final Integer subjectId = version.getSubject().getId();
 		final ArrayList<SubjectVersion> existingVersions = Lists.newArrayList(versionRepository.findBySubjectId(subjectId));
@@ -55,6 +59,7 @@ public class SubjectVersionController extends AbstractCrudController<SubjectVers
 	}
 
 	@RequestMapping(value = mapping + "/{id}", method = RequestMethod.DELETE)
+    @PreAuthorize("hasPermission(#id, 'SubjectVersion', 'SubjectVersionDelete')")
 	public ResponseEntity<SubjectVersion> deleteSubjectVerion(@PathVariable final int id) {
 		return deleteEntity(id);
 	}
@@ -63,5 +68,4 @@ public class SubjectVersionController extends AbstractCrudController<SubjectVers
 	protected String getControllerMapping() {
 		return mapping;
 	}
-
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,11 +27,13 @@ public class SemesterController extends AbstractCrudController<Semester, Short> 
 	}
 
 	@RequestMapping(value = mapping, method = RequestMethod.GET)
+    @PreAuthorize("hasPermission(null, 'SemesterRead')")
 	public List<Semester> getAllSemesters() {
 		return getAll();
 	}
 
 	@RequestMapping(value = mapping + "{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasPermission(null, 'SemesterRead')")
 	public ResponseEntity<Semester> getSemester(@PathVariable final short id) {
 		return getEntity(id);
 	}

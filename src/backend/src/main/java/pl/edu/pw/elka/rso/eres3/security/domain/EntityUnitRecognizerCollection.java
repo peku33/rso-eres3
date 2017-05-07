@@ -20,8 +20,15 @@ public class EntityUnitRecognizerCollection {
 
 	@Autowired
 	public EntityUnitRecognizerCollection(
-			final PlainUnitRecognizer plainUnitRecognizer) {
-		final ArrayList<PlainUnitRecognizer> unitRecognizers = Lists.newArrayList(plainUnitRecognizer);
+			final PlainUnitRecognizer plainUnitRecognizer,
+			final SubjectUnitRecognizer subjectUnitRecognizer,
+			final SubjectVersionUnitRecognizer subjectVersionUnitRecognizer,
+			final SubjectRealizationUnitRecognizer subjectRealizationUnitRecognizer) {
+		final ArrayList<EntityUnitRecognizer> unitRecognizers = Lists.newArrayList(
+				plainUnitRecognizer,
+				subjectUnitRecognizer,
+				subjectVersionUnitRecognizer,
+				subjectRealizationUnitRecognizer);
 		for(final EntityUnitRecognizer unitRecognizer : unitRecognizers)
 		{
 			unitRecognizersByClass.put(unitRecognizer.getRecognizableClass(), unitRecognizer);
