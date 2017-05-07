@@ -1,6 +1,9 @@
+apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = 'pl.edu.pw.elka.rso.eres3.Application'
+
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'java'
 
 repositories {
     jcenter()
@@ -8,13 +11,13 @@ repositories {
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web:1.5.2.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-data-jpa:1.5.2.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-security:1.5.2.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-web:+'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa:+'
+    compile 'org.springframework.boot:spring-boot-starter-security:+'
     
-    compile 'mysql:mysql-connector-java:6.0.6'
-    compile 'org.slf4j:1.6.1'
-    compile group: 'com.google.guava', name: 'guava', version: '21.0'
+    compile 'mysql:mysql-connector-java:+'
+    compile group: 'com.google.guava', name: 'guava', version: '+'
+	compile group: 'org.assertj', name: 'assertj-core', version: '+'
 
-    testCompile 'org.springframework.boot:spring-boot-starter-test:1.5.2.RELEASE'
+    testCompile 'org.springframework.boot:spring-boot-starter-test:+'
 }
