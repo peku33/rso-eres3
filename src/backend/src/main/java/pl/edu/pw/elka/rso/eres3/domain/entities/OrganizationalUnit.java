@@ -1,6 +1,7 @@
 package pl.edu.pw.elka.rso.eres3.domain.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -61,5 +62,19 @@ public class OrganizationalUnit implements Serializable, SimpleIdEntity<Short> {
 
 	public void setShortName(final String shortName) {
 		this.shortName = shortName;
+	}
+	
+	@Override
+	public boolean equals(final Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		final OrganizationalUnit that = (OrganizationalUnit) o;
+		return Objects.equals(shortName, that.shortName) &&
+				Objects.equals(fullName, that.fullName);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(shortName, fullName);
 	}
 }

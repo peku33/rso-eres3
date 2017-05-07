@@ -1,14 +1,21 @@
 package pl.edu.pw.elka.rso.eres3.controllers;
 
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
 import pl.edu.pw.elka.rso.eres3.controllers.abstractions.AbstractCrudController;
 import pl.edu.pw.elka.rso.eres3.domain.entities.OrganizationalUnit;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.OrganizationalUnitRepository;
-
-import javax.transaction.Transactional;
-import java.util.List;
 
 /**
  * Rest controller for organizational unit.
@@ -29,27 +36,32 @@ public class OrganizationalUnitController extends AbstractCrudController<Organiz
     }
 
     @RequestMapping(value = mapping, method = RequestMethod.GET)
+    @PreAuthorize("hasPermission(null, 'OrganizationalUnitRead')")
     public List<OrganizationalUnit> getAllUnits() {
         return getAll();
     }
 
     @RequestMapping(value = mapping + "/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasPermission(#id, 'OrganizationalUnit', 'OrganizationalUnitRead')")
     public ResponseEntity<OrganizationalUnit> getUnit(@PathVariable final short id) {
         return getEntity(id);
     }
 
     @RequestMapping(value = mapping, method = RequestMethod.POST)
-    public ResponseEntity<OrganizationalUnit> addUnit(@RequestBody OrganizationalUnit unit) {
+    @PreAuthorize("hasPermission(null, 'OrganizationalUnitCreate')")
+    public ResponseEntity<OrganizationalUnit> addUnit(@RequestBody final OrganizationalUnit unit) {
         return addEntity(unit);
     }
 
     @RequestMapping(value = mapping, method = RequestMethod.PUT)
-    public ResponseEntity<OrganizationalUnit> updateUnit(@RequestBody OrganizationalUnit unit) {
+    @PreAuthorize("hasPermission(#unit.id, 'OrganizationalUnit', 'OrganizationalUnitUpdate')")
+    public ResponseEntity<OrganizationalUnit> updateUnit(@RequestBody final OrganizationalUnit unit) {
         return updateEntity(unit);
     }
 
     @RequestMapping(value = mapping + "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteUnit(@PathVariable short id) {
+    @PreAuthorize("hasPermission(#id, 'OrganizationalUnit', 'OrganizationalUnitDelete')")
+    public ResponseEntity<OrganizationalUnit> deleteUnit(@PathVariable final short id) {
         return deleteEntity(id);
     }
 
