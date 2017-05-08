@@ -1,35 +1,51 @@
-import {BrowserModule} from "@angular/platform-browser";
-import {NgModule} from "@angular/core";
-import {MainComponent} from "../components/main/main.component";
-import {AppRoutingModule} from "./appRouting.module";
-import {UsersComponent} from "../components/users/users.component";
-import {UnitsComponent} from "../components/units/units.component";
-import {DashboardComponent} from "../components/dashboard/dashboard.component";
-import {GreetingService} from "../services/greeting.service";
-import {HttpModule} from "@angular/http";
-import {UsersService} from "../services/users.service";
-import {LoginPageComponent} from "../components/login-page/login-page.component";
+import {BrowserModule}  from "@angular/platform-browser";
+import {NgModule}       from "@angular/core";
+import {HttpModule}     from "@angular/http";
+
+import {MainComponent}         from "../components/main/main.component";
+import {PersonsComponent}      from "../components/persons/persons.component";
+import {UnitsComponent}        from "../components/units/units.component";
+import {DashboardComponent}    from "../components/dashboard/dashboard.component";
+import {LoginPageComponent}    from "../components/login-page/login-page.component";
 import {PageNotFoundComponent} from "../components/page-not-found/page-not-found.component";
 
+import {GreetingService}       from "../services/greeting.service";
+import {PersonsService}        from "../services/persons.service";
+import {SemestersService}      from "../services/semesters.service";
+import {SubjectsService}       from "../services/subjects.service";
+import {OrganizationalUnitsService} from "../services/organizational-units.service";
+
+import {AppRoutingModule} from "./appRouting.module";
+
+// Imports for loading & configuring the in-memory web api
+// For mocking a database
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from '../services/in-memory-data.service';
+
+
 @NgModule({
-    bootstrap: [MainComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpModule,
+        InMemoryWebApiModule.forRoot(InMemoryDataService),
+    ],
     declarations: [
         MainComponent,
-        UsersComponent,
+        PersonsComponent,
         UnitsComponent,
         DashboardComponent,
         PageNotFoundComponent,
         LoginPageComponent
     ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpModule
-    ],
     providers: [
         GreetingService,
-        UsersService
-    ]
+        PersonsService,
+        SemestersService,
+        SubjectsService,
+        OrganizationalUnitsService
+    ],
+    bootstrap: [MainComponent],
 })
 export class MainModule {
 }
