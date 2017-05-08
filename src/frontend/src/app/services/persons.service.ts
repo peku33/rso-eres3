@@ -32,21 +32,13 @@ export class PersonsService {
       .catch(this.handleError);
   }
 
-  delete(id: number): Promise<void> {
-    const url = `${this.personsUrl}/${id}`;
-    return this.http.delete(url, {headers: this.headers})
+  create(person: Person): Promise<Person> {
+    return this.http
+      .post(this.personsUrl, JSON.stringify(person), {headers: this.headers})
       .toPromise()
-      .then(() => null)
+      .then(res => res.json().data as Person)
       .catch(this.handleError);
   }
-
-  // create(name: string): Promise<Person> {
-  //   return this.http
-  //     .post(this.personsUrl, JSON.stringify({name: name}), {headers: this.headers})
-  //     .toPromise()
-  //     .then(res => res.json().data as Person)
-  //     .catch(this.handleError);
-  // }
 
   update(person: Person): Promise<Person> {
     const url = `${this.personsUrl}/${person.id}`;
@@ -54,6 +46,14 @@ export class PersonsService {
       .put(url, JSON.stringify(person), {headers: this.headers})
       .toPromise()
       .then(() => person)
+      .catch(this.handleError);
+  }
+
+  delete(id: number): Promise<void> {
+    const url = `${this.personsUrl}/${id}`;
+    return this.http.delete(url, {headers: this.headers})
+      .toPromise()
+      .then(() => null)
       .catch(this.handleError);
   }
 

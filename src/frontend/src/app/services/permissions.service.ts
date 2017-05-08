@@ -3,54 +3,54 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Subject } from '../models/subject';
+import { Permission } from './../models/permission';
 import {BE_URL} from "../settings/backendInfo";
 
 
+
 @Injectable()
-export class SubjectsService {
+export class PersonsService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private subjectsUrl = `${BE_URL}/subjects`;  // URL to web api
+  private permissionsUrl = `${BE_URL}/permissions`;  // URL to web api
 
   constructor(private http: Http) { }
 
-  getSubjectByUnitId(id: number): Promise<Subject[]> {
-    const url = `${this.subjectsUrl}/units/${id}/subjects`;
-    return this.http.get(url)
+  getPermissions(): Promise<Permission[]> {
+    return this.http.get(this.permissionsUrl)
                .toPromise()
-               .then(response => response.json().data as Subject[])
+               .then(response => response.json().data as Permission[])
                .catch(this.handleError);
   }
 
 
-  getSubject(id: number): Promise<Subject> {
-    const url = `${this.subjectsUrl}/${id}`;
+  getPermission(id: number): Promise<Permission> {
+    const url = `${this.permissionsUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json().data as Subject)
+      .then(response => response.json().data as Permission)
       .catch(this.handleError);
   }
 
-  create(subject: Subject): Promise<Subject> {
+  create(permission: Permission): Promise<Permission> {
     return this.http
-      .post(this.subjectsUrl, JSON.stringify(subject), {headers: this.headers})
+      .post(this.permissionsUrl, JSON.stringify(permission), {headers: this.headers})
       .toPromise()
-      .then(res => res.json().data as Subject)
+      .then(res => res.json().data as Permission)
       .catch(this.handleError);
   }
 
-  update(subject: Subject): Promise<Subject> {
-    const url = `${this.subjectsUrl}/${subject.id}`;
+  update(permission: Permission): Promise<Permission> {
+    const url = `${this.permissionsUrl}/${permission.id}`;
     return this.http
-      .put(url, JSON.stringify(subject), {headers: this.headers})
+      .put(url, JSON.stringify(permission), {headers: this.headers})
       .toPromise()
-      .then(() => subject)
+      .then(() => permission)
       .catch(this.handleError);
   }
 
   delete(id: number): Promise<void> {
-    const url = `${this.subjectsUrl}/${id}`;
+    const url = `${this.permissionsUrl}/${id}`;
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
       .then(() => null)
