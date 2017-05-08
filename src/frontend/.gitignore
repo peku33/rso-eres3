@@ -7,3 +7,4 @@ typings/
 *.ngstyle.ts/
 *.shim.ts/
 *.ngsummary.json/
+*.d.ts

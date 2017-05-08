@@ -1,13 +1,31 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HelloWorldComponent } from '../components/hello-world/hello-world.component';
-
-export { HelloWorldComponent };
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
+import {MainComponent} from "../components/main/main.component";
+import {AppRoutingModule} from "./appRouting.module";
+import {UsersComponent} from "../components/users/users.component";
+import {UnitsComponent} from "../components/units/units.component";
+import {DashboardComponent} from "../components/dashboard/dashboard.component";
+import {GreetingService} from "../services/greeting.service";
+import {HttpModule} from "@angular/http";
+import {UsersService} from "../services/users.service";
 
 @NgModule({
-    bootstrap: [HelloWorldComponent],
-    declarations: [HelloWorldComponent],
-    imports: [BrowserModule],
-    providers: []
+    bootstrap: [MainComponent],
+    declarations: [
+        MainComponent,
+        UsersComponent,
+        UnitsComponent,
+        DashboardComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpModule
+    ],
+    providers: [
+        GreetingService,
+        UsersService
+    ]
 })
-export class MainModule {}
+export class MainModule {
+}
