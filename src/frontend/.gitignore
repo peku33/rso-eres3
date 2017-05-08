@@ -1,10 +1,11 @@
 .idea
 npm-debug.log
 dist/
+build/
 node_modules/
 typings/
-*.ngfactory.ts/
-*.ngstyle.ts/
-*.shim.ts/
-*.ngsummary.json/
+*.ngfactory.ts
+*.ngstyle.ts
+*.shim.ts
+*.ngsummary.json
 *.d.ts

@@ -8,6 +8,8 @@ import {DashboardComponent} from "../components/dashboard/dashboard.component";
 import {GreetingService} from "../services/greeting.service";
 import {HttpModule} from "@angular/http";
 import {UsersService} from "../services/users.service";
+import {LoginPageComponent} from "../components/login-page/login-page.component";
+import {PageNotFoundComponent} from "../components/page-not-found/page-not-found.component";
 
 @NgModule({
     bootstrap: [MainComponent],
@@ -15,7 +17,9 @@ import {UsersService} from "../services/users.service";
         MainComponent,
         UsersComponent,
         UnitsComponent,
-        DashboardComponent
+        DashboardComponent,
+        PageNotFoundComponent,
+        LoginPageComponent
     ],
     imports: [
         BrowserModule,

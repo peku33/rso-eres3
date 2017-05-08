@@ -1,0 +1,13 @@
+.mdl-navigation {
+    background-color: #ffebd9;
+}
+
+.mdl-navigation__link {
+    font-size: 1.2em;
+    padding: 0.75em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.mdl-navigation__link:hover {
+    background-color: #e3ac76;
+}
