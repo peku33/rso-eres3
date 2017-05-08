@@ -3,35 +3,35 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Permission } from './permission';
+import { Subject } from './subject';
 
 
 @Injectable()
-export class PermissionService {
+export class SubjectService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private permisionUrl = 'api/permissions';  // URL to web api
+  private subjectsUrl = 'api/subjects';  // URL to web api
 
   constructor(private http: Http) { }
 
-  getPermissions(): Promise<Permission[]> {
-    return this.http.get(this.permisionUrl)
-               .toPromise()
-               .then(response => response.json().data as Permission[])
-               .catch(this.handleError);
-  }
+  // getSubjects(): Promise<Subject[]> {
+  //   return this.http.get(this.subjectsUrl)
+  //              .toPromise()
+  //              .then(response => response.json().data as Subject[])
+  //              .catch(this.handleError);
+  // }
 
 
-  getPermission(id: number): Promise<Permission> {
-    const url = `${this.permisionUrl}/${id}`;
+  getSubject(id: number): Promise<Subject> {
+    const url = `${this.subjectsUrl}/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json().data as Permission)
+      .then(response => response.json().data as Subject)
       .catch(this.handleError);
   }
 
   delete(id: number): Promise<void> {
-    const url = `${this.permisionUrl}/${id}`;
+    const url = `${this.subjectsUrl}/${id}`;
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
       .then(() => null)
@@ -46,12 +46,12 @@ export class PermissionService {
   //     .catch(this.handleError);
   // }
 
-  update(permission: Permission): Promise<Permission> {
-    const url = `${this.permisionUrl}/${permission.name}`;
+  update(subject: Subject): Promise<Subject> {
+    const url = `${this.subjectsUrl}/${subject.id}`;
     return this.http
-      .put(url, JSON.stringify(permission), {headers: this.headers})
+      .put(url, JSON.stringify(subject), {headers: this.headers})
       .toPromise()
-      .then(() => permission)
+      .then(() => subject)
       .catch(this.handleError);
   }
 

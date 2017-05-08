@@ -17,7 +17,9 @@ import {MainPageComponent}    from "../components/main-page/main-page.component"
 import { AppRoutingModule }   from './app-routing.module';
 
 import { PersonService }       from '../ClassesAndServices/Person/person.service';
-import { PermissionService }       from '../ClassesAndServices/Permission/permission.service';
+import { PermissionService }   from '../ClassesAndServices/Permission/permission.service';
+import { SemesterService }     from '../ClassesAndServices/Semester/semester.service';
+import { SubjectService }      from '../ClassesAndServices/Subject/subject.service';
 
 
 export { AppComponent };
@@ -39,7 +41,9 @@ export { AppComponent };
     ],
     providers: [
       PersonService,
-      PermissionService
+      PermissionService,
+      SemesterService,
+      SubjectService
     ],
     bootstrap: [AppComponent],
 

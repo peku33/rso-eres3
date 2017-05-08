@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { PermissionService }       from '../../ClassesAndServices/Permission/permission.service';
+import { SubjectService }       from '../../ClassesAndServices/Subject/subject.service';
 
 
 @Component({
@@ -9,11 +9,11 @@ import { PermissionService }       from '../../ClassesAndServices/Permission/per
 })
 
 export class LoginPageComponent implements OnInit{
-  constructor( private permissionService: PermissionService) {}
+  constructor( private subjectService: SubjectService) {}
     title: string = "ERES 3.0 - logowanie"
 
     ngOnInit(): void {
-  this.permissionService.getPermissions()
-    .then(persons => console.log(persons));
+  this.subjectService.getSubject(2)
+    .then(subject => console.log(subject));
   }
 }

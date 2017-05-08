@@ -1,4 +1,10 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
+
+enum SemesterType {
+   WINTER,
+   SUMMER
+}
+
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     let persons = [
@@ -15,14 +21,30 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
 
     let permissions = [
-      {name: 'name1', description: 'description1'},
-      {name: 'name2', description: 'description2'},
-      {name: 'name3', description: 'description3'},
-      {name: 'name4', description: 'description4'},
-      {name: 'name5', description: 'description5'},
-    ]
+      {id: 1, name: 'name1', description: 'description1'},
+      {id: 2, name: 'name2', description: 'description2'},
+      {id: 3, name: 'name3', description: 'description3'},
+      {id: 4, name: 'name4', description: 'description4'},
+      {id: 5, name: 'name5', description: 'description5'},
+    ];
 
+    let semesters = [
+      {id: 'name1', year: 'description1', semesterType: "WINTER"},
+      {id: 'name2', year: 'description2', semesterType: "SUMMER"},
+      {id: 'name3', year: 'description3', semesterType: "WINTER"},
+      {id: 'name4', year: 'description4', semesterType: "SUMMER"},
+      {id: 'name5', year: 'description5', semesterType: "WINTER"},
+    ];
 
-    return {persons, permissions};
+    let subjects = [
+      {id: 1, fullName: 'fullName1', shortName: 'shortName1', didacticalUnits: 1, ects: 1, type: "EXAM"},
+      {id: 2, fullName: 'fullName2', shortName: 'shortName2', didacticalUnits: 2, ects: 2, type: "NO_EXAM"},
+      {id: 3, fullName: 'fullName3', shortName: 'shortName3', didacticalUnits: 3, ects: 3, type: "NO_EXAM"},
+      {id: 4, fullName: 'fullName4', shortName: 'shortName4', didacticalUnits: 4, ects: 4, type: "NO_EXAM"},
+      {id: 5, fullName: 'fullName5', shortName: 'shortName5', didacticalUnits: 5, ects: 5, type: "NO_EXAM"},
+      {id: 6, fullName: 'fullName6', shortName: 'shortName6', didacticalUnits: 6, ects: 6, type: "NO_EXAM"}
+    ];
+
+    return {persons, permissions, semesters, subjects};
   }
 }
