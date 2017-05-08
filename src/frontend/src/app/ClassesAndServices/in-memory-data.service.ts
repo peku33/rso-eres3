@@ -1,10 +1,5 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
 
-enum SemesterType {
-   WINTER,
-   SUMMER
-}
-
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     let persons = [
