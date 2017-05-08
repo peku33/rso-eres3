@@ -3,7 +3,6 @@ package pl.edu.pw.elka.rso.eres3.security;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
 
 @ConfigurationProperties(prefix="app.security", ignoreUnknownFields=false)
 public class SecuritySettings {
@@ -11,20 +10,30 @@ public class SecuritySettings {
 	private boolean requireAuthentication;
 	@NotNull
 	private boolean enableCSRFProtection;
+	@NotNull
+	private boolean checkPermissions;
 
     public boolean getRequireAuthentication() {
     	return requireAuthentication;
     }
-    
+
     public boolean getEnableCSRFProtection() {
     	return enableCSRFProtection;
     }
-    
-    public void setRequireAuthentication(boolean value) {
+
+    public void setRequireAuthentication(final boolean value) {
     	requireAuthentication = value;
     }
-    
-    public void setEnableCSRFProtection(boolean value) {
+
+    public void setEnableCSRFProtection(final boolean value) {
     	enableCSRFProtection = value;
     }
+
+	public boolean isCheckPermissions() {
+		return checkPermissions;
+	}
+
+	public void setCheckPermissions(final boolean checkPermissions) {
+		this.checkPermissions = checkPermissions;
+	}
 }

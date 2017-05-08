@@ -1,12 +1,11 @@
 package pl.edu.pw.elka.rso.eres3.security.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 /**
@@ -19,16 +18,7 @@ public class EntityUnitRecognizerCollection {
 	private final Map<Class<?>, EntityUnitRecognizer> unitRecognizersByClass = Maps.newHashMap();
 
 	@Autowired
-	public EntityUnitRecognizerCollection(
-			final PlainUnitRecognizer plainUnitRecognizer,
-			final SubjectUnitRecognizer subjectUnitRecognizer,
-			final SubjectVersionUnitRecognizer subjectVersionUnitRecognizer,
-			final SubjectRealizationUnitRecognizer subjectRealizationUnitRecognizer) {
-		final ArrayList<EntityUnitRecognizer> unitRecognizers = Lists.newArrayList(
-				plainUnitRecognizer,
-				subjectUnitRecognizer,
-				subjectVersionUnitRecognizer,
-				subjectRealizationUnitRecognizer);
+	public EntityUnitRecognizerCollection(final List<EntityUnitRecognizer> unitRecognizers) {
 		for(final EntityUnitRecognizer unitRecognizer : unitRecognizers)
 		{
 			unitRecognizersByClass.put(unitRecognizer.getRecognizableClass(), unitRecognizer);

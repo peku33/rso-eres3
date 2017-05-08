@@ -5,6 +5,7 @@ import java.io.Serializable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 import pl.edu.pw.elka.rso.eres3.domain.entities.GrantedPermission;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.GrantedPermissionRepository;
 import pl.edu.pw.elka.rso.eres3.security.AuthenticatedUser;
+import pl.edu.pw.elka.rso.eres3.security.SecuritySettings;
 
 @Component
 public class DomainPermissionEvaluator implements PermissionEvaluator {
@@ -19,6 +21,12 @@ public class DomainPermissionEvaluator implements PermissionEvaluator {
 
 	@Autowired private GrantedPermissionRepository repository;
 	@Autowired private EntityUnitRecognizerCollection entityUnitRecognizers;
+	private final boolean checkPermissions = securitySettings().isCheckPermissions();
+
+	@Bean
+	private SecuritySettings securitySettings() {
+		return new SecuritySettings();
+	}
 
 	private boolean hasPermissionOnUnit(final Authentication authentication, final Short organizationalUnitId, final String permissionName)
 	{
@@ -71,6 +79,9 @@ public class DomainPermissionEvaluator implements PermissionEvaluator {
 	public boolean hasPermission(final Authentication authentication,
 			final Object targetDomainObject, final Object permissionName)
 	{
+		if(!checkPermissions) {
+			return true;
+		}
 		if(targetDomainObject == null) {
 			return hasPermissionOnAnyUnit(authentication, (String)permissionName);
 		}
@@ -84,6 +95,9 @@ public class DomainPermissionEvaluator implements PermissionEvaluator {
 	public boolean hasPermission(final Authentication authentication,
 			final Serializable targetId, final String targetType, final Object permissionName)
 	{
+		if(!checkPermissions) {
+			return true;
+		}
 		if(targetId == null) {
 			return hasPermissionOnAnyUnit(authentication, (String)permissionName);
 		}

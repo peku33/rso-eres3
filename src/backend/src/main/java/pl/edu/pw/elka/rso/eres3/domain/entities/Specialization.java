@@ -16,12 +16,14 @@ import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import pl.edu.pw.elka.rso.eres3.domain.entities.abstractions.SimpleIdEntity;
+
 /**
  * Specialization on a faculty.
  */
 @Entity
 @Table(uniqueConstraints=@UniqueConstraint(columnNames={"unit_id", "short_name"}))
-public class Specialization implements Serializable {
+public class Specialization implements Serializable, SimpleIdEntity<Integer> {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -50,6 +52,7 @@ public class Specialization implements Serializable {
 	@ManyToOne
 	private Specialization superSpecialization;
 
+	@Override
 	public Integer getId() {
 		return id;
 	}
