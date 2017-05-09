@@ -10,6 +10,7 @@ import {HttpModule} from "@angular/http";
 import {UsersService} from "../services/users.service";
 import {LoginPageComponent} from "../components/login-page/login-page.component";
 import {PageNotFoundComponent} from "../components/page-not-found/page-not-found.component";
+import {AppComponent} from "../components/app.component";
 
 @NgModule({
     bootstrap: [MainComponent],
@@ -19,7 +20,8 @@ import {PageNotFoundComponent} from "../components/page-not-found/page-not-found
         UnitsComponent,
         DashboardComponent,
         PageNotFoundComponent,
-        LoginPageComponent
+        LoginPageComponent,
+        AppComponent
     ],
     imports: [
         BrowserModule,
