@@ -3,7 +3,7 @@ import {Permission}   from  './permission'
 import {OrganizationalUnit} from './organizational-unit'
 
 export class GrantedPermission {
-  person: Person;
   permission:  Permission;
+  person: Person;
   organizationalUnit: OrganizationalUnit;
 }

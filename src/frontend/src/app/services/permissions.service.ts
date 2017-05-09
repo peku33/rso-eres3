@@ -24,8 +24,8 @@ export class PersonsService {
   }
 
 
-  getPermission(id: number): Promise<Permission> {
-    const url = `${this.permissionsUrl}/${id}`;
+  getPermission(name: string): Promise<Permission> {
+    const url = `${this.permissionsUrl}/${name}`;
     return this.http.get(url)
       .toPromise()
       .then(response => response.json().data as Permission)
@@ -41,7 +41,7 @@ export class PersonsService {
   }
 
   update(permission: Permission): Promise<Permission> {
-    const url = `${this.permissionsUrl}/${permission.id}`;
+    const url = `${this.permissionsUrl}/${permission.name}`;
     return this.http
       .put(url, JSON.stringify(permission), {headers: this.headers})
       .toPromise()
@@ -49,8 +49,8 @@ export class PersonsService {
       .catch(this.handleError);
   }
 
-  delete(id: number): Promise<void> {
-    const url = `${this.permissionsUrl}/${id}`;
+  delete(name: string): Promise<void> {
+    const url = `${this.permissionsUrl}/${name}`;
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
       .then(() => null)

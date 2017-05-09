@@ -1,3 +1,6 @@
+import {OrganizationalUnit} from './organizational-unit'
+
+
 export class Subject {
   id: number;
   fullName:  string;
@@ -5,4 +8,5 @@ export class Subject {
   didacticalUnits:   number;
   ects:      number;
   type:      string;
+  organizationalUnit: OrganizationalUnit;
 }
