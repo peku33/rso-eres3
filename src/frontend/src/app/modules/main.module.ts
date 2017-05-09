@@ -9,11 +9,17 @@ import {DashboardComponent}    from "../components/dashboard/dashboard.component
 import {LoginPageComponent}    from "../components/login-page/login-page.component";
 import {PageNotFoundComponent} from "../components/page-not-found/page-not-found.component";
 
-import {GreetingService}       from "../services/greeting.service";
-import {PersonsService}        from "../services/persons.service";
-import {SemestersService}      from "../services/semesters.service";
-import {SubjectsService}       from "../services/subjects.service";
-import {OrganizationalUnitsService} from "../services/organizational-units.service";
+
+import {GrantedPermissionsService} from "../services/granted-permissions.service";
+import {GreetingService}           from "../services/greeting.service";
+import {OrganizationalUnitsService}from "../services/organizational-units.service";
+import {PermissionsService}        from "../services/permissions.service";
+import {PersonsService}            from "../services/persons.service";
+import {SemestersService}          from "../services/semesters.service";
+import {SpecializationsService}    from "../services/specializations.service";
+import {SubjectRealizationsService}from "../services/subject-realizations.service";
+import {SubjectVersionsService}    from "../services/subject-versions.service";
+import {SubjectsService}           from "../services/subjects.service";
 
 import {AppRoutingModule} from "./appRouting.module";
 
@@ -39,11 +45,16 @@ import { InMemoryDataService }  from '../services/in-memory-data.service';
         LoginPageComponent
     ],
     providers: [
+        GrantedPermissionsService,
         GreetingService,
+        OrganizationalUnitsService,
+        PermissionsService,
         PersonsService,
         SemestersService,
-        SubjectsService,
-        OrganizationalUnitsService
+        SpecializationsService,
+        SubjectRealizationsService,
+        SubjectVersionsService,
+        SubjectsService
     ],
     bootstrap: [MainComponent],
 })

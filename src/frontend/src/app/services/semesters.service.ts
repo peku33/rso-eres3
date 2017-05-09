@@ -4,7 +4,7 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Semester } from '../models/semester';
-import {BE_URL} from "../settings/backendInfo";
+import {BE_URL}     from "../settings/backendInfo";
 
 
 @Injectable()

@@ -16,7 +16,7 @@ export class SubjectsService {
   constructor(private http: Http) { }
 
   getSubjectByUnitId(id: number): Promise<Subject[]> {
-    const url = `${this.subjectsUrl}/units/${id}/subjects`;
+    const url = `${BE_URL}/units/${id}/subjects`;
     return this.http.get(url)
                .toPromise()
                .then(response => response.json().data as Subject[])
@@ -41,7 +41,7 @@ export class SubjectsService {
   }
 
   update(subject: Subject): Promise<Subject> {
-    const url = `${this.subjectsUrl}/${subject.id}`;
+    const url = `${this.subjectsUrl}`;
     return this.http
       .put(url, JSON.stringify(subject), {headers: this.headers})
       .toPromise()

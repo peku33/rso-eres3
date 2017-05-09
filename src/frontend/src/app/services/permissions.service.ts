@@ -4,12 +4,12 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Permission } from './../models/permission';
-import {BE_URL} from "../settings/backendInfo";
+import {BE_URL}       from "../settings/backendInfo";
 
 
 
 @Injectable()
-export class PersonsService {
+export class PermissionsService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private permissionsUrl = `${BE_URL}/permissions`;  // URL to web api
@@ -41,7 +41,7 @@ export class PersonsService {
   }
 
   update(permission: Permission): Promise<Permission> {
-    const url = `${this.permissionsUrl}/${permission.name}`;
+    const url = `${this.permissionsUrl}`;
     return this.http
       .put(url, JSON.stringify(permission), {headers: this.headers})
       .toPromise()

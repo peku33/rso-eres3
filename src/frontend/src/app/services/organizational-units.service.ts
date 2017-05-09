@@ -4,7 +4,7 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { OrganizationalUnit } from './../models/organizational-unit';
-import {BE_URL} from "../settings/backendInfo";
+import {BE_URL}               from "../settings/backendInfo";
 
 
 @Injectable()
@@ -14,6 +14,7 @@ export class OrganizationalUnitsService {
   private unitsUrl = `${BE_URL}/units`;  // URL to web api
 
   constructor(private http: Http) { }
+
 
   getUnits(): Promise<OrganizationalUnit[]> {
     return this.http.get(this.unitsUrl)
@@ -31,7 +32,6 @@ export class OrganizationalUnitsService {
       .catch(this.handleError);
   }
 
-
   create(organizationaUnit: OrganizationalUnit): Promise<OrganizationalUnit> {
     return this.http
       .post(this.unitsUrl, JSON.stringify(organizationaUnit), {headers: this.headers})
@@ -41,7 +41,7 @@ export class OrganizationalUnitsService {
   }
 
   update(organizationaUnit: OrganizationalUnit): Promise<OrganizationalUnit> {
-    const url = `${this.unitsUrl}/${organizationaUnit.id}`;
+    const url = `${this.unitsUrl}`;
     return this.http
       .put(url, JSON.stringify(organizationaUnit), {headers: this.headers})
       .toPromise()

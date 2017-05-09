@@ -4,7 +4,7 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Person } from './../models/person';
-import {BE_URL} from "../settings/backendInfo";
+import {BE_URL}   from "../settings/backendInfo";
 
 
 
@@ -41,7 +41,7 @@ export class PersonsService {
   }
 
   update(person: Person): Promise<Person> {
-    const url = `${this.personsUrl}/${person.id}`;
+    const url = `${this.personsUrl}`;
     return this.http
       .put(url, JSON.stringify(person), {headers: this.headers})
       .toPromise()
