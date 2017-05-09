@@ -11,7 +11,7 @@
     "start:prod": "npm run cleanup && npm run ngc && npm run build && npm run serve",
     "build": "npm run cleanup && npm run ngc && webpack --config webpack.aot.config.js -p",
     "deploy": "gh-pages -d dist",
-    "aot": "npm run cleanup && npm run tsc && concurrently -r \"webpack-dev-server --config webpack.aot.config.js\" \"node ./bin/ngc-watch.js\"",
+    "aot": "npm run cleanup && npm run ngc && concurrently -r \"webpack-dev-server --config webpack.aot.config.js\" \"node ./bin/ngc-watch.js\"",
     "jit": "npm run cleanup && webpack-dev-server --config webpack.jit.config.js"
   },
   "dependencies": {
