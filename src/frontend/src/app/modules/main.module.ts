@@ -8,6 +8,7 @@ import {UnitsComponent}        from "../components/units/units.component";
 import {DashboardComponent}    from "../components/dashboard/dashboard.component";
 import {LoginPageComponent}    from "../components/login-page/login-page.component";
 import {PageNotFoundComponent} from "../components/page-not-found/page-not-found.component";
+import {AppComponent} from "../components/app.component";
 
 
 import {GrantedPermissionsService} from "../services/granted-permissions.service";
@@ -42,7 +43,8 @@ import { InMemoryDataService }  from '../services/in-memory-data.service';
         UnitsComponent,
         DashboardComponent,
         PageNotFoundComponent,
-        LoginPageComponent
+        LoginPageComponent,
+        AppComponent
     ],
     providers: [
         GrantedPermissionsService,
