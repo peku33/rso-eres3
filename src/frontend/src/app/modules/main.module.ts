@@ -23,7 +23,7 @@ import {SubjectVersionsService}    from "../services/subject-versions.service";
 import {SubjectsService}           from "../services/subjects.service";
 
 import {AppRoutingModule} from "./appRouting.module";
-
+import 'material-design-lite';
 // Imports for loading & configuring the in-memory web api
 // For mocking a database
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
