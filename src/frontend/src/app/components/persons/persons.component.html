@@ -1,7 +1,7 @@
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
     <thead>
     <tr>
-        <th class="mdl-data-table__cell--non-numeric">Imię</th>
+        <th class="mdl-data-table__cell--non-numeric">Pierwsze imię</th>
         <th class="mdl-data-table__cell--non-numeric">Nazwisko</th>
         <th>Pesel</th>
         <th></th>
@@ -12,7 +12,21 @@
         <td class="mdl-data-table__cell--non-numeric">{{person.firstName}}</td>
         <td class="mdl-data-table__cell--non-numeric">{{person.lastName}}</td>
         <td>{{person.pesel}}</td>
-        <td><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Szczegóły</button></td>
+        <td>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                Szczegóły
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+            <button routerLink="add"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Dodaj
+            </button>
+        </td>
     </tr>
     </tbody>
 </table>

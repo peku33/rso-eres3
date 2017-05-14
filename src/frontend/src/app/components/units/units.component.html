@@ -8,7 +8,19 @@
     <tbody>
     <tr *ngFor="let unit of units">
         <td class="mdl-data-table__cell--non-numeric">{{unit.fullName}}</td>
-        <td><button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Szczegóły</button></td>
+        <td>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                Szczegóły
+            </button>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <button routerLink="add"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Dodaj
+            </button>
+        </td>
     </tr>
     </tbody>
 </table>

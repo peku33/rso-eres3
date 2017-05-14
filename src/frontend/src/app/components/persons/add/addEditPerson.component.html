@@ -1,0 +1,35 @@
+<div class="mdl-card mdl-shadow--6dp">
+    <div class="mdl-card__supporting-text">
+        <!-- Simple Textfield -->
+        <div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.firstName">
+                <label class="mdl-textfield__label" >Pierwsze imię</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.otherNames">
+                <label class="mdl-textfield__label" >Pozostałe imiona</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.lastName">
+                <label class="mdl-textfield__label" >Nazwisko</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.pesel">
+                <label class="mdl-textfield__label" >PESEL</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.login">
+                <label class="mdl-textfield__label" >Login</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="password" [(ngModel)]="this.person.password">
+                <label class="mdl-textfield__label" >Hasło</label>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+        (click)="save()">Zapisz</button>
+    </div>
+</div>

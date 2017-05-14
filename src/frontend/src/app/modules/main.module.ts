@@ -12,13 +12,18 @@ import {LoginPageComponent} from "../components/login-page/login-page.component"
 import {PageNotFoundComponent} from "../components/page-not-found/page-not-found.component";
 import {AppComponent} from "../components/app.component";
 import {UnitsService} from "../services/units.service";
+import {AddEditPersonComponent} from "../components/persons/add/addEditPerson.component";
+import {FormsModule} from "@angular/forms";
+import {AddEditUnitComponent} from "../components/units/add/addEditUnit.component";
 
 @NgModule({
     bootstrap: [MainComponent],
     declarations: [
         MainComponent,
         PersonsComponent,
+        AddEditPersonComponent,
         UnitsComponent,
+        AddEditUnitComponent,
         DashboardComponent,
         PageNotFoundComponent,
         LoginPageComponent,
@@ -27,7 +32,8 @@ import {UnitsService} from "../services/units.service";
     imports: [
         BrowserModule,
         AppRoutingModule,
-        HttpModule
+        HttpModule,
+        FormsModule
     ],
     providers: [
         GreetingService,
