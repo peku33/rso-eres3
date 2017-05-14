@@ -1,5 +1,6 @@
 import { Injectable }    from '@angular/core';
 import { Headers, Http } from '@angular/http';
+import { Person } from '../Person/person';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -11,6 +12,7 @@ export class PersonService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
   private grantedPermissionsUrl = 'api/permissions/granted';  // URL to web api
+  private personsUrl = 'api/persons';
 
   constructor(private http: Http) { }
 
