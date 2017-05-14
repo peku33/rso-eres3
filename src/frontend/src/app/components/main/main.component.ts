@@ -4,7 +4,7 @@ import {Component} from "@angular/core";
     template: `
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" routerLink="/dashboard">Strona główna</a>
-            <a class="mdl-navigation__link" routerLink="/users">Użytkownicy</a>
+            <a class="mdl-navigation__link" routerLink="/persons">Użytkownicy</a>
             <a class="mdl-navigation__link" routerLink="/units">Jednostki organizacyjne</a>
         </nav>
         <router-outlet></router-outlet>

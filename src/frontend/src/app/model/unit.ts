@@ -1,3 +1,5 @@
 export class Unit {
-    name: string;
+    id: number;
+    fullName: string;
+    shortName: string;
 }
