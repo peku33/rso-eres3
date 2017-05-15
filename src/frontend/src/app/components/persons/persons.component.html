@@ -13,7 +13,8 @@
         <td class="mdl-data-table__cell--non-numeric">{{person.lastName}}</td>
         <td>{{person.pesel}}</td>
         <td>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            <button routerLink="edit/{{person.id}}"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                 Szczegóły
             </button>
         </td>

@@ -9,7 +9,8 @@
     <tr *ngFor="let unit of units">
         <td class="mdl-data-table__cell--non-numeric">{{unit.fullName}}</td>
         <td>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            <button routerLink="edit/{{unit.id}}"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                 Szczegóły
             </button>
         </td>

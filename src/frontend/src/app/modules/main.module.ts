@@ -12,18 +12,22 @@ import {LoginPageComponent} from "../components/login-page/login-page.component"
 import {PageNotFoundComponent} from "../components/page-not-found/page-not-found.component";
 import {AppComponent} from "../components/app.component";
 import {UnitsService} from "../services/units.service";
-import {AddEditPersonComponent} from "../components/persons/add/addEditPerson.component";
 import {FormsModule} from "@angular/forms";
-import {AddEditUnitComponent} from "../components/units/add/addEditUnit.component";
+import {AddUnitComponent} from "../components/units/add/addUnit.component";
+import {EditUnitComponent} from "../components/units/add/editUnit.component";
+import {AddPersonComponent} from "../components/persons/add/addPerson.component";
+import {EditPersonComponent} from "../components/persons/add/editPerson.component";
 
 @NgModule({
     bootstrap: [MainComponent],
     declarations: [
         MainComponent,
         PersonsComponent,
-        AddEditPersonComponent,
+        AddPersonComponent,
+        EditPersonComponent,
         UnitsComponent,
-        AddEditUnitComponent,
+        AddUnitComponent,
+        EditUnitComponent,
         DashboardComponent,
         PageNotFoundComponent,
         LoginPageComponent,

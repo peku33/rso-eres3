@@ -19,8 +19,29 @@ export class UnitsService {
             });
     }
 
+    public getUnit(id: number): Promise<Unit> {
+        return this.http.get(ADDRESS + "/" + id)
+            .toPromise()
+            .then((response) => {
+                return response.json() as Unit;
+            });
+    }
+
     public addUnit(unit: Unit): Promise<Unit> {
         return this.http.post(ADDRESS, JSON.stringify(unit), {headers: this.headers})
             .toPromise().then(() => unit);
+    }
+
+    public editUnit(unit: Unit): Promise<Unit> {
+        return this.http.put(ADDRESS, JSON.stringify(unit), {headers: this.headers})
+            .toPromise().then(() => unit);
+    }
+
+    public deleteUnit(id: number): Promise<Unit> {
+        return this.http.delete(ADDRESS + "/" + id)
+            .toPromise()
+            .then((response) => {
+                return response.json() as Unit;
+            });
     }
 }

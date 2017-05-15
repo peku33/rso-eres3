@@ -20,12 +20,29 @@ export class PersonsService {
             });
     }
 
+    public getPerson(id: number): Promise<Person> {
+        return this.http.get(ADDRESS + "/" + id)
+            .toPromise()
+            .then((response) => {
+                return response.json() as Person;
+            });
+    }
+
     public addPerson(person: Person): Promise<Person> {
         return this.http.post(ADDRESS, JSON.stringify(person), {headers: this.headers})
             .toPromise().then(() => person);
     }
 
-    public updatePerson(person: Person): Promise<Person> {
-        return null;
+    public editPerson(person: Person): Promise<Person> {
+        return this.http.put(ADDRESS, JSON.stringify(person), {headers: this.headers})
+            .toPromise().then(() => person);
+    }
+
+    public deletePerson(id: number): Promise<Person> {
+        return this.http.delete(ADDRESS + "/" + id)
+            .toPromise()
+            .then((response) => {
+                return response.json() as Person;
+            });
     }
 }

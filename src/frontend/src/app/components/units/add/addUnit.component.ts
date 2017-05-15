@@ -5,20 +5,15 @@ import {Router} from "@angular/router";
 import {Unit} from "../../../model/unit";
 import {UnitsService} from "../../../services/units.service";
 @Component({
-    selector: "add-edit-unit",
+    selector: "add-unit",
     templateUrl: "addEditUnit.component.html"
 })
 
-export class AddEditUnitComponent implements OnInit {
+export class AddUnitComponent {
     private unit: Unit = new Unit();
+    private allowRemoval: boolean = false;
 
     constructor(private unitsService: UnitsService, private router: Router) {
-    }
-
-    ngOnInit(): void {
-        // this.personsService.getAllPersons().then((response: Person[]) => {
-        //     this.persons = response;
-        // }).catch((error) => console.error(error));
     }
 
     save(): void {

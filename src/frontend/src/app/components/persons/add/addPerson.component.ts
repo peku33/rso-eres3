@@ -3,20 +3,15 @@ import {Person} from "../../../model/person";
 import {PersonsService} from "../../../services/persons.service";
 import {Router} from "@angular/router";
 @Component({
-    selector: "add-edit-person",
+    selector: "add-person",
     templateUrl: "addEditPerson.component.html"
 })
 
-export class AddEditPersonComponent implements OnInit {
+export class AddPersonComponent {
     private person: Person = new Person();
+    private allowRemoval: boolean = false;
 
     constructor(private personsService: PersonsService, private router: Router) {
-    }
-
-    ngOnInit(): void {
-        // this.personsService.getAllPersons().then((response: Person[]) => {
-        //     this.persons = response;
-        // }).catch((error) => console.error(error));
     }
 
     save(): void {
