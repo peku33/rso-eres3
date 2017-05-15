@@ -2,7 +2,7 @@
 
 CLUSTER_NAME="eres3-dbcluster"
 
-declare -a nodes=("data2.ndb" "data1.ndb" "man2.ndb" "man1.ndb")
+declare -a nodes=("node2.ndb" "node1.ndb" "data2.ndb" "data1.ndb" "man2.ndb" "man1.ndb")
 
 for i in "${nodes[@]}"
 do
