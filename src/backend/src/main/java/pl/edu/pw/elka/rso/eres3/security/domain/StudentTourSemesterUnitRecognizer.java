@@ -2,12 +2,15 @@ package pl.edu.pw.elka.rso.eres3.security.domain;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Component;
+
 import pl.edu.pw.elka.rso.eres3.domain.entities.StudentTourSemester;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.StudentTourSemesterRepository;
 
 /**
- * Unit recognizer for student tours.
+ * Unit recognizer for student tour semesters.
  */
+@Component
 public class StudentTourSemesterUnitRecognizer extends EntityUnitRecognizer {
 
 	private final StudentTourSemesterRepository repo;
