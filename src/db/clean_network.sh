@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CLUSTER_NAME="eres3-dbcluster"
+NETWORK_NAME="eres3-network"
 
 declare -a nodes=("node2.ndb" "node1.ndb" "data2.ndb" "data1.ndb" "man2.ndb" "man1.ndb")
 
@@ -14,4 +14,4 @@ do
     docker rm $i
 done
 
-docker network rm $CLUSTER_NAME
+docker network rm $NETWORK_NAME

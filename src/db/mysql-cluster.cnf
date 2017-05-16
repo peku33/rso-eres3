@@ -25,12 +25,12 @@ datadir=/var/lib/mysql
 
 [mysqld]
 NodeId=5
-hostname=192.168.103.101
+hostname=192.168.103.221
 
 [mysqld]
 NodeId=6
-hostname=192.168.103.102
+hostname=192.168.103.222
 
 [mysqld]
 NodeId=7
-hostname=192.168.103.103
+hostname=192.168.103.223
