@@ -4,9 +4,6 @@ IMAGE_NAME="eres3-dbcluster"
 NETWORK_NAME="eres3-network"
 IP_PREFIX="192.168.103"
 
-echo "Creating network $NETWORK_NAME"
-docker network create $NETWORK_NAME --subnet=$IP_PREFIX.0/24
-
 echo "Initializing management nodes"
 docker run -d --net=$NETWORK_NAME --name=man1.ndb --ip=$IP_PREFIX.201 $IMAGE_NAME ndb_mgmd
 docker run -d --net=$NETWORK_NAME --name=man2.ndb --ip=$IP_PREFIX.202 $IMAGE_NAME ndb_mgmd

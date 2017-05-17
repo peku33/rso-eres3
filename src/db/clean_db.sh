@@ -13,5 +13,3 @@ for i in "${nodes[@]}"
 do
     docker rm $i
 done
-
-docker network rm $NETWORK_NAME
