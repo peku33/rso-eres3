@@ -1,4 +1,4 @@
-package pl.edu.pw.elka.rso.eres3.security.domain;
+package pl.edu.pw.elka.rso.eres3.security.domain.recognizers;
 
 import org.springframework.stereotype.Component;
 import pl.edu.pw.elka.rso.eres3.domain.entities.OrganizationalUnit;

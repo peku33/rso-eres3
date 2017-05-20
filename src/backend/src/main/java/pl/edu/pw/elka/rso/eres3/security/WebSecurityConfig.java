@@ -3,7 +3,6 @@ package pl.edu.pw.elka.rso.eres3.security;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,7 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
-
 import pl.edu.pw.elka.rso.eres3.security.domain.DomainPermissionEvaluator;
 
 @Configuration
@@ -25,9 +23,15 @@ import pl.edu.pw.elka.rso.eres3.security.domain.DomainPermissionEvaluator;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private static final Logger logger = LoggerFactory.getLogger(DomainPermissionEvaluator.class);
 
+	//@Qualifier("userDetailsService")
+	private final UserDetailsService userDetailsService;
+	private final SecuritySettings securitySettings;
+
 	@Autowired
-	@Qualifier("userDetailsService")
-	UserDetailsService userDetailsService;
+	public WebSecurityConfig(final UserDetailsService userDetailsService, final SecuritySettings securitySettings){
+		this.userDetailsService = userDetailsService;
+		this.securitySettings = securitySettings;
+	}
 
 	@Override
 	public void configure(final WebSecurity web) throws Exception {
@@ -36,10 +40,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(final HttpSecurity http) throws Exception {
-		/**
+		/*
 		 * Config for authentication and CSRF tokens handling.
 		 */
-		if(securitySettings().getRequireAuthentication())
+		if(securitySettings.getRequireAuthentication())
 		{
 			logger.info("Authentication requirement enabled.");
 			http.authorizeRequests()
@@ -67,7 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.exceptionHandling()
 			.authenticationEntryPoint(new RestAuthenticationEntryPoint());
 
-		if(securitySettings().getEnableCSRFProtection())
+		if(securitySettings.getEnableCSRFProtection())
 		{
 			logger.info("CSRF protection enabled.");
 			http.addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class)
@@ -80,7 +84,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	private CsrfTokenRepository csrfTokenRepository() {
-		/**
+		/*
 		 * Angular sends CSRF token in X-XSRF-TOKEN header instead of X-CSRF-TOKEN
 		 */
 		final HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
@@ -96,10 +100,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
-	}
-
-	@Bean
-	public SecuritySettings securitySettings() {
-		return new SecuritySettings();
 	}
 }

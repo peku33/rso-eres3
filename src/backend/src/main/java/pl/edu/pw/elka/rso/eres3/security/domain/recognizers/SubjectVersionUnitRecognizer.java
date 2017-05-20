@@ -1,4 +1,4 @@
-package pl.edu.pw.elka.rso.eres3.security.domain;
+package pl.edu.pw.elka.rso.eres3.security.domain.recognizers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -3,7 +3,6 @@ package pl.edu.pw.elka.rso.eres3.security.domain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -12,6 +11,8 @@ import pl.edu.pw.elka.rso.eres3.domain.entities.GrantedPermission;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.GrantedPermissionRepository;
 import pl.edu.pw.elka.rso.eres3.security.AuthenticatedUser;
 import pl.edu.pw.elka.rso.eres3.security.SecuritySettings;
+import pl.edu.pw.elka.rso.eres3.security.domain.recognizers.EntityUnitRecognizer;
+import pl.edu.pw.elka.rso.eres3.security.domain.recognizers.EntityUnitRecognizerCollection;
 
 import java.io.Serializable;
 
@@ -19,14 +20,18 @@ import java.io.Serializable;
 public class DomainPermissionEvaluator implements PermissionEvaluator {
 	private static final Logger logger = LoggerFactory.getLogger(DomainPermissionEvaluator.class);
 
-	@Autowired private GrantedPermissionRepository repository;
-	@Autowired private EntityUnitRecognizerCollection entityUnitRecognizers;
-	private final boolean checkPermissions = securitySettings().isCheckPermissions();
+	private final GrantedPermissionRepository repository;
+	private final EntityUnitRecognizerCollection entityUnitRecognizers;
+	private final boolean checkPermissions;
 
-	@Bean
-	private SecuritySettings securitySettings() {
-		return new SecuritySettings();
-	}
+	@Autowired
+	public DomainPermissionEvaluator(final GrantedPermissionRepository repository,
+                                     final EntityUnitRecognizerCollection entityUnitRecognizers,
+                                     final SecuritySettings securitySettings){
+	    this.repository = repository;
+	    this.entityUnitRecognizers = entityUnitRecognizers;
+	    this.checkPermissions = securitySettings.isCheckPermissions();
+    }
 
 	private boolean hasPermissionOnUnit(final Authentication authentication, final Short organizationalUnitId, final String permissionName)
 	{
@@ -74,6 +79,7 @@ public class DomainPermissionEvaluator implements PermissionEvaluator {
 		}
 		final Class<?> classToRecognize = targetDomainObject.getClass();
 		final EntityUnitRecognizer unitRecognizer = entityUnitRecognizers.getByClass(classToRecognize);
+		@SuppressWarnings("unchecked")
 		final Short unitId = unitRecognizer.getUnitIdByEntity(targetDomainObject);
 		return hasPermissionOnUnit(authentication, unitId, (String)permissionName);
 	}
@@ -89,6 +95,7 @@ public class DomainPermissionEvaluator implements PermissionEvaluator {
 			return hasPermissionOnAnyUnit(authentication, (String)permissionName);
 		}
 		final EntityUnitRecognizer unitRecognizer = entityUnitRecognizers.getByClassName(targetType);
+        @SuppressWarnings("unchecked")
 		final Short unitId = unitRecognizer.getUnitIdByEntityId(targetId);
 		return hasPermissionOnUnit(authentication, unitId, (String)permissionName);
 	}
