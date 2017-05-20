@@ -1,9 +1,7 @@
 package pl.edu.pw.elka.rso.eres3.security.domain;
 
-import java.io.Serializable;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import pl.edu.pw.elka.rso.eres3.domain.entities.SubjectRealization;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.SubjectRealizationRepository;
 
@@ -11,28 +9,15 @@ import pl.edu.pw.elka.rso.eres3.domain.repositories.SubjectRealizationRepository
  * Unit recognizer for subject realizations.
  */
 @Component
-public class SubjectRealizationUnitRecognizer extends EntityUnitRecognizer {
+public class SubjectRealizationUnitRecognizer extends EntityUnitRecognizer<SubjectRealization, Integer> {
 
-	private final SubjectRealizationRepository realizationRepo;
-
-	public SubjectRealizationUnitRecognizer (final SubjectRealizationRepository realizationRepo){
-		this.realizationRepo = realizationRepo;
+	@Autowired
+	public SubjectRealizationUnitRecognizer(final SubjectRealizationRepository repo) {
+		super(repo, SubjectRealization.class);
 	}
 
 	@Override
-	public Class<?> getRecognizableClass() {
-		return SubjectRealization.class;
-	}
-
-	@Override
-	public Short getUnitIdByEntity(final Object entity) {
-		final SubjectRealization realization = (SubjectRealization) entity;
+	public Short getUnitIdByEntity(final SubjectRealization realization) {
 		return realization.getSubjectVersion().getSubject().getUnit().getId();
-	}
-
-	@Override
-	public Short getUnitIdByEntityId(final Serializable entityId) {
-		final SubjectRealization realization = realizationRepo.findOne((int) entityId);
-		return getUnitIdByEntityId(realization);
 	}
 }

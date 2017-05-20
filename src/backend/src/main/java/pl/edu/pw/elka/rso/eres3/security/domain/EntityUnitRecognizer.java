@@ -1,18 +1,32 @@
 package pl.edu.pw.elka.rso.eres3.security.domain;
 
-import java.io.Serializable;
-
+import org.springframework.data.repository.CrudRepository;
 import pl.edu.pw.elka.rso.eres3.domain.entities.OrganizationalUnit;
+
+import java.io.Serializable;
 
 /**
  * Abstract class that recognizes an {@link OrganizationalUnit} object for entities of specified type.
  * Used for checking user's permission's on domain objects of specified type.
  */
-public abstract class EntityUnitRecognizer {
+public abstract class EntityUnitRecognizer<T, ID extends Serializable> {
 
-	public abstract Class<?> getRecognizableClass();
+	private final CrudRepository<T, ID> repository;
+	private final Class<T> clazz;
 
-	public abstract Short getUnitIdByEntity(Object entity);
+	EntityUnitRecognizer(final CrudRepository<T, ID> repository, final Class<T> clazz){
+		this.repository = repository;
+		this.clazz = clazz;
+	}
 
-	public abstract Short getUnitIdByEntityId(Serializable entityId);
+	public final Class<T> getRecognizableClass(){
+		return clazz;
+	}
+
+	public Short getUnitIdByEntityId(ID entityId){
+		final T entity = repository.findOne(entityId);
+		return getUnitIdByEntity(entity);
+	}
+
+	public abstract Short getUnitIdByEntity(T entity);
 }

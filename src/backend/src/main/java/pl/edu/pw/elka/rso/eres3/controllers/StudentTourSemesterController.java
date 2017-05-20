@@ -1,18 +1,13 @@
 package pl.edu.pw.elka.rso.eres3.controllers;
 
-import javax.transaction.Transactional;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import pl.edu.pw.elka.rso.eres3.controllers.abstractions.AbstractCrudController;
 import pl.edu.pw.elka.rso.eres3.domain.entities.StudentTourSemester;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.StudentTourSemesterRepository;
+
+import javax.transaction.Transactional;
 
 /**
  * Rest controller for student tour semesters.
@@ -28,7 +23,7 @@ public class StudentTourSemesterController extends AbstractCrudController<Studen
 		this.studentTourSemesterRepo = studentTourSemesterRepo;
 	}
 
-	@RequestMapping(value = "studenttours/{id}/studenttoursemesters", method = RequestMethod.GET)
+	@RequestMapping(value = "studenttours/{id}" + mapping, method = RequestMethod.GET)
 	@PreAuthorize("hasPermission(#id, 'StudentTour', 'StudentTourSemesterRead')")
 	public Iterable<StudentTourSemester> getAllStudentToursSemestersByTourId(@PathVariable final short id){
 		return studentTourSemesterRepo.findByTourId(id);

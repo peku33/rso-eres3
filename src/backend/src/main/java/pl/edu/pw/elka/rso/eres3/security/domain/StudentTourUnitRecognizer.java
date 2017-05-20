@@ -1,9 +1,7 @@
 package pl.edu.pw.elka.rso.eres3.security.domain;
 
-import java.io.Serializable;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import pl.edu.pw.elka.rso.eres3.domain.entities.StudentTour;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.StudentTourRepository;
 
@@ -11,30 +9,15 @@ import pl.edu.pw.elka.rso.eres3.domain.repositories.StudentTourRepository;
  * Unit recognizer for student's tours.
  */
 @Component
-public class StudentTourUnitRecognizer extends EntityUnitRecognizer {
+public class StudentTourUnitRecognizer extends EntityUnitRecognizer<StudentTour, Long> {
 
-	private final StudentTourRepository repo;
-
+	@Autowired
 	public StudentTourUnitRecognizer(final StudentTourRepository repo) {
-		this.repo = repo;
-
+		super(repo, StudentTour.class);
 	}
 
 	@Override
-	public Class<?> getRecognizableClass() {
-		return StudentTour.class;
-	}
-
-	@Override
-	public Short getUnitIdByEntity(final Object entity) {
-		final StudentTour tour = (StudentTour) entity;
+	public Short getUnitIdByEntity(final StudentTour tour) {
 		return tour.getUnit().getId();
 	}
-
-	@Override
-	public Short getUnitIdByEntityId(final Serializable entityId) {
-		final StudentTour tour = repo.findOne((Long) entityId);
-		return getUnitIdByEntity(tour);
-	}
-
 }
