@@ -38,37 +38,37 @@ public class CreditController extends AbstractCrudController<Credit, Long> {
     }
 
     @RequestMapping(value = StudentTourController.mapping + "/{id}" + mapping, method = RequestMethod.GET)
-    @PreAuthorize("hasPermission(null, 'CreditRead')")
+    @PreAuthorize("hasPermission(#id, 'CreditRead')")
     public List<Credit> getTourCredits(@PathVariable final long id) {
         return creditRepository.getCreditsByTourId(id);
     }
 
     @RequestMapping(value = SubjectRealizationController.mapping + "/{id}" + mapping, method = RequestMethod.GET)
-    @PreAuthorize("hasPermission(null, 'CreditRead')")
+    @PreAuthorize("hasPermission(#id, 'CreditRead')")
     public List<Credit> getSubjectRealizationCredits(@PathVariable final int id) {
         return creditRepository.getCreditsByRealizationId(id);
     }
 
     @RequestMapping(value = mapping + "/{id}", method = RequestMethod.GET)
-    @PreAuthorize("hasPermission(null, 'CreditRead')")
+    @PreAuthorize("hasPermission(#id, 'CreditRead')")
     public ResponseEntity<Credit> getCredit(@PathVariable final long id) {
         return getEntity(id);
     }
 
     @RequestMapping(value = mapping, method = RequestMethod.POST)
-    @PreAuthorize("hasPermission(null, 'CreditCreate')")
+    @PreAuthorize("hasPermission(#credit, 'CreditCreate')")
     public ResponseEntity<Credit> addCredit(@RequestBody final Credit credit) {
         return addEntity(credit);
     }
 
     @RequestMapping(value = mapping, method = RequestMethod.PUT)
-    @PreAuthorize("hasPermission(null, 'CreditUpdate')")
+    @PreAuthorize("hasPermission(#credit, 'CreditUpdate')")
     public ResponseEntity<Credit> updateCredit(@RequestBody final Credit credit) {
         return updateEntity(credit);
     }
 
     @RequestMapping(value = mapping + "/{id}", method = RequestMethod.DELETE)
-    @PreAuthorize("hasPermission(null, 'CreditDelete')")
+    @PreAuthorize("hasPermission(#id, 'CreditDelete')")
     public ResponseEntity<Credit> deleteCredit(@PathVariable final long id) {
         return deleteEntity(id);
     }

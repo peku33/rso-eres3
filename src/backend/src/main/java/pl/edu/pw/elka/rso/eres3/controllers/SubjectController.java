@@ -25,7 +25,7 @@ public class SubjectController extends AbstractCrudController<Subject, Integer> 
 		this.subjectRepository = subjectRepository;
 	}
 
-	@RequestMapping(value =  "/units/{id}" + mapping, method = RequestMethod.GET)
+	@RequestMapping(value = OrganizationalUnitController.mapping + "/{id}" + mapping, method = RequestMethod.GET)
     @PreAuthorize("hasPermission(#id, 'OrganizationalUnit', 'SubjectRead')")
 	public Iterable<Subject> getAllSubjectsOnUnit(@PathVariable final short id) {
 		return subjectRepository.findByUnitId(id);

@@ -23,7 +23,7 @@ public class StudentTourSemesterController extends AbstractCrudController<Studen
 		this.studentTourSemesterRepo = studentTourSemesterRepo;
 	}
 
-	@RequestMapping(value = "studenttours/{id}" + mapping, method = RequestMethod.GET)
+	@RequestMapping(value = StudentTourController.mapping + "/{id}" + mapping, method = RequestMethod.GET)
 	@PreAuthorize("hasPermission(#id, 'StudentTour', 'StudentTourSemesterRead')")
 	public Iterable<StudentTourSemester> getAllStudentToursSemestersByTourId(@PathVariable final short id){
 		return studentTourSemesterRepo.findByTourId(id);

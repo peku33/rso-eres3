@@ -41,6 +41,10 @@ public class SubjectVersionController extends AbstractCrudController<SubjectVers
 	@RequestMapping(value = mapping, method = RequestMethod.POST)
     @PreAuthorize("hasPermission(#version, 'SubjectVersionCreate')")
 	public ResponseEntity<SubjectVersion> addSubjectVersion(@RequestBody final SubjectVersion version){
+		if(version == null || version.getSubject() == null || version.getSubject().getId() == null)
+		{
+			return badRequest;
+		}
 		final Integer subjectId = version.getSubject().getId();
 		final Iterable<SubjectVersion> existingVersions = versionRepository.findBySubjectId(subjectId);
 		version.setVersionCode(generateVersionCode(existingVersions));

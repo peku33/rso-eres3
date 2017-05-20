@@ -26,6 +26,16 @@ public class SubjectVersionControllerTest {
 	}
 
 	@Test
+	public void testNullInput() throws Exception {
+		final SubjectVersion version = new SubjectVersion();
+		final Subject subject = new Subject();
+		assertThat(controller.addSubjectVersion(null)).isEqualTo(controller.badRequest);
+		assertThat(controller.addSubjectVersion(version)).isEqualTo(controller.badRequest);
+		version.setSubject(subject);
+		assertThat(controller.addSubjectVersion(version)).isEqualTo(controller.badRequest);
+	}
+
+	@Test
 	public void testAddSubjectVersion_noVersionExists_versionCodeIsA() throws Exception {
 		//given
 		final Integer subjectId = 1;
