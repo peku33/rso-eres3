@@ -15,7 +15,7 @@ import javax.transaction.Transactional;
 @RestController
 @Transactional
 public class StudentTourController extends AbstractCrudController<StudentTour, Long> {
-	private static final String mapping = "/studenttours";
+	static final String mapping = "/studenttours";
 	private final StudentTourRepository tourRepo;
 
 	public StudentTourController(final StudentTourRepository tourRepo){

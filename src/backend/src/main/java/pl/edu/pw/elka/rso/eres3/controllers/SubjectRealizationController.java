@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import pl.edu.pw.elka.rso.eres3.controllers.abstractions.AbstractCrudController;
 import pl.edu.pw.elka.rso.eres3.domain.entities.SubjectRealization;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.SubjectRealizationRepository;
@@ -16,7 +15,7 @@ import pl.edu.pw.elka.rso.eres3.domain.repositories.SubjectRealizationRepository
  */
 public class SubjectRealizationController extends AbstractCrudController<SubjectRealization, Integer> {
 
-	private static final String mapping = "/subjects/versions/realizations";
+	static final String mapping = "/subjects/versions/realizations";
 	private final SubjectRealizationRepository realizationRepository;
 
 	protected SubjectRealizationController(final SubjectRealizationRepository realizationRepository, final boolean artificialId) {
