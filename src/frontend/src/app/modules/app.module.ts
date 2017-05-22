@@ -28,17 +28,31 @@ import {AppRoutingModule} from "./appRouting.module";
 import "material-design-lite";
 import {MDLUpgradeElement} from "./MDLUpgradeElement";
 
+import {FormsModule} from "@angular/forms";
+
+import {AddUnitComponent} from "../components/units/add/addUnit.component";
+import {EditUnitComponent} from "../components/units/add/editUnit.component";
+import {AddPersonComponent} from "../components/persons/add/addPerson.component";
+import {EditPersonComponent} from "../components/persons/add/editPerson.component";
+import {UnitsService} from "../services/units.service";
+
+
 @NgModule({
     imports: [
         BrowserModule,
         AppRoutingModule,
         HttpModule,
+        FormsModule,
         InMemoryWebApiModule.forRoot(InMemoryDataService),
     ],
     declarations: [
         AppComponent,
         PersonsComponent,
+        AddPersonComponent,
+        EditPersonComponent,
         UnitsComponent,
+        AddUnitComponent,
+        EditUnitComponent,
         DashboardComponent,
         PageNotFoundComponent,
         LoginPageComponent,
@@ -55,7 +69,8 @@ import {MDLUpgradeElement} from "./MDLUpgradeElement";
         SpecializationsService,
         SubjectRealizationsService,
         SubjectVersionsService,
-        SubjectsService
+        SubjectsService,
+        UnitsService
     ],
     bootstrap: [AppComponent],
 })
