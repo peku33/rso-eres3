@@ -1,19 +1,19 @@
 import {Component, OnInit} from "@angular/core";
 import {PersonsService} from "../../services/persons.service";
-import {Person} from "../../models/person";
+import {Person} from "../../model/person";
 @Component({
-    selector: "users-table",
+    selector: "persons-table",
     templateUrl: "persons.component.html"
 })
 
 export class PersonsComponent implements OnInit{
     private persons: Person[];
 
-    constructor(private personsService: PersonsService){
+    constructor(private usersService: PersonsService){
     }
 
     ngOnInit(): void {
-        this.personsService.getPersons().then((response: Person[]) => {
+        this.usersService.getAllPersons().then((response: Person[]) => {
             this.persons = response;
         }).catch((error) => console.error(error));
     }
