@@ -1,23 +1,22 @@
 <div class="mdl-card mdl-shadow--6dp">
     <div class="mdl-card__supporting-text">
         <!-- Simple Textfield -->
-        <label class="mdl-textfield__label">Pełna nazwa</label>
         <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" [(ngModel)]="specialization.fullName">
+            <input class="mdl-textfield__input" type="text" [(ngModel)]="specialization.fullName" id="fullName">
+            <label for="fullName">Pełna nazwa</label>
         </div>
-        <label class="mdl-textfield__label">Skrót</label>
         <div class="mdl-textfield mdl-js-textfield">
-            <input class="mdl-textfield__input" type="text" [(ngModel)]="specialization.shortName">
+            <input class="mdl-textfield__input" type="text" [(ngModel)]="specialization.shortName" id='shortName'>
+            <label for="shortName">Skrót</label>
         </div>
         <div class="mdl-selectfield mdl-js-selectfield">
-            <label class="mdl-textfield__label">Typ</label>
-            <select class="mdl-selectfield__select" [(ngModel)]="specialization.type">
-                <option value=""></option>
+            <select class="mdl-selectfield__select" [(ngModel)]="specialization.type" id="type">
                 <option value="PATH">PATH</option>
                 <option value="FACULTY">FACULTY</option>
                 <option value="MAJOR">MAJOR</option>
                 <option value="SPECIALITY">SPECIALITY</option>
             </select>
+            <label for="type">Typ</label>
         </div>
     </div>
     <div class="mdl-card__actions mdl-card--border">

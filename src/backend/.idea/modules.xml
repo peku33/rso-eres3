@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RSOEresBackend.iml" filepath="$PROJECT_DIR$/.idea/modules/RSOEresBackend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RSOEresBackend_main.iml" filepath="$PROJECT_DIR$/.idea/modules/RSOEresBackend_main.iml" group="RSOEresBackend" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/RSOEresBackend_test.iml" filepath="$PROJECT_DIR$/.idea/modules/RSOEresBackend_test.iml" group="RSOEresBackend" />
+    </modules>
+  </component>
+</project>

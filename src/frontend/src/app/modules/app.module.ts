@@ -35,6 +35,10 @@ import {SpecializationsComponent} from "../components/specializations/specializa
 import {AddSpecializationComponent} from "../components/specializations/addEdit/addSpecialization.component";
 import {EditSpecializationComponent} from "../components/specializations/addEdit/editSpecialization.component";
 
+import {PermissionsComponent} from "../components/permissions/permissions.component";
+import {AddPermissionComponent} from "../components/permissions/add/addPermission.component";
+import {EditPermissionComponent} from "../components/permissions/edit/editPermission.component";
+
 
 @NgModule({
     imports: [
@@ -58,7 +62,10 @@ import {EditSpecializationComponent} from "../components/specializations/addEdit
         MDLUpgradeElement,
         SpecializationsComponent,
         AddSpecializationComponent,
-        EditSpecializationComponent
+        EditSpecializationComponent,
+        PermissionsComponent,
+        AddPermissionComponent,
+        EditPermissionComponent
     ],
     providers: [
         GrantedPermissionsService,

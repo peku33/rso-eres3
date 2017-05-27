@@ -13,6 +13,7 @@ export class PersonsService {
     }
 
     public getAllPersons(): Promise<Person[]> {
+        console.log(ADDRESS)
         return this.http.get(ADDRESS)
             .toPromise()
             .then((response) => {

@@ -12,6 +12,9 @@ import {EditPersonComponent} from "../components/persons/add/editPerson.componen
 import {SpecializationsComponent} from "../components/specializations/specializations.component";
 import {EditSpecializationComponent} from "../components/specializations/addEdit/editSpecialization.component";
 import {AddSpecializationComponent} from "../components/specializations/addEdit/addSpecialization.component";
+import {PermissionsComponent} from "../components/permissions/permissions.component";
+import {AddPermissionComponent} from "../components/permissions/add/addPermission.component";
+import {EditPermissionComponent} from "../components/permissions/edit/editPermission.component";
 
 const routes: Routes = [
     {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -26,6 +29,9 @@ const routes: Routes = [
     {path: 'units/:unitId/specializations', component: SpecializationsComponent},
     {path: 'units/:unitId/specializations/:id', component: EditSpecializationComponent},
     {path: 'units/:unitId/specializations/:id/add', component: AddSpecializationComponent},
+    {path: 'permissions', component: PermissionsComponent},
+    {path: 'permissions/add', component: AddPermissionComponent},
+    {path: 'permissions/edit/:name', component: EditPermissionComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
 

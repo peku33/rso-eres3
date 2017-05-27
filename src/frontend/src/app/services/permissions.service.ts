@@ -19,7 +19,7 @@ export class PermissionsService {
   getPermissions(): Promise<Permission[]> {
     return this.http.get(this.permissionsUrl)
                .toPromise()
-               .then(response => response.json().data as Permission[])
+               .then(response => response.json() as Permission[])
                .catch(this.handleError);
   }
 
@@ -28,7 +28,7 @@ export class PermissionsService {
     const url = `${this.permissionsUrl}/${name}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json().data as Permission)
+      .then(response => response.json() as Permission)
       .catch(this.handleError);
   }
 
@@ -36,12 +36,13 @@ export class PermissionsService {
     return this.http
       .post(this.permissionsUrl, JSON.stringify(permission), {headers: this.headers})
       .toPromise()
-      .then(res => res.json().data as Permission)
+      .then(res => res.json() as Permission)
       .catch(this.handleError);
   }
 
   update(permission: Permission): Promise<Permission> {
     const url = `${this.permissionsUrl}`;
+    console.log(JSON.stringify(permission))
     return this.http
       .put(url, JSON.stringify(permission), {headers: this.headers})
       .toPromise()
