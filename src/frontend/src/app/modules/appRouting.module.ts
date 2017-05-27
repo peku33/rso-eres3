@@ -9,6 +9,7 @@ import {EditUnitComponent} from "../components/units/add/editUnit.component";
 import {AddUnitComponent} from "../components/units/add/addUnit.component";
 import {AddPersonComponent} from "../components/persons/add/addPerson.component";
 import {EditPersonComponent} from "../components/persons/add/editPerson.component";
+import {SpecializationsComponent} from "../components/specializations/specializations.component";
 
 const routes: Routes = [
     {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -20,6 +21,7 @@ const routes: Routes = [
     {path: 'units', component: UnitsComponent},
     {path: 'units/add', component: AddUnitComponent},
     {path: 'units/edit/:id', component: EditUnitComponent},
+    {path: 'units/specializations/:id', component: SpecializationsComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
 

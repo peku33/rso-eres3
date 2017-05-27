@@ -6,7 +6,7 @@ import {Person} from "../../model/person";
     templateUrl: "persons.component.html"
 })
 
-export class PersonsComponent implements OnInit{
+export class PersonsComponent implements OnInit {
     public persons: Person[];
 
     constructor(private usersService: PersonsService){

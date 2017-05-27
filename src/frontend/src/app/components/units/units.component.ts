@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Unit} from "../../model/unit";
 import {UnitsService} from "../../services/units.service";
 @Component({
@@ -6,7 +6,7 @@ import {UnitsService} from "../../services/units.service";
     templateUrl: "units.component.html"
 })
 
-export class UnitsComponent {
+export class UnitsComponent implements OnInit {
     public units: Unit[];
 
     constructor(private unitsService: UnitsService){

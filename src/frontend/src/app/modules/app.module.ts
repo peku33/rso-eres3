@@ -1,8 +1,6 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {HttpModule} from "@angular/http";
-import {InMemoryWebApiModule} from "angular-in-memory-web-api";
-
 import {AppComponent} from "../components/app.component";
 import {PersonsComponent} from "../components/persons/persons.component";
 import {UnitsComponent} from "../components/units/units.component";
@@ -21,8 +19,6 @@ import {SpecializationsService} from "../services/specializations.service";
 import {SubjectRealizationsService} from "../services/subject-realizations.service";
 import {SubjectVersionsService} from "../services/subject-versions.service";
 import {SubjectsService} from "../services/subjects.service";
-import {InMemoryDataService} from "../services/in-memory-data.service";
-
 import {AppRoutingModule} from "./appRouting.module";
 
 import "material-design-lite";
@@ -35,6 +31,7 @@ import {EditUnitComponent} from "../components/units/add/editUnit.component";
 import {AddPersonComponent} from "../components/persons/add/addPerson.component";
 import {EditPersonComponent} from "../components/persons/add/editPerson.component";
 import {UnitsService} from "../services/units.service";
+import {SpecializationsComponent} from "../components/specializations/specializations.component";
 
 
 @NgModule({
@@ -43,7 +40,6 @@ import {UnitsService} from "../services/units.service";
         AppRoutingModule,
         HttpModule,
         FormsModule,
-        InMemoryWebApiModule.forRoot(InMemoryDataService),
     ],
     declarations: [
         AppComponent,
@@ -57,7 +53,8 @@ import {UnitsService} from "../services/units.service";
         PageNotFoundComponent,
         LoginPageComponent,
         TopMenuComponent,
-        MDLUpgradeElement
+        MDLUpgradeElement,
+        SpecializationsComponent
     ],
     providers: [
         GrantedPermissionsService,

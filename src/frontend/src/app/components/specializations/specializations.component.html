@@ -1,0 +1,25 @@
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+    <tr>
+        <th class="mdl-data-table__cell--non-numeric">Nazwa</th>
+        <th>
+            <button routerLink="add"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Dodaj
+            </button>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let specialization of specializations">
+        <td class="mdl-data-table__cell--non-numeric">
+            {{specialization.fullName}}
+            <specializations-tree [specializations]="specialization.children"
+                                  *ngIf="specialization.showChildren"></specializations-tree>
+        </td>
+        <td>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                    (click)="toggleChildren(specialization)" *ngIf="specialization.children != null">▼</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

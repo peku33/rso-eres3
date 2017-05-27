@@ -3,6 +3,7 @@
     <tr>
         <th class="mdl-data-table__cell--non-numeric">Nazwa</th>
         <th></th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -14,6 +15,12 @@
                 Szczegóły
             </button>
         </td>
+        <td>
+            <button routerLink="specializations/{{unit.id}}"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                Specjalizacje
+            </button>
+        </td>
     </tr>
     <tr>
         <td></td>
@@ -22,6 +29,7 @@
                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Dodaj
             </button>
         </td>
+        <td></td>
     </tr>
     </tbody>
 </table>
