@@ -21,15 +21,4 @@ export class PermissionsComponent implements OnInit {
                     this.permissions = permissions;
                 });
     }
-
-		deletePermission(name: string): void {
-			this.permissionsService.delete(name)
-			.then(() => {
-				console.log('OK')
-				this.ngOnInit()
-			})
-			.catch((err) => {
-				console.log(err)
-			})
-		}
 }

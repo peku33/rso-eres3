@@ -2,19 +2,22 @@
     <div class="mdl-card__supporting-text">
         <!-- Simple Textfield -->
         <div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.permission.name">
-                <label class="mdl-textfield__label">Nazwa</label>
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.permission.name" id='name' disabled>
+                <label for="name">Nazwa</label>
             </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.permission.description">
-                <label class="mdl-textfield__label">Opis</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input  class="mdl-textfield__input" type="text" [(ngModel)]="this.permission.description" id='opis'>
+                <label for="opis">Opis</label>
             </div>
         </div>
     </div>
     <div class="mdl-card__actions mdl-card--border">
         <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
                 (click)="editPermission()">Zapisz zmiany
+        </button>
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                (click)="deletePermission()">Usuń uprawnienia
         </button>
     </div>
 </div>

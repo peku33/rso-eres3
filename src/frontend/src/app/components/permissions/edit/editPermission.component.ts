@@ -31,4 +31,14 @@ export class EditPermissionComponent implements OnInit{
             this.router.navigateByUrl("/permissions");
         }).catch(console.log);
     }
+
+    deletePermission(): void {
+			this.permissionsService.delete(this.permission.name)
+			.then(() => {
+				this.router.navigateByUrl("/permissions");
+			})
+			.catch((err) => {
+				console.log(err)
+			})
+		}
 }

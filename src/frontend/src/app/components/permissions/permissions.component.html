@@ -17,15 +17,13 @@
         <td class="mdl-data-table__cell--non-numeric">
             {{permission.name}}
         </td>
-				<td class="mdl-data-table__cell--non-numeric">
+		<td class="mdl-data-table__cell--non-numeric">
             {{permission.description}}
         </td>
-				<td class="mdl-data-table__cell--non-numeric">
-					  <button routerLink="edit/{{permission.name}}"
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Edytuj
-            </button>
-						<button (click)="deletePermission(permission.name)"
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Usuń
+        <td>
+          <button routerLink="edit/{{permission.name}}"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                Szczegóły
             </button>
         </td>
     </tr>

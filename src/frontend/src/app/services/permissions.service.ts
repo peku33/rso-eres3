@@ -42,6 +42,7 @@ export class PermissionsService {
 
   update(permission: Permission): Promise<Permission> {
     const url = `${this.permissionsUrl}`;
+    console.log(JSON.stringify(permission))
     return this.http
       .put(url, JSON.stringify(permission), {headers: this.headers})
       .toPromise()
