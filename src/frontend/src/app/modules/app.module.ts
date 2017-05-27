@@ -30,8 +30,13 @@ import {AddUnitComponent} from "../components/units/add/addUnit.component";
 import {EditUnitComponent} from "../components/units/add/editUnit.component";
 import {AddPersonComponent} from "../components/persons/add/addPerson.component";
 import {EditPersonComponent} from "../components/persons/add/editPerson.component";
+
 import {UnitsService} from "../services/units.service";
 import {SpecializationsComponent} from "../components/specializations/specializations.component";
+
+import {PermissionsComponent} from "../components/permissions/permissions.component";
+import {AddPermissionComponent} from "../components/permissions/add/addPermission.component";
+import {EditPermissionComponent} from "../components/permissions/edit/editPermission.component";
 
 
 @NgModule({
@@ -54,7 +59,10 @@ import {SpecializationsComponent} from "../components/specializations/specializa
         LoginPageComponent,
         TopMenuComponent,
         MDLUpgradeElement,
-        SpecializationsComponent
+        SpecializationsComponent,
+        PermissionsComponent,
+        AddPermissionComponent,
+        EditPermissionComponent
     ],
     providers: [
         GrantedPermissionsService,
