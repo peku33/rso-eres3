@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface SpecializationRepository extends CrudRepository<Specialization, Integer> {
     List<Specialization> findByUnitId(Short unitId);
+
+    Specialization findById(Integer id);
+
+    void removeById(Integer id);
 }

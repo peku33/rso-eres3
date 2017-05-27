@@ -10,13 +10,13 @@
     <tr *ngFor="let unit of units">
         <td class="mdl-data-table__cell--non-numeric">{{unit.fullName}}</td>
         <td>
-            <button routerLink="edit/{{unit.id}}"
+            <button routerLink="{{unit.id}}"
                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                 Szczegóły
             </button>
         </td>
         <td>
-            <button routerLink="specializations/{{unit.id}}"
+            <button routerLink="{{unit.id}}/specializations"
                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
                 Specjalizacje
             </button>

@@ -10,6 +10,8 @@ import {AddUnitComponent} from "../components/units/add/addUnit.component";
 import {AddPersonComponent} from "../components/persons/add/addPerson.component";
 import {EditPersonComponent} from "../components/persons/add/editPerson.component";
 import {SpecializationsComponent} from "../components/specializations/specializations.component";
+import {EditSpecializationComponent} from "../components/specializations/addEdit/editSpecialization.component";
+import {AddSpecializationComponent} from "../components/specializations/addEdit/addSpecialization.component";
 
 const routes: Routes = [
     {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -17,11 +19,13 @@ const routes: Routes = [
     {path: 'dashboard', component: DashboardComponent},
     {path: 'persons', component: PersonsComponent},
     {path: 'persons/add', component: AddPersonComponent},
-    {path: 'persons/edit/:id', component: EditPersonComponent},
+    {path: 'persons/:id', component: EditPersonComponent},
     {path: 'units', component: UnitsComponent},
     {path: 'units/add', component: AddUnitComponent},
-    {path: 'units/edit/:id', component: EditUnitComponent},
-    {path: 'units/specializations/:id', component: SpecializationsComponent},
+    {path: 'units/:id', component: EditUnitComponent},
+    {path: 'units/:unitId/specializations', component: SpecializationsComponent},
+    {path: 'units/:unitId/specializations/:id', component: EditSpecializationComponent},
+    {path: 'units/:unitId/specializations/:id/add', component: AddSpecializationComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
 

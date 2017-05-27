@@ -32,6 +32,8 @@ import {AddPersonComponent} from "../components/persons/add/addPerson.component"
 import {EditPersonComponent} from "../components/persons/add/editPerson.component";
 import {UnitsService} from "../services/units.service";
 import {SpecializationsComponent} from "../components/specializations/specializations.component";
+import {AddSpecializationComponent} from "../components/specializations/addEdit/addSpecialization.component";
+import {EditSpecializationComponent} from "../components/specializations/addEdit/editSpecialization.component";
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import {SpecializationsComponent} from "../components/specializations/specializa
         LoginPageComponent,
         TopMenuComponent,
         MDLUpgradeElement,
-        SpecializationsComponent
+        SpecializationsComponent,
+        AddSpecializationComponent,
+        EditSpecializationComponent
     ],
     providers: [
         GrantedPermissionsService,

@@ -1,9 +1,13 @@
 <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-    <thead>
+    <thead *ngIf="!subTable">
     <tr>
-        <th class="mdl-data-table__cell--non-numeric">Nazwa</th>
+        <th class="mdl-data-table__cell--non-numeric">Pełna nazwa</th>
+        <th class="mdl-data-table__cell--non-numeric">Skrót</th>
+        <th class="mdl-data-table__cell--non-numeric">Typ</th>
+        <th></th>
+        <th></th>
         <th>
-            <button routerLink="add"
+            <button routerLink="0/add"
                     class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Dodaj
             </button>
         </th>
@@ -13,12 +17,30 @@
     <tr *ngFor="let specialization of specializations">
         <td class="mdl-data-table__cell--non-numeric">
             {{specialization.fullName}}
-            <specializations-tree [specializations]="specialization.children"
+            <specializations-tree [specializations]="specialization.children" [subTable]="true"
                                   *ngIf="specialization.showChildren"></specializations-tree>
+        </td>
+        <td class="mdl-data-table__cell--non-numeric">
+            {{specialization.shortName}}
+        </td>
+        <td class="mdl-data-table__cell--non-numeric">
+            {{specialization.type}}
         </td>
         <td>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                    (click)="toggleChildren(specialization)" *ngIf="specialization.children != null">▼</button>
+                    (click)="toggleChildren(specialization)" *ngIf="specialization.children != null">▼
+            </button>
+        </td>
+        <td>
+            <button routerLink="{{specialization.id}}/add"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Dodaj
+            </button>
+        </td>
+        <td>
+            <button routerLink="{{specialization.id}}"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                Szczegóły
+            </button>
         </td>
     </tr>
     </tbody>

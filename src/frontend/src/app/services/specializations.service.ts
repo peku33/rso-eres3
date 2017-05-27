@@ -31,11 +31,11 @@ export class SpecializationsService {
         const url = `${this.specializationsUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as Specialization)
+            .then(response => response.json() as Specialization)
             .catch(this.handleError);
     }
 
-    create(specialization: Specialization): Promise<Specialization> {
+    createSpecialization(specialization: Specialization): Promise<Specialization> {
         return this.http
             .post(this.specializationsUrl, JSON.stringify(specialization), {headers: this.headers})
             .toPromise()
@@ -43,7 +43,7 @@ export class SpecializationsService {
             .catch(this.handleError);
     }
 
-    update(specialization: Specialization): Promise<Specialization> {
+    updateSpecialization(specialization: Specialization): Promise<Specialization> {
         return this.http
             .put(this.specializationsUrl, JSON.stringify(specialization), {headers: this.headers})
             .toPromise()
@@ -51,7 +51,7 @@ export class SpecializationsService {
             .catch(this.handleError);
     }
 
-    delete(id: number): Promise<void> {
+    deleteSpecialization(id: number): Promise<void> {
         const url = `${this.specializationsUrl}/${id}`;
         return this.http.delete(url, {headers: this.headers})
             .toPromise()

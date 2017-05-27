@@ -9,6 +9,7 @@ import * as _ from "lodash";
 })
 export class SpecializationsComponent implements OnInit {
     @Input() public specializations: any;
+    @Input() public subTable: boolean;
 
     constructor(private specializationsService: SpecializationsService, private route: ActivatedRoute) {
     }
@@ -16,11 +17,8 @@ export class SpecializationsComponent implements OnInit {
     ngOnInit(): void {
         if (this.specializations == null)
             this.route.params
-                .switchMap((params: Params) => this.specializationsService.getSpecializationsByUnitId(+params['id']))
-                .subscribe((specializations) => {
-                    this.specializations = this.unflatten(specializations);
-                    debugger;
-                });
+                .switchMap((params: Params) => this.specializationsService.getSpecializationsByUnitId(+params['unitId']))
+                .subscribe(specializations => this.specializations = this.unflatten(specializations));
     }
 
     private unflatten(array: Specialization[], parent?: any, tree?: any): any {
