@@ -23,7 +23,7 @@ import java.util.List;
 @Transactional
 public class PersonController extends AbstractCrudController<Person, Long> {
 	static final String mapping = "/persons";
-
+	
 	@Autowired
 	PersonController(final PersonRepository repository){
 		super(repository, true);

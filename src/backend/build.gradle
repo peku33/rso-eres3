@@ -17,6 +17,7 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-configuration-processor:+'
     
     compile 'mysql:mysql-connector-java:+'
+    compile 'org.modelmapper:modelmapper:+'
     compile group: 'com.google.guava', name: 'guava', version: '+'
 	compile group: 'org.assertj', name: 'assertj-core', version: '+'
 
