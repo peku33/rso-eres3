@@ -10,6 +10,7 @@ import pl.edu.pw.elka.rso.eres3.domain.entities.Person;
 import pl.edu.pw.elka.rso.eres3.domain.entities.dto.PersonDto;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.PersonRepository;
 import pl.edu.pw.elka.rso.eres3.security.PersonService;
+import pl.edu.pw.elka.rso.eres3.security.exceptions.LoginExistsException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -54,8 +55,13 @@ public class PersonController extends AbstractCrudController<Person, Long> {
 	@RequestMapping(value = mapping, method = RequestMethod.POST)
     @PreAuthorize("hasPermission(null, 'PersonCreate')")
 	public ResponseEntity<Person> addPerson(@RequestBody final PersonDto personDto) {
-		Person person = personService.registerNewPersonAccount(personDto);
-		return new ResponseEntity<Person>(person, HttpStatus.OK);
+		try {
+			Person person = personService.registerNewPersonAccount(personDto);
+			return new ResponseEntity<Person>(person, HttpStatus.OK);
+		} catch(LoginExistsException e)
+		{
+			return new ResponseEntity<Person>(HttpStatus.CONFLICT);
+		}
 	}
 
 	@RequestMapping(value = mapping, method = RequestMethod.PUT)

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.edu.pw.elka.rso.eres3.domain.entities.Person;
 import pl.edu.pw.elka.rso.eres3.domain.entities.dto.PersonDto;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.PersonRepository;
+import pl.edu.pw.elka.rso.eres3.security.exceptions.LoginExistsException;
 
 @Service
 @Transactional
@@ -22,12 +23,10 @@ public class PersonService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public Person registerNewPersonAccount(PersonDto personDto)
+	public Person registerNewPersonAccount(PersonDto personDto) throws LoginExistsException
 	{
 		if(loginExist(personDto.getLogin()))
-		{
-			// @todo: throw exception
-		}
+			throw new LoginExistsException("Account with specified login exists yet");
 		
 		Person person = modelMapper.map(personDto, Person.class);
 		person.setPassword(passwordEncoder.encode(personDto.getPassword()));
