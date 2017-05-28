@@ -66,7 +66,8 @@ public class PersonController extends AbstractCrudController<Person, Long> {
 
 	@RequestMapping(value = mapping, method = RequestMethod.PUT)
     @PreAuthorize("hasPermission(null, 'PersonUpdate')")
-	public ResponseEntity<Person> updatePerson(@RequestBody final Person person) {
+	public ResponseEntity<Person> updatePerson(@RequestBody final PersonDto personDto) {
+		Person person = personService.mapPersonFromDto(personDto);
 		return updateEntity(person);
 	}
 

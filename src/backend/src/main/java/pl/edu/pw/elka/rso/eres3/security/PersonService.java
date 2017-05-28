@@ -27,10 +27,15 @@ public class PersonService {
 	{
 		if(loginExist(personDto.getLogin()))
 			throw new LoginExistsException("Account with specified login exists yet");
-		
+		Person person = mapPersonFromDto(personDto);
+		return repository.save(person);
+	}
+	
+	public Person mapPersonFromDto(PersonDto personDto)
+	{
 		Person person = modelMapper.map(personDto, Person.class);
 		person.setPassword(passwordEncoder.encode(personDto.getPassword()));
-		return repository.save(person);
+		return person;
 	}
 	
 	public PersonDto mapPersonToDto(Person person)
