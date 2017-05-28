@@ -15,6 +15,8 @@ import {AddSpecializationComponent} from "../components/specializations/addEdit/
 import {PermissionsComponent} from "../components/permissions/permissions.component";
 import {AddPermissionComponent} from "../components/permissions/add/addPermission.component";
 import {EditPermissionComponent} from "../components/permissions/edit/editPermission.component";
+import {UserPermissions} from "../components/user-permissions/userPermissions.component"
+
 
 const routes: Routes = [
     {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -23,6 +25,7 @@ const routes: Routes = [
     {path: 'persons', component: PersonsComponent},
     {path: 'persons/add', component: AddPersonComponent},
     {path: 'persons/:id', component: EditPersonComponent},
+    {path: 'persons/:id/permissions', component: UserPermissions},
     {path: 'units', component: UnitsComponent},
     {path: 'units/add', component: AddUnitComponent},
     {path: 'units/:id', component: EditUnitComponent},

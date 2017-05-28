@@ -1,30 +1,33 @@
 <div class="mdl-card mdl-shadow--6dp">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Dane użytkownika</h2>
+    </div>
     <div class="mdl-card__supporting-text">
         <!-- Simple Textfield -->
         <div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.firstName">
-                <label class="mdl-textfield__label">Pierwsze imię</label>
+            <div class="mdl-textfield mdl-js-textfield ">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.firstName" id="name">
+                <label for="name"><b>Imię</b></label>
             </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.otherNames">
-                <label class="mdl-textfield__label">Pozostałe imiona</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.otherNames" id="otherNames">
+                <label for="otherNames"><b>Pozostałe imiona</b></label>
             </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.lastName">
-                <label class="mdl-textfield__label">Nazwisko</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.lastName" id="surname">
+                <label for="surname"><b>Nazwisko</b></label>
             </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.pesel">
-                <label class="mdl-textfield__label">PESEL</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.pesel" id="pesel">
+                <label for="pesel"><b>PESEL</b></label>
             </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.login">
-                <label class="mdl-textfield__label">Login</label>
+            <div class="mdl-textfield mdl-js-textfield ">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.person.login" id="login">
+                <label for="login"><b>Login</b></label>
             </div>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" type="password" [(ngModel)]="this.person.password">
-                <label class="mdl-textfield__label">Hasło</label>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="password" [(ngModel)]="this.person.password" id="passwd">
+                <label for="passwd"><b>Hasło</b></label>
             </div>
         </div>
     </div>
@@ -35,5 +38,8 @@
         <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
                 *ngIf="this.allowRemoval" (click)="delete()">Usuń
         </button>
+            <button routerLink="permissions"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Uprawnienia
+            </button>
     </div>
 </div>

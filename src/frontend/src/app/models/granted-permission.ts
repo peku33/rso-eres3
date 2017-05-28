@@ -5,5 +5,10 @@ import {OrganizationalUnit} from './organizational-unit'
 export class GrantedPermission {
   permission:  Permission;
   person: Person;
-  organizationalUnit: OrganizationalUnit;
+  unit: OrganizationalUnit;
+  constructor(permission: Permission, person: Person, organizationalUnit: OrganizationalUnit){
+    this.permission = permission;
+    this.person = person;
+    this.unit = organizationalUnit;
+  }
 }

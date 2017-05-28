@@ -1,0 +1,62 @@
+
+
+<div class="user-permission-card mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Uprawnienia posiadane przez użytkownika</h2>
+    </div>
+<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+    <tr>
+        <th class="mdl-data-table__cell--non-numeric">Nazwa uprawnienia</th>
+        <th class="mdl-data-table__cell--non-numeric">Jednostka organizacyjna</th>
+        <th class="mdl-data-table__cell--non-numeric">Opcje</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let grantedPermission of grantedPermissions">
+        <td class="mdl-data-table__cell--non-numeric">
+            {{grantedPermission.permission.name}}
+        </td>
+		<td class="mdl-data-table__cell--non-numeric">
+            {{grantedPermission.unit.fullName}}
+        </td>
+        <td>
+          <button routerLink="/permissions/edit/{{grantedPermission.permission.name}}"
+                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                Szczegóły
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+               (click)="revokePermission(grantedPermission)">Cofnij uprawnienia
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div>
+<br>
+<div class="user-permission-card mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__supporting-text">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Nadaj nowe uprawnienia</h2>
+    </div>
+        <div>
+            <div class="mdl-select mdl-js-select mdl-select--floating-label mdl-grid">
+                <label class="mdl-select__label mdl-cell mdl-cell--4-col">Nazwa uprawnienia: </label>
+                 <select class="mdl-select__input mdl-cell mdl-cell--4-col"  name="permission" [(ngModel)]="selectedPermission">
+                    <option *ngFor="let permission of permissions" [ngValue]="permission">{{permission.name}}</option>
+                </select>
+            </div>
+            <div class="mdl-select mdl-js-select mdl-select--floating-label mdl-grid">
+                <label class="mdl-select__label mdl-cell mdl-cell--4-col">Nazwa jednostki: </label>
+                <select class="mdl-select__input mdl-cell mdl-cell--4-col" name="unit" [(ngModel)]="selectedUnit">
+                    <option *ngFor="let unit of units" [ngValue]="unit">{{unit.fullName}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+               (click)="grantPermission()">Nadaj
+        </button>
+    </div>
+</div>
