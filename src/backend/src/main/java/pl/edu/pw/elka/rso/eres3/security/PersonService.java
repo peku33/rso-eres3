@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.edu.pw.elka.rso.eres3.domain.entities.Person;
 import pl.edu.pw.elka.rso.eres3.domain.entities.dto.PersonDto;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.PersonRepository;
-import pl.edu.pw.elka.rso.eres3.security.exceptions.LoginExistsException;
+import pl.edu.pw.elka.rso.eres3.security.exceptions.RegistrationFailedException;
 
 @Service
 @Transactional
@@ -23,12 +23,13 @@ public class PersonService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public Person registerNewPersonAccount(PersonDto personDto) throws LoginExistsException
+	public Person registerNewPersonAccount(PersonDto personDto) throws RegistrationFailedException
 	{
+		if(personDto.getId() != null)
+			throw new RegistrationFailedException("ID shouldn't be set on registration");
 		if(loginExist(personDto.getLogin()))
-			throw new LoginExistsException("Account with specified login exists yet");
+			throw new RegistrationFailedException("Account with specified login exists yet");
 		Person person = mapPersonFromDto(personDto);
-		person.setId(null);
 		return repository.save(person);
 	}
 	
