@@ -28,6 +28,7 @@ public class PersonService {
 		if(loginExist(personDto.getLogin()))
 			throw new LoginExistsException("Account with specified login exists yet");
 		Person person = mapPersonFromDto(personDto);
+		person.setId(null);
 		return repository.save(person);
 	}
 	
