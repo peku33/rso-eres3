@@ -39,6 +39,7 @@ import {PermissionsComponent} from "../components/permissions/permissions.compon
 import {AddPermissionComponent} from "../components/permissions/add/addPermission.component";
 import {EditPermissionComponent} from "../components/permissions/edit/editPermission.component";
 
+import {UserPermissions} from "../components/user-permissions/userPermissions.component"
 
 @NgModule({
     imports: [
@@ -65,7 +66,8 @@ import {EditPermissionComponent} from "../components/permissions/edit/editPermis
         EditSpecializationComponent,
         PermissionsComponent,
         AddPermissionComponent,
-        EditPermissionComponent
+        EditPermissionComponent,
+        UserPermissions
     ],
     providers: [
         GrantedPermissionsService,

@@ -29,21 +29,21 @@ export class GrantedPermissionsService {
     const url = `${this.grantedPermissionsUrl}/person/${id}`;
     return this.http.get(url)
       .toPromise()
-      .then(response => response.json().data as GrantedPermission[])
+      .then(response => response.json() as GrantedPermission[])
       .catch(this.handleError);
   }
 
-  create(grantedPermission: GrantedPermission): Promise<GrantedPermission> {
+  create(grantedPermission: any): Promise<GrantedPermission> {
     return this.http
       .post(this.grantedPermissionsUrl, JSON.stringify(grantedPermission), {headers: this.headers})
       .toPromise()
-      .then(res => res.json().data as GrantedPermission)
+      .then(res => res.json() as GrantedPermission)
       .catch(this.handleError);
   }
 
-  delete(grantedPermission: GrantedPermission): Promise<void> {
+  delete(grantedPermission: any): Promise<void> {
     const url = `${this.grantedPermissionsUrl}`;
-    return this.http.delete(url, {headers: this.headers})
+    return this.http.delete(url, {body: JSON.stringify(grantedPermission),   headers: this.headers})
       .toPromise()
       .then(() => null)
       .catch(this.handleError);

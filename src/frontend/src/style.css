@@ -30,3 +30,7 @@ a img{
 .eres-header .mdl-menu__container {
     z-index: 50;
 }
+
+.user-permission-card.mdl-card {
+  width: 700px;
+}
