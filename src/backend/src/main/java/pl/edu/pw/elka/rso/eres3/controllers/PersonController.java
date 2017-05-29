@@ -10,7 +10,7 @@ import pl.edu.pw.elka.rso.eres3.domain.entities.Person;
 import pl.edu.pw.elka.rso.eres3.domain.entities.dto.PersonDto;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.PersonRepository;
 import pl.edu.pw.elka.rso.eres3.security.PersonService;
-import pl.edu.pw.elka.rso.eres3.security.exceptions.RegistrationFailedException;
+import pl.edu.pw.elka.rso.eres3.security.exceptions.PersonServiceException;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -58,7 +58,7 @@ public class PersonController extends AbstractCrudController<Person, Long> {
 		try {
 			Person person = personService.registerNewPersonAccount(personDto);
 			return new ResponseEntity<Person>(person, HttpStatus.OK);
-		} catch(RegistrationFailedException e)
+		} catch(PersonServiceException e)
 		{
 			return new ResponseEntity<Person>(HttpStatus.CONFLICT);
 		}
@@ -67,8 +67,8 @@ public class PersonController extends AbstractCrudController<Person, Long> {
 	@RequestMapping(value = mapping, method = RequestMethod.PUT)
     @PreAuthorize("hasPermission(null, 'PersonUpdate')")
 	public ResponseEntity<Person> updatePerson(@RequestBody final PersonDto personDto) {
-		Person person = personService.mapPersonFromDto(personDto);
-		return updateEntity(person);
+		Person person = personService.editPersonAccount(personDto);
+		return new ResponseEntity<Person>(person, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = mapping + "/{id}", method = RequestMethod.DELETE)
