@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface GrantedPermissionRepository extends CrudRepository<GrantedPermission, GrantedPermissionId> {
     List<GrantedPermission> getGrantedPermissionsByPersonId(final Long id);
+    GrantedPermission getFirstByPersonIdAndPermissionNameOrderByUnitId(final Long personId, final String permissionName);
 }

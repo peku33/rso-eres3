@@ -15,6 +15,16 @@ public class GrantedPermissionId implements Serializable {
 
     private Short unit;
 
+    public GrantedPermissionId(){
+        //for hibernate
+    }
+
+    public GrantedPermissionId(final Long personId, final String permissionName, final Short unitId){
+        this.person = personId;
+        this.permission = permissionName;
+        this.unit = unitId;
+    }
+
     public Long getPerson() {
         return person;
     }

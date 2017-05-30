@@ -1,12 +1,11 @@
-package pl.edu.pw.elka.rso.eres3.security.domain;
+package pl.edu.pw.elka.rso.eres3.security.domain.recognizers;
 
-import java.util.List;
-import java.util.Map;
-
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.google.common.collect.Maps;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Collection of all {@link EntityUnitRecognizer} objects used by application.

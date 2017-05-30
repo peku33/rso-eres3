@@ -1,9 +1,11 @@
 package pl.edu.pw.elka.rso.eres3.security;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
 import javax.validation.constraints.NotNull;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
+@Component
 @ConfigurationProperties(prefix="app.security", ignoreUnknownFields=false)
 public class SecuritySettings {
 	@NotNull

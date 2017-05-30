@@ -1,26 +1,28 @@
 package pl.edu.pw.elka.rso.eres3.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.*;
 import pl.edu.pw.elka.rso.eres3.controllers.abstractions.AbstractCrudController;
 import pl.edu.pw.elka.rso.eres3.domain.entities.SubjectRealization;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.SubjectRealizationRepository;
 
+import javax.transaction.Transactional;
+
 /**
  * Rest controlller for subject's versions.
  */
+@RestController
+@Transactional
 public class SubjectRealizationController extends AbstractCrudController<SubjectRealization, Integer> {
 
-	private static final String mapping = "/subjects/versions/realizations";
+	static final String mapping = "/subjects/versions/realizations";
 	private final SubjectRealizationRepository realizationRepository;
 
-	protected SubjectRealizationController(final SubjectRealizationRepository realizationRepository, final boolean artificialId) {
-		super(realizationRepository, artificialId);
+	@Autowired
+	protected SubjectRealizationController(final SubjectRealizationRepository realizationRepository) {
+		super(realizationRepository, true);
 		this.realizationRepository = realizationRepository;
 	}
 

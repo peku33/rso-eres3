@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
@@ -53,6 +54,10 @@ public class Person implements Serializable, SimpleIdEntity<Long> {
 	@Size(min = 11, max = 11)
 	@Column(length = 11)
 	private String pesel;
+
+	@NotNull
+	@ManyToOne
+	private OrganizationalUnit unit;
 
 	@Override
 	public Long getId() {
@@ -122,5 +127,13 @@ public class Person implements Serializable, SimpleIdEntity<Long> {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+
+	public OrganizationalUnit getUnit() {
+		return unit;
+	}
+
+	public void setUnit(final OrganizationalUnit unit) {
+		this.unit = unit;
 	}
 }

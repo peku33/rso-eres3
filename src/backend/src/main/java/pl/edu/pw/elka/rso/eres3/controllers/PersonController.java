@@ -1,21 +1,20 @@
 package pl.edu.pw.elka.rso.eres3.controllers;
 
-import java.util.List;
-
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import pl.edu.pw.elka.rso.eres3.controllers.abstractions.AbstractCrudController;
 import pl.edu.pw.elka.rso.eres3.domain.entities.Person;
+import pl.edu.pw.elka.rso.eres3.domain.entities.dto.PersonDto;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.PersonRepository;
+import pl.edu.pw.elka.rso.eres3.security.PersonService;
+import pl.edu.pw.elka.rso.eres3.security.exceptions.PersonServiceException;
+
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Rest controller for person.
@@ -28,8 +27,11 @@ import pl.edu.pw.elka.rso.eres3.domain.repositories.PersonRepository;
 @RestController
 @Transactional
 public class PersonController extends AbstractCrudController<Person, Long> {
-	private static final String mapping = "/persons";
-
+	static final String mapping = "/persons";
+	
+	@Autowired
+	private PersonService personService;
+	
 	@Autowired
 	PersonController(final PersonRepository repository){
 		super(repository, true);
@@ -37,26 +39,36 @@ public class PersonController extends AbstractCrudController<Person, Long> {
 
 	@RequestMapping(value = mapping, method = RequestMethod.GET)
     @PreAuthorize("hasPermission(null, 'PersonRead')")
-	public List<Person> getAllPersons() {
-		return getAll();
+	public List<PersonDto> getAllPersons() {
+		return getAll().stream()
+				.map(person -> personService.mapPersonToDto(person))
+				.collect(Collectors.toList());
 	}
 
 	@RequestMapping(value = mapping + "/{id}", method = RequestMethod.GET)
     @PreAuthorize("hasPermission(null, 'PersonRead')")
-	public ResponseEntity<Person> getPerson(@PathVariable final long id) {
-		return getEntity(id);
+	public ResponseEntity<PersonDto> getPerson(@PathVariable final long id) {
+		PersonDto personDto = personService.mapPersonToDto(getEntity(id).getBody());
+		return new ResponseEntity<PersonDto>(personDto, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = mapping, method = RequestMethod.POST)
     @PreAuthorize("hasPermission(null, 'PersonCreate')")
-	public ResponseEntity<Person> addPerson(@RequestBody final Person person) {
-		return addEntity(person);
+	public ResponseEntity<Person> addPerson(@RequestBody final PersonDto personDto) {
+		try {
+			Person person = personService.registerNewPersonAccount(personDto);
+			return new ResponseEntity<Person>(person, HttpStatus.OK);
+		} catch(PersonServiceException e)
+		{
+			return new ResponseEntity<Person>(HttpStatus.CONFLICT);
+		}
 	}
 
 	@RequestMapping(value = mapping, method = RequestMethod.PUT)
     @PreAuthorize("hasPermission(null, 'PersonUpdate')")
-	public ResponseEntity<Person> updatePerson(@RequestBody final Person person) {
-		return updateEntity(person);
+	public ResponseEntity<Person> updatePerson(@RequestBody final PersonDto personDto) {
+		Person person = personService.editPersonAccount(personDto);
+		return new ResponseEntity<Person>(person, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = mapping + "/{id}", method = RequestMethod.DELETE)

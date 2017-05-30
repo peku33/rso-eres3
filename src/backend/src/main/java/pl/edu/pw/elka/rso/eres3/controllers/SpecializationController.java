@@ -12,8 +12,6 @@ import pl.edu.pw.elka.rso.eres3.domain.repositories.SpecializationRepository;
 import pl.edu.pw.elka.rso.eres3.dtos.SpecializationDto;
 
 import javax.transaction.Transactional;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Rest controller for specializations.
@@ -33,11 +31,11 @@ public class SpecializationController extends AbstractCrudController<Specializat
         this.unitRepo = unitRepo;
     }
 
-    @RequestMapping(value = "units/{id}/specializations", method = RequestMethod.GET)
-    @PreAuthorize("hasPermission(#id, 'OrganizationalUnit', 'SpecializationRead')")
-    public List<SpecializationDto> getAllSpecializationsOnUnit(@PathVariable final short id) {
-        return specializationRepo.findByUnitId(id).stream().map(SpecializationDto::new).collect(Collectors.toList());
-    }
+	@RequestMapping(value = "units/{id}" + mapping, method = RequestMethod.GET)
+	@PreAuthorize("hasPermission(#id, 'OrganizationalUnit', 'SpecializationRead')")
+	public Iterable<Specialization> getAllSpecializationsOnUnit(@PathVariable final short id){
+		return specializationRepo.findByUnitId(id);
+	}
 
     @RequestMapping(value = mapping + "/{id}", method = RequestMethod.GET)
     @PreAuthorize("hasPermission(#id, 'Specialization', 'SpecializationRead')")

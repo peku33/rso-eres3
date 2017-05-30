@@ -1,9 +1,6 @@
-package pl.edu.pw.elka.rso.eres3.security.domain;
-
-import java.io.Serializable;
+package pl.edu.pw.elka.rso.eres3.security.domain.recognizers;
 
 import org.springframework.stereotype.Component;
-
 import pl.edu.pw.elka.rso.eres3.domain.entities.OrganizationalUnit;
 
 /**
@@ -14,20 +11,19 @@ import pl.edu.pw.elka.rso.eres3.domain.entities.OrganizationalUnit;
  * convention of how organizational units are being found for entities.
  */
 @Component
-public class PlainUnitRecognizer extends EntityUnitRecognizer {
+public class PlainUnitRecognizer extends EntityUnitRecognizer<OrganizationalUnit, Short> {
 
-	@Override
-	public Class<?> getRecognizableClass() {
-		return OrganizationalUnit.class;
+	public PlainUnitRecognizer(){
+		super(null, OrganizationalUnit.class);
 	}
 
 	@Override
-	public Short getUnitIdByEntity(final Object entity) {
-		return ((OrganizationalUnit)entity).getId();
+	public Short getUnitIdByEntity(final OrganizationalUnit unit) {
+		return unit.getId();
 	}
 
 	@Override
-	public Short getUnitIdByEntityId(final Serializable entityId) {
-		return (Short) entityId;
+	public Short getUnitIdByEntityId(final Short entityId) {
+		return entityId;
 	}
 }

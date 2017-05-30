@@ -1,19 +1,14 @@
 package pl.edu.pw.elka.rso.eres3.controllers;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import pl.edu.pw.elka.rso.eres3.controllers.abstractions.AbstractCrudController;
 import pl.edu.pw.elka.rso.eres3.domain.entities.Subject;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.SubjectRepository;
+
+import javax.transaction.Transactional;
 
 /**
  * Rest controller for subjects.
@@ -30,7 +25,7 @@ public class SubjectController extends AbstractCrudController<Subject, Integer> 
 		this.subjectRepository = subjectRepository;
 	}
 
-	@RequestMapping(value =  "/units/{id}/subjects", method = RequestMethod.GET)
+	@RequestMapping(value = OrganizationalUnitController.mapping + "/{id}" + mapping, method = RequestMethod.GET)
     @PreAuthorize("hasPermission(#id, 'OrganizationalUnit', 'SubjectRead')")
 	public Iterable<Subject> getAllSubjectsOnUnit(@PathVariable final short id) {
 		return subjectRepository.findByUnitId(id);

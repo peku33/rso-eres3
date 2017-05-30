@@ -1,22 +1,15 @@
 package pl.edu.pw.elka.rso.eres3.controllers;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-
-import javax.transaction.Transactional;
-
-import org.assertj.core.util.Lists;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import pl.edu.pw.elka.rso.eres3.controllers.abstractions.AbstractCrudController;
 import pl.edu.pw.elka.rso.eres3.domain.entities.SubjectVersion;
 import pl.edu.pw.elka.rso.eres3.domain.repositories.SubjectVersionRepository;
+
+import javax.transaction.Transactional;
+import java.util.Comparator;
+import java.util.stream.StreamSupport;
 
 /**
  * Rest controller for subject's versions.
@@ -41,26 +34,34 @@ public class SubjectVersionController extends AbstractCrudController<SubjectVers
 
 	@RequestMapping(value = mapping + "/{id}", method = RequestMethod.GET)
     @PreAuthorize("hasPermission(#id, 'SubjectVersion', 'SubjectVersionRead')")
-	public ResponseEntity<SubjectVersion> getSubjectVerion(@PathVariable final int id){
+	public ResponseEntity<SubjectVersion> getSubjectVersion(@PathVariable final int id){
 		return getEntity(id);
 	}
 
 	@RequestMapping(value = mapping, method = RequestMethod.POST)
     @PreAuthorize("hasPermission(#version, 'SubjectVersionCreate')")
-	public ResponseEntity<SubjectVersion> addSubjectVerion(@RequestBody final SubjectVersion version){
+	public ResponseEntity<SubjectVersion> addSubjectVersion(@RequestBody final SubjectVersion version){
+		if(version == null || version.getSubject() == null || version.getSubject().getId() == null)
+		{
+			return badRequest;
+		}
 		final Integer subjectId = version.getSubject().getId();
-		final ArrayList<SubjectVersion> existingVersions = Lists.newArrayList(versionRepository.findBySubjectId(subjectId));
-		final Character newVersionCode = existingVersions.isEmpty() ? 'A' :
-			(char) (existingVersions.stream()
-					.map(SubjectVersion::getVersionCode)
-					.max(Comparator.naturalOrder()).get() + 1);
-		version.setVersionCode(newVersionCode);
+		final Iterable<SubjectVersion> existingVersions = versionRepository.findBySubjectId(subjectId);
+		version.setVersionCode(generateVersionCode(existingVersions));
 		return addEntity(version);
+	}
+
+	private Character generateVersionCode(final Iterable<SubjectVersion> existingVersions){
+		return StreamSupport.stream(existingVersions.spliterator(), false)
+				.map(SubjectVersion::getVersionCode)
+				.max(Comparator.naturalOrder())
+				.map(character -> (char)(character + 1))
+				.orElse('A');
 	}
 
 	@RequestMapping(value = mapping + "/{id}", method = RequestMethod.DELETE)
     @PreAuthorize("hasPermission(#id, 'SubjectVersion', 'SubjectVersionDelete')")
-	public ResponseEntity<SubjectVersion> deleteSubjectVerion(@PathVariable final int id) {
+	public ResponseEntity<SubjectVersion> deleteSubjectVersion(@PathVariable final int id) {
 		return deleteEntity(id);
 	}
 
