@@ -51,6 +51,9 @@ import {StudentToursSemesterComponent} from "../components/studentTours-semester
 import {AddStudentTourSemesterComponent} from "../components/studentTours-semester/addEdit/addStudentTourSemester.component";
 import {EditStudentTourSemesterComponent} from "../components/studentTours-semester/addEdit/editStudentTourSemester.component";
 
+import {CreditService} from "../services/credit.service";
+import {CreditComponent} from "../components/credit/credit.component";
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -83,7 +86,8 @@ import {EditStudentTourSemesterComponent} from "../components/studentTours-semes
         EditStudentTourComponent,
         StudentToursSemesterComponent,
         AddStudentTourSemesterComponent,
-        EditStudentTourSemesterComponent
+        EditStudentTourSemesterComponent,
+        CreditComponent
     ],
     providers: [
         GrantedPermissionsService,
@@ -98,7 +102,8 @@ import {EditStudentTourSemesterComponent} from "../components/studentTours-semes
         SubjectsService,
         StudentTourService,
         StudentTourSemesterService,
-        UnitsService
+        UnitsService,
+        CreditService
     ],
     bootstrap: [AppComponent],
 })

@@ -22,7 +22,7 @@ import {EditStudentTourComponent} from "../components/student-tours/addEdit/edit
 import {StudentToursSemesterComponent} from "../components/studentTours-semester/studentTours-semester.component";
 import {AddStudentTourSemesterComponent} from "../components/studentTours-semester/addEdit/addStudentTourSemester.component";
 import {EditStudentTourSemesterComponent} from "../components/studentTours-semester/addEdit/editStudentTourSemester.component";
-
+import {CreditComponent} from "../components/credit/credit.component";
 
 
 const routes: Routes = [
