@@ -1,7 +1,8 @@
 package pl.edu.pw.elka.rso.eres3.controllers;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.junit.Assert.*;
 
 import java.util.Random;
 
@@ -55,6 +56,62 @@ public class PersonControllerTest {
     	this.mockMvc.perform(post(mapping).contentType(MediaType.APPLICATION_JSON)
     			.content(objectMapper.writeValueAsString(personStub))
     			)
-    	.andExpect(status().isCreated());
+    	.andExpect(status().isOk());
+    }
+    
+    @Test
+    public void insertUpdateDelete() throws Exception{
+    	Random rand = new Random();
+    	String rstring = "test" + new Integer((rand.nextInt())).toString();
+    	PersonDto personStub = new PersonDto();
+    	OrganizationalUnitDto unitStub = new OrganizationalUnitDto();
+    	unitStub.setFullName("test");
+    	unitStub.setShortName("test");
+    	unitStub.setId((short) 1);
+    	personStub.setUnit(unitStub);
+    	personStub.setLogin(rstring);
+    	personStub.setPassword("test");
+    	
+    	this.mockMvc.perform(post(mapping).contentType(MediaType.APPLICATION_JSON)
+    			.content(objectMapper.writeValueAsString(personStub))
+    			)
+    	.andExpect(status().isOk());
+    	
+    	String results = this.mockMvc.perform(get(mapping))
+    			.andExpect(status().isOk())
+    			.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+    			.andExpect(jsonPath("$[?(@.login=='"+rstring+"')]").isNotEmpty())
+    			.andReturn().getResponse().getContentAsString()
+    			;
+    	PersonDto[] persons = objectMapper.readValue(results, PersonDto[].class);
+    	long id = 0;
+    	for(PersonDto person: persons){
+    		if(person.getLogin().equals(rstring)){
+    			id = person.getId();
+    			break;
+    		}
+    	}
+    	if(id==0){
+    		fail("Person not found!");
+    	}
+    	
+    	rstring = "test" + new Integer((rand.nextInt())).toString();
+    	personStub.setId(id);
+    	personStub.setFirstName(rstring);
+    	this.mockMvc.perform(put(mapping).contentType(MediaType.APPLICATION_JSON).
+    			content(objectMapper.writeValueAsString(personStub))
+    			)
+    	.andExpect(status().isOk());
+    	
+    	String result = this.mockMvc.perform(get(mapping+"/"+new Long(id).toString())).andExpect(status().isOk())
+    	.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+    	.andReturn().getResponse().getContentAsString();
+    	
+    	PersonDto upPerson = objectMapper.readValue(result, PersonDto.class);
+    	if(!upPerson.getFirstName().equals(rstring)){
+    		fail("Update failed!");
+    	}
+    	this.mockMvc.perform(delete(mapping+"/"+new Long(id).toString())).andExpect(status().isNoContent());
+    	
     }
 }
