@@ -15,7 +15,14 @@ import {AddSpecializationComponent} from "../components/specializations/addEdit/
 import {PermissionsComponent} from "../components/permissions/permissions.component";
 import {AddPermissionComponent} from "../components/permissions/add/addPermission.component";
 import {EditPermissionComponent} from "../components/permissions/edit/editPermission.component";
-import {UserPermissions} from "../components/user-permissions/userPermissions.component"
+import {UserPermissions} from "../components/user-permissions/userPermissions.component";
+import {StudentToursComponent} from "../components/student-tours/student-tours.component";
+import {AddStudentTourComponent} from "../components/student-tours/addEdit/addStudentTour.component";
+import {EditStudentTourComponent} from "../components/student-tours/addEdit/editStudentTour.component";
+import {StudentToursSemesterComponent} from "../components/studentTours-semester/studentTours-semester.component";
+import {AddStudentTourSemesterComponent} from "../components/studentTours-semester/addEdit/addStudentTourSemester.component";
+import {EditStudentTourSemesterComponent} from "../components/studentTours-semester/addEdit/editStudentTourSemester.component";
+
 
 
 const routes: Routes = [

@@ -19,6 +19,8 @@ import {SpecializationsService} from "../services/specializations.service";
 import {SubjectRealizationsService} from "../services/subject-realizations.service";
 import {SubjectVersionsService} from "../services/subject-versions.service";
 import {SubjectsService} from "../services/subjects.service";
+import {StudentTourService} from "../services/student-tours.service";
+import {StudentTourSemesterService} from "../services/studentTour-semester.service";
 import {AppRoutingModule} from "./appRouting.module";
 
 import "material-design-lite";
@@ -40,6 +42,14 @@ import {AddPermissionComponent} from "../components/permissions/add/addPermissio
 import {EditPermissionComponent} from "../components/permissions/edit/editPermission.component";
 
 import {UserPermissions} from "../components/user-permissions/userPermissions.component"
+
+import {StudentToursComponent} from "../components/student-tours/student-tours.component";
+import {AddStudentTourComponent} from "../components/student-tours/addEdit/addStudentTour.component";
+import {EditStudentTourComponent} from "../components/student-tours/addEdit/editStudentTour.component";
+
+import {StudentToursSemesterComponent} from "../components/studentTours-semester/studentTours-semester.component";
+import {AddStudentTourSemesterComponent} from "../components/studentTours-semester/addEdit/addStudentTourSemester.component";
+import {EditStudentTourSemesterComponent} from "../components/studentTours-semester/addEdit/editStudentTourSemester.component";
 
 @NgModule({
     imports: [
@@ -67,7 +77,13 @@ import {UserPermissions} from "../components/user-permissions/userPermissions.co
         PermissionsComponent,
         AddPermissionComponent,
         EditPermissionComponent,
-        UserPermissions
+        UserPermissions,
+        StudentToursComponent,
+        AddStudentTourComponent,
+        EditStudentTourComponent,
+        StudentToursSemesterComponent,
+        AddStudentTourSemesterComponent,
+        EditStudentTourSemesterComponent
     ],
     providers: [
         GrantedPermissionsService,
@@ -80,6 +96,8 @@ import {UserPermissions} from "../components/user-permissions/userPermissions.co
         SubjectRealizationsService,
         SubjectVersionsService,
         SubjectsService,
+        StudentTourService,
+        StudentTourSemesterService,
         UnitsService
     ],
     bootstrap: [AppComponent],
