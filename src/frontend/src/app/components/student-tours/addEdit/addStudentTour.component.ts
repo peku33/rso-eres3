@@ -26,6 +26,6 @@ export class AddStudentTourComponent implements OnInit {
     }
 
     private goBack = (): void => {
-        this.router.navigateByUrl("persons/" + this.urlParams['id'] + "/studenttours");
+        this.router.navigateByUrl("persons/" + this.urlParams['personId'] + "/studenttours");
     }
 }

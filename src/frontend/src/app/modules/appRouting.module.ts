@@ -42,6 +42,9 @@ const routes: Routes = [
     {path: 'permissions', component: PermissionsComponent},
     {path: 'permissions/add', component: AddPermissionComponent},
     {path: 'permissions/edit/:name', component: EditPermissionComponent},
+    {path: 'persons/:personId/studenttours', component: StudentToursComponent},
+    {path: 'persons/:personId/studenttours/:id/add', component: AddStudentTourComponent},
+    {path: 'persons/:personId/studenttours/:id', component: EditStudentTourComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
 

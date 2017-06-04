@@ -20,7 +20,7 @@ export class EditStudentTourComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.params.subscribe((params: Params) => this.urlParams = params);
-        this.studentTourService.getStudentTour(+this.urlParams['id'])
+        this.studentTourService.getStudentTour(+this.urlParams['personId'])
             .then(studentTour => this.studentTour = studentTour);
     }
 
@@ -34,6 +34,6 @@ export class EditStudentTourComponent implements OnInit {
     }
 
     private goBack = (): void => {
-        this.router.navigateByUrl("persons/" + this.urlParams['id'] + "/studenttours");
+        this.router.navigateByUrl("persons/" + this.urlParams['personId'] + "/studenttours");
     }
 }
