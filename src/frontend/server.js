@@ -1,10 +1,10 @@
 const gzippo = require ('gzippo'),
-      express = require('express')
-//      ,morgan = require('morgan')  // windows only??
+      express = require('express'),
+      morgan = require('morgan')
 
 let app = express()
 
-// app.use(morgan('combined')) // windows only??
+app.use(morgan('combined'))
 app.use(gzippo.staticGzip(`${__dirname}/dist`))
 
 app.get('/cms-status', (req, res) =>
