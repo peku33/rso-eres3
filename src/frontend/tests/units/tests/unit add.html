@@ -18,12 +18,12 @@
 </tr>
 <tr>
 	<td>storeCssCount</td>
-	<td>css=table tr</td>
+	<td>css=table tbody tr</td>
 	<td>rowCount</td>
 </tr>
 <tr>
-	<td>click</td>
-	<td>css=table tr:last-of-type button</td>
+	<td>clickAndWait</td>
+	<td>css=#table-container div&gt;button:last-of-type</td>
 	<td></td>
 </tr>
 <tr>
@@ -37,18 +37,18 @@
 	<td>Instytut Elektroniki</td>
 </tr>
 <tr>
-    <td>click</td>
+	<td>clickAndWait</td>
 	<td>//div/div[2]/button</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyNotCssCount</td>
-	<td>css=table tr</td>
+	<td>css=table tbody tr</td>
 	<td>${rowCount}</td>
 </tr>
 <tr>
 	<td>verifyText</td>
-	<td>css=table tbody tr:nth-last-child(2) td:first-of-type</td>
+	<td>css=table tbody tr:last-of-type td:first-of-type</td>
 	<td>Instytut Elektroniki</td>
 </tr>
 </tbody></table>
