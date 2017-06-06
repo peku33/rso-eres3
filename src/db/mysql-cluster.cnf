@@ -5,32 +5,32 @@ IndexMemory=64M
 
 [ndb_mgmd]
 NodeId=1
-hostname=192.168.103.201
+hostname=man1.ndb
 datadir=/var/lib/mysql
 
 [ndb_mgmd]
 NodeId=2
-hostname=192.168.103.202
+hostname=man2.ndb
 datadir=/var/lib/mysql
 
 [ndbd]
 NodeId=3
-hostname=192.168.103.211
+hostname=data1.ndb
 datadir=/var/lib/mysql
 
 [ndbd]
 NodeId=4
-hostname=192.168.103.212
+hostname=data2.ndb
 datadir=/var/lib/mysql
 
 [mysqld]
 NodeId=5
-hostname=192.168.103.221
+hostname=node1.ndb
 
 [mysqld]
 NodeId=6
-hostname=192.168.103.222
+hostname=node2.ndb
 
 [mysqld]
 NodeId=7
-hostname=192.168.103.223
+hostname=node3.ndb

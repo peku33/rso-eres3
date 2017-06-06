@@ -1,21 +1,34 @@
 #!/bin/bash
 
 IMAGE_NAME="eres3-dbcluster"
-NETWORK_NAME="eres3-network"
 IP_PREFIX="192.168.103"
 
+declare -a ndb_mgmt_nodes=("man1.ndb" "man2.ndb")
+declare -a ndb_mgmt_nodes_ip=("201" "202")
+declare -a ndb_data_nodes=("data1.ndb" "data2.ndb")
+declare -a ndb_data_nodes_ip=("211" "212")
+declare -a sql_nodes=("node1.ndb" "node2.ndb" "node3.ndb")
+declare -a sql_nodes_ip=("221" "222" "223")
+
 echo "Initializing management nodes"
-docker run -d --net=$NETWORK_NAME --name=man1.ndb --ip=$IP_PREFIX.201 $IMAGE_NAME ndb_mgmd
-docker run -d --net=$NETWORK_NAME --name=man2.ndb --ip=$IP_PREFIX.202 $IMAGE_NAME ndb_mgmd
+
+for ((i=0; i < "${#ndb_mgmt_nodes[@]}"; ++i))
+do
+    docker run -d --net=${NET_NAME} --ip=${IP_PREFIX}.${ndb_mgmt_nodes_ip[$i]} --name=${ndb_mgmt_nodes[$i]} --hostname=${ndb_mgmt_nodes[$i]} $IMAGE_NAME ndb_mgmd
+done
 
 echo "Initializing data nodes"
-docker run -d --net=$NETWORK_NAME --name=data1.ndb --ip=$IP_PREFIX.211 $IMAGE_NAME ndbd
-docker run -d --net=$NETWORK_NAME --name=data2.ndb --ip=$IP_PREFIX.212 $IMAGE_NAME ndbd
+for ((i=0; i < "${#ndb_data_nodes[@]}"; ++i))
+do
+    docker run -d --net=${NET_NAME} --ip=${IP_PREFIX}.${ndb_data_nodes_ip[$i]} --name=${ndb_data_nodes[$i]} --hostname=${ndb_data_nodes[$i]} --link=${ndb_mgmt_nodes[0]}:${ndb_mgmt_nodes[0]} --link=${ndb_mgmt_nodes[1]}:${ndb_mgmt_nodes[1]} $IMAGE_NAME ndbd
+done
 
 echo "Preparing DB for further use"
-docker run --net=eres3-network --name=datainit --ip=192.168.103.223 eres3-dbcluster /etc/mysql-init.sh
+docker run --name=datainit --hostname="data1.ndb" eres3-dbcluster /etc/mysql-init.sh
 docker rm datainit
 
 echo "Initializing mysql nodes"
-docker run -d --net=$NETWORK_NAME --name=node1.ndb --ip=$IP_PREFIX.221 $IMAGE_NAME mysqld
-docker run -d --net=$NETWORK_NAME --name=node2.ndb --ip=$IP_PREFIX.222 $IMAGE_NAME mysqld
+for ((i=0; i < "${#sql_nodes[@]}"; ++i))
+do
+    docker run -d --net=${NET_NAME} --ip=${IP_PREFIX}.${sql_nodes_ip[$i]} --name=${sql_nodes[$i]} --hostname=${sql_nodes[$i]} --link=${ndb_mgmt_nodes[0]}:${ndb_mgmt_nodes[0]} --link=${ndb_mgmt_nodes[1]}:${ndb_mgmt_nodes[1]} $IMAGE_NAME mysqld
+done
