@@ -26,17 +26,6 @@ LOCK TABLES `credit` WRITE;
 UNLOCK TABLES;
 
 --
--- Dumping data for table `granted_permission`
---
--- ORDER BY:  `permission_name`,`person_id`,`unit_id`
-
-LOCK TABLES `granted_permission` WRITE;
-/*!40000 ALTER TABLE `granted_permission` DISABLE KEYS */;
-INSERT INTO `granted_permission` VALUES ('CreditCreate',1,1),('CreditDelete',1,1),('CreditRead',1,1),('CreditUpdate',1,1),('GrantedPermissionCreate',1,1),('GrantedPermissionDelete',1,1),('GrantedPermissionRead',1,1),('OrganizationalUnitCreate',1,1),('OrganizationalUnitDelete',1,1),('OrganizationalUnitRead',1,1),('PermissionCreate',1,1),('PermissionDelete',1,1),('PermissionRead',1,1),('PermissionUpdate',1,1),('PersonCreate',1,1),('PersonDelete',1,1),('PersonRead',1,1),('PersonUpdate',1,1),('SemesterRead',1,1),('SpecializationCreate',1,1),('SpecializationDelete',1,1),('SpecializationRead',1,1),('SpecializationUpdate',1,1),('StudentTourCreate',1,1),('StudentTourDelete',1,1),('StudentTourRead',1,1),('StudentTourSemesterCreate',1,1),('StudentTourSemesterDelete',1,1),('StudentTourSemesterRead',1,1),('StudentTourSemesterUpdate',1,1),('StudentTourUpdate',1,1),('SubjectCreate',1,1),('SubjectDelete',1,1),('SubjectRead',1,1),('SubjectRealizationCreate',1,1),('SubjectRealizationDelete',1,1),('SubjectRealizationRead',1,1),('SubjectUpdate',1,1),('SubjectVersionCreate',1,1),('SubjectVersionDelete',1,1),('SubjectVersionRead',1,1);
-/*!40000 ALTER TABLE `granted_permission` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Dumping data for table `organizational_unit`
 --
 -- ORDER BY:  `id`
@@ -68,6 +57,19 @@ LOCK TABLES `person` WRITE;
 INSERT INTO `person` VALUES (1,NULL,NULL,'root',NULL,'$2a$10$.DwPvtZHtCJWFXBkMPnu3.gCYHZ4.GPbsdXtHDdDpfkJYBPbTIaCa',NULL,1);
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+--
+-- Dumping data for table `granted_permission`
+--
+-- ORDER BY:  `permission_name`,`person_id`,`unit_id`
+
+LOCK TABLES `granted_permission` WRITE;
+/*!40000 ALTER TABLE `granted_permission` DISABLE KEYS */;
+INSERT INTO `granted_permission` VALUES ('CreditCreate',1,1),('CreditDelete',1,1),('CreditRead',1,1),('CreditUpdate',1,1),('GrantedPermissionCreate',1,1),('GrantedPermissionDelete',1,1),('GrantedPermissionRead',1,1),('OrganizationalUnitCreate',1,1),('OrganizationalUnitDelete',1,1),('OrganizationalUnitRead',1,1),('PermissionCreate',1,1),('PermissionDelete',1,1),('PermissionRead',1,1),('PermissionUpdate',1,1),('PersonCreate',1,1),('PersonDelete',1,1),('PersonRead',1,1),('PersonUpdate',1,1),('SemesterRead',1,1),('SpecializationCreate',1,1),('SpecializationDelete',1,1),('SpecializationRead',1,1),('SpecializationUpdate',1,1),('StudentTourCreate',1,1),('StudentTourDelete',1,1),('StudentTourRead',1,1),('StudentTourSemesterCreate',1,1),('StudentTourSemesterDelete',1,1),('StudentTourSemesterRead',1,1),('StudentTourSemesterUpdate',1,1),('StudentTourUpdate',1,1),('SubjectCreate',1,1),('SubjectDelete',1,1),('SubjectRead',1,1),('SubjectRealizationCreate',1,1),('SubjectRealizationDelete',1,1),('SubjectRealizationRead',1,1),('SubjectUpdate',1,1),('SubjectVersionCreate',1,1),('SubjectVersionDelete',1,1),('SubjectVersionRead',1,1);
+/*!40000 ALTER TABLE `granted_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
 
 --
 -- Dumping data for table `semester`
