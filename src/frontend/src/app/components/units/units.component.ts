@@ -3,7 +3,8 @@ import {Unit} from "../../model/unit";
 import {UnitsService} from "../../services/units.service";
 @Component({
     selector: "units-table",
-    templateUrl: "units.component.html"
+    templateUrl: "units.component.html",
+    styleUrls: ['../../styles/table-styles.css']
 })
 
 export class UnitsComponent implements OnInit {

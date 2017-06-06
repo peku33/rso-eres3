@@ -23,6 +23,7 @@ import {StudentToursSemesterComponent} from "../components/studentTours-semester
 import {AddStudentTourSemesterComponent} from "../components/studentTours-semester/addEdit/addStudentTourSemester.component";
 import {EditStudentTourSemesterComponent} from "../components/studentTours-semester/addEdit/editStudentTourSemester.component";
 import {CreditComponent} from "../components/credit/credit.component";
+import {SubjectsComponent} from "../components/subjects/subjects.component";
 
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
     {path: 'units/:unitId/specializations', component: SpecializationsComponent},
     {path: 'units/:unitId/specializations/:id', component: EditSpecializationComponent},
     {path: 'units/:unitId/specializations/:id/add', component: AddSpecializationComponent},
+    {path: 'units/:unitId/subjects', component: SubjectsComponent},
     {path: 'permissions', component: PermissionsComponent},
     {path: 'permissions/add', component: AddPermissionComponent},
     {path: 'permissions/edit/:name', component: EditPermissionComponent},

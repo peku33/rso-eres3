@@ -5,7 +5,8 @@ import {ActivatedRoute, Params} from "@angular/router";
 import * as _ from "lodash";
 @Component({
     selector: "specializations-tree",
-    templateUrl: "specializations.component.html"
+    templateUrl: "specializations.component.html",
+    styleUrls: ['../../styles/table-styles.css']
 })
 export class SpecializationsComponent implements OnInit {
     @Input() public specializations: any;

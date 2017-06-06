@@ -5,7 +5,8 @@ import {ActivatedRoute, Params} from "@angular/router";
 import * as _ from "lodash";
 @Component({
     selector: "permissions",
-    templateUrl: "permissions.component.html"
+    templateUrl: "permissions.component.html",
+    styleUrls: ['../../styles/table-styles.css']
 })
 export class PermissionsComponent implements OnInit {
     @Input() public permissions: any;

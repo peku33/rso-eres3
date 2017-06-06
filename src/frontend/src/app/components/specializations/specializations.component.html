@@ -1,47 +1,49 @@
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-    <thead *ngIf="!subTable">
-    <tr>
-        <th class="mdl-data-table__cell--non-numeric">Pełna nazwa</th>
-        <th class="mdl-data-table__cell--non-numeric">Skrót</th>
-        <th class="mdl-data-table__cell--non-numeric">Typ</th>
-        <th></th>
-        <th></th>
-        <th>
-            <button routerLink="0/add"
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Dodaj
-            </button>
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let specialization of specializations">
-        <td class="mdl-data-table__cell--non-numeric">
-            {{specialization.fullName}}
-            <specializations-tree [specializations]="specialization.children" [subTable]="true"
-                                  *ngIf="specialization.showChildren"></specializations-tree>
-        </td>
-        <td class="mdl-data-table__cell--non-numeric">
-            {{specialization.shortName}}
-        </td>
-        <td class="mdl-data-table__cell--non-numeric">
-            {{specialization.type}}
-        </td>
-        <td>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-                    (click)="toggleChildren(specialization)" *ngIf="specialization.children != null">▼
-            </button>
-        </td>
-        <td>
-            <button routerLink="{{specialization.id}}/add"
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Dodaj
-            </button>
-        </td>
-        <td>
-            <button routerLink="{{specialization.id}}"
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                Szczegóły
-            </button>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div id="table-container">
+    <h1>Specjalizacje</h1>
+
+    <div class="table-responsive-vertical shadow-2dp">
+        <table id="table" class="table table-hover table-bordered table-mobile-condensed shadow-2dp">
+            <thead *ngIf="!subTable">
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Skrót</th>
+                <th class="mdl-data-table__cell--non-numeric">Pełna nazwa</th>
+                <th class="mdl-data-table__cell--non-numeric">Typ</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let specialization of specializations">
+                <td data-title="Skrót" class="mdl-data-table__cell--non-numeric">
+                    {{specialization.shortName}}
+                </td>
+                <td data-title="Pełna nazwa" class="mdl-data-table__cell--non-numeric">
+                    {{specialization.fullName}}
+                </td>
+                <td data-title="Typ" class="mdl-data-table__cell--non-numeric">
+                    {{specialization.type}}
+                </td>
+                <td class="align-right">
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent"
+                            (click)="toggleChildren(specialization)" *ngIf="specialization.children != null">▼
+                    </button>
+                    <button routerLink="{{specialization.id}}/add"
+                            class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Dodaj
+                    </button>
+                    <button routerLink="{{specialization.id}}"
+                            class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Edytuj
+                    </button>
+
+                </td>
+            </tr>
+            </tbody>
+            <tfoot><p>&nbsp;</p>
+            </tfoot>
+        </table>
+        <button routerLink="0/add"
+                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored edge-button">
+            <i class="material-icons">add</i>
+        </button>
+    </div>
+</div>

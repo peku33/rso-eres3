@@ -3,7 +3,8 @@ import {PersonsService} from "../../services/persons.service";
 import {Person} from "../../model/person";
 @Component({
     selector: "persons-table",
-    templateUrl: "persons.component.html"
+    templateUrl: "persons.component.html",
+    styleUrls: ['../../styles/table-styles.css']
 })
 
 export class PersonsComponent implements OnInit {

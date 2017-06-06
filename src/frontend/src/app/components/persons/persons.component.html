@@ -1,34 +1,41 @@
-<h4 class="center-hori">Lista użytkowników</h4>
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp center-hori">
-    <thead>
-    <tr>
-        <th class="mdl-data-table__cell--non-numeric">Imię</th>
-        <th class="mdl-data-table__cell--non-numeric">Nazwisko</th>
-        <th>Pesel</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let person of persons">
-        <td class="mdl-data-table__cell--non-numeric">{{person.firstName}}</td>
-        <td class="mdl-data-table__cell--non-numeric">{{person.lastName}}</td>
-        <td>{{person.pesel}}</td>
-        <td>
-            <button routerLink="{{person.id}}"
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                Szczegóły
-            </button>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-            <button routerLink="add"
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Dodaj
-            </button>
-        </td>
-    </tr>
-    </tbody>
-</table>
+<div id="table-container">
+    <h1>Lista użytkowników</h1>
+
+    <div class="table-responsive-vertical shadow-2dp">
+        <table id="table" class="table table-hover table-bordered table-mobile-condensed shadow-2dp">
+            <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Imię</th>
+                <th class="mdl-data-table__cell--non-numeric">Nazwisko</th>
+                <th class="mdl-data-table__cell--non-numeric">PESEL</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let person of persons">
+                <td data-title="Imię" class="mdl-data-table__cell--non-numeric">
+                    {{person.firstName}}
+                </td>
+                <td data-title="Nazwisko" class="mdl-data-table__cell--non-numeric">
+                    {{person.lastName}}
+                </td>
+                <td data-title="PESEL">
+                    {{person.pesel}}
+                </td>
+                <td class="align-right">
+                    <button routerLink="{{person.id}}"
+                            class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Edytuj
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot><p>&nbsp;</p>
+            </tfoot>
+        </table>
+        <button routerLink="add"
+                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored edge-button">
+            <i class="material-icons">add</i>
+        </button>
+    </div>
+</div>

@@ -1,35 +1,41 @@
-<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-    <thead>
-    <tr>
-        <th class="mdl-data-table__cell--non-numeric">Nazwa</th>
-        <th></th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let unit of units">
-        <td class="mdl-data-table__cell--non-numeric">{{unit.fullName}}</td>
-        <td>
-            <button routerLink="{{unit.id}}"
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                Szczegóły
-            </button>
-        </td>
-        <td>
-            <button routerLink="{{unit.id}}/specializations"
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                Specjalizacje
-            </button>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>
-            <button routerLink="add"
-                    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">Dodaj
-            </button>
-        </td>
-        <td></td>
-    </tr>
-    </tbody>
-</table>
+<div id="table-container">
+    <h1>Jednostki organizacyjne</h1>
+
+    <div class="table-responsive-vertical shadow-2dp">
+        <table id="table" class="table table-hover table-bordered table-mobile-condensed shadow-2dp">
+            <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Nazwa</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let unit of units">
+                <td data-title="Nazwa" class="mdl-data-table__cell--non-numeric">
+                    {{unit.fullName}}
+                </td>
+                <td class="align-right">
+                    <button routerLink="{{unit.id}}/specializations"
+                            class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Specjalizacje
+                    </button>
+                    <button routerLink="{{unit.id}}/subjects"
+                            class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Przedmioty
+                    </button>
+                    <button routerLink="{{unit.id}}"
+                            class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Edytuj
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot><p>&nbsp;</p>
+            </tfoot>
+        </table>
+        <button routerLink="add"
+                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored edge-button">
+            <i class="material-icons">add</i>
+        </button>
+    </div>
+</div>

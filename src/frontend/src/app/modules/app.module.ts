@@ -53,6 +53,7 @@ import {EditStudentTourSemesterComponent} from "../components/studentTours-semes
 
 import {CreditService} from "../services/credit.service";
 import {CreditComponent} from "../components/credit/credit.component";
+import {SubjectsComponent} from "../components/subjects/subjects.component";
 
 @NgModule({
     imports: [
@@ -87,7 +88,8 @@ import {CreditComponent} from "../components/credit/credit.component";
         StudentToursSemesterComponent,
         AddStudentTourSemesterComponent,
         EditStudentTourSemesterComponent,
-        CreditComponent
+        CreditComponent,
+        SubjectsComponent
     ],
     providers: [
         GrantedPermissionsService,
