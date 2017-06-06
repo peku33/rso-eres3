@@ -139,12 +139,12 @@ public class SubjectControllerIntegrationTest {
     		}
     	}
     	if(id==0){
-    		fail("Unit not found!");
+    		fail("Subject not found!");
     	}
     }
     
     @Test
-    public void deleteSubject() throws Exception{
+    public void deleteSubjectTest() throws Exception{
     	this.mockMvc.perform(delete(mapping+"/1")).andExpect(status().isNoContent());
     	
     	String results = this.mockMvc.perform(get(OrganizationalUnitController.mapping+"/1" + mapping))
