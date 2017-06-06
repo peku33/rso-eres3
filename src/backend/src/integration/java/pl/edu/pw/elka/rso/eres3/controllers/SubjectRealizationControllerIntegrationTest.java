@@ -161,7 +161,6 @@ public class SubjectRealizationControllerIntegrationTest {
     			.andReturn().getResponse().getContentAsString();
     	
     	SubjectRealization[] realizations = objectMapper.readValue(results, SubjectRealization[].class);
-    	long id = 0;
     	for(SubjectRealization realization: realizations){
     		if(realization.getId().equals(1)){
     			fail("Realization found after delete!");

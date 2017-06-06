@@ -22,13 +22,8 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import pl.edu.pw.elka.rso.eres3.domain.entities.Credit;
-import pl.edu.pw.elka.rso.eres3.domain.entities.OrganizationalUnit;
-import pl.edu.pw.elka.rso.eres3.domain.entities.Person;
 import pl.edu.pw.elka.rso.eres3.domain.entities.StudentTour;
 import pl.edu.pw.elka.rso.eres3.domain.entities.SubjectRealization;
-import pl.edu.pw.elka.rso.eres3.domain.entities.SubjectVersion;
-import pl.edu.pw.elka.rso.eres3.domain.entities.dto.OrganizationalUnitDto;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CreditControllerIntegrationTest {
@@ -206,7 +201,7 @@ public class CreditControllerIntegrationTest {
     }
     
     @Test
-    public void deleteCredit() throws Exception{
+    public void deleteCreditTest() throws Exception{
     	this.mockMvc.perform(delete(mapping+"/1")).andExpect(status().isNoContent());
     	
     	String results = this.mockMvc.perform(get(mapping))
