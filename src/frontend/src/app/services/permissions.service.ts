@@ -3,7 +3,7 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Permission } from './../models/permission';
+import { Permission } from '../models/permission';
 import {BE_URL}       from "../settings/backendInfo";
 
 
