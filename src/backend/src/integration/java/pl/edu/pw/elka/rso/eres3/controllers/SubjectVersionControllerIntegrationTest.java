@@ -128,7 +128,14 @@ public class SubjectVersionControllerIntegrationTest {
     }
     
     @Test
-    public void deleteSubject() throws Exception{
+    public void getSubjectVersionTest() throws Exception{
+    	this.mockMvc.perform(get(mapping + "/2"))
+    			.andExpect(status().is2xxSuccessful())
+    			.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
+    }
+    
+    @Test
+    public void deleteSubjectVersion() throws Exception{
     	this.mockMvc.perform(delete(mapping+"/1")).andExpect(status().isNoContent());
     	
     	String results = this.mockMvc.perform(get("/subjects/1/versions"))
