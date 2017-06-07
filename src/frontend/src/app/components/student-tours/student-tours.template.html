@@ -1,1 +1,40 @@
-//ADD GRID template HERE
+<h2>Lista tur studiów</h2>
+<div id="table-container">
+    <div class="table-responsive-vertical shadow-2dp">
+        <table id="table" class="table table-hover table-bordered table-mobile-condensed shadow-2dp">
+            <thead>
+            <tr>
+                <th>Id tury studiów</th>
+                <th>Numer albumu</th>
+                <th class="mdl-data-table__cell--non-numeric">Nazwa jednostki</th>
+                <th></th>
+            </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let studentTour of studentTours">
+        <td data-title="Id tury">
+            {{studentTour.id}}
+        </td>
+        <td data-title="Numer albumu">
+            {{studentTour.albumNo}}
+        </td>
+        <td data-title="Nazwa jednostki" class="mdl-data-table__cell--non-numeric">
+            {{studentTour.unit.shortName}}
+        </td>
+        <td class="align-right">
+            <button routerLink="{{studentTour.id}}"
+                    class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                Edytuj
+            </button>
+        </td>
+    </tr>
+    </tbody>
+            <tfoot><p>&nbsp;</p></tfoot>
+        </table>
+            <button routerLink="add"
+                    class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored edge-button">
+                <i class="material-icons">add</i>
+            </button>
+    </div>
+</div>
+

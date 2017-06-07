@@ -17,18 +17,22 @@ export class StudentTourService {
 
     getAllStudentToursByPersonId(id: number): Promise<StudentTour[]> {
         const url = `${BE_URL}/persons/${id}/studenttours`;
+        console.log('URL: ' + url);
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as StudentTour[])
-            .catch(this.handleError);
+            .then((response) => {
+                return response.json() as StudentTour[];
+            });
     }
 
     getStudentTour(id: number): Promise<StudentTour> {
         const url = `${this.studentToursUrl}/${id}`;
+        console.log('URL: ' + url);
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as StudentTour)
-            .catch(this.handleError);
+            .then((response) => {
+                return response.json() as StudentTour;
+            });
     }
 
     addStudentTour(studentTour: StudentTour): Promise<StudentTour> {
