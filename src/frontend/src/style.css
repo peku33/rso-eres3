@@ -32,6 +32,10 @@ a img{
 }
 
 .user-permission-card.mdl-card {
+  width: 1000px;
+}
+
+.user-data-card.mdl-card {
   width: 700px;
 }
 
@@ -41,5 +45,10 @@ a img{
 }
 
 h4 {
+    text-align: center;
+}
+
+
+h2 {
     text-align: center;
 }

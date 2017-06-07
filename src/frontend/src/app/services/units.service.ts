@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {BE_URL} from "../settings/backendInfo";
 import {Http, Headers} from "@angular/http";
-import {Unit} from "../model/unit";
+import {Unit} from "./../models/unit";
 
 const ADDRESS: string = BE_URL + "/units";
 @Injectable()

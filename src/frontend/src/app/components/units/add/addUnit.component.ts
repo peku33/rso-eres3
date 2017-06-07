@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {Router} from "@angular/router";
-import {Unit} from "../../../model/unit";
+import {Unit} from "../../../models/unit";
 import {UnitsService} from "../../../services/units.service";
 @Component({
     selector: "add-unit",

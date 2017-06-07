@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {PersonsService} from "../../services/persons.service";
-import {Person} from "../../model/person";
+import {Person} from "../../models/person";
 @Component({
     selector: "persons-table",
     templateUrl: "persons.component.html",

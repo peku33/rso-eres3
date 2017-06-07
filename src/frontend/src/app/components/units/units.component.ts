@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Unit} from "../../model/unit";
+import {Unit} from "../../models/unit";
 import {UnitsService} from "../../services/units.service";
 @Component({
     selector: "units-table",

@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {GreetingService} from "../../services/greeting.service";
-import {Greeting} from "../../model/greeting";
+import {Greeting} from "../../models/greeting";
 
 @Component({
     selector: "dashboard",

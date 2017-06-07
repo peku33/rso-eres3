@@ -1,3 +1,6 @@
+import {OrganizationalUnit} from './organizational-unit'
+
+
 export class Person {
   id: number;
   firstName:  string;
@@ -6,4 +9,5 @@ export class Person {
   login:      string;
   password:   string;
   pesel:      string;
+  unit:       OrganizationalUnit;
 }

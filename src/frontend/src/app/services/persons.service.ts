@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Person} from "../model/person";
+import {Person} from "../models/person";
 import {BE_URL} from "../settings/backendInfo";
 import {Http, Headers} from "@angular/http";
 
