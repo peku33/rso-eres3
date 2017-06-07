@@ -36,7 +36,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `organizational_unit` WRITE;
 /*!40000 ALTER TABLE `organizational_unit` DISABLE KEYS */;
-INSERT INTO `organizational_unit` VALUES (1,'WydziaĹ‚ Elektroniki i Technik Informacyjnych','WEiTI'),(2,'WydziaĹ‚ Matematyki i Nauk Informacyjnych','MiNI');
+INSERT INTO `organizational_unit` VALUES (1,'Wydział Elektroniki i Technik Informacyjnych','WEiTI'),(2,'Wydział Matematyki i Nauk Informacyjnych','MiNI');
 /*!40000 ALTER TABLE `organizational_unit` ENABLE KEYS */;
 UNLOCK TABLES;
 
