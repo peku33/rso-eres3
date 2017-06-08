@@ -15,4 +15,4 @@ app.get('*', (req, res) =>
   res.sendfile(`${__dirname}/dist/index.html`)
 )
 
-app.listen(9000)
+app.use(express.static('public')).listen(9000, "0.0.0.0")

@@ -56,4 +56,10 @@ done
 # attach to datainit - when finished it will quit automatically
 docker attach datainit
 docker rm datainit
+
+# restart sql nodes to apply new changes
 docker start node1.ndb
+for ((i=1; i < "${#sql_nodes[@]}"; ++i))
+do
+    docker restart ${sql_nodes[$i]}
+done
