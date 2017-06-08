@@ -1,0 +1,23 @@
+<div id="table-container">
+    <h2>Dodaj uperawnienia</h2>
+    <div class="mdl-card mdl-shadow--6dp">
+        <div class="mdl-card__supporting-text">
+            <!-- Simple Textfield -->
+            <div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield">
+                    <input class="mdl-textfield__input" type="text" [(ngModel)]="this.permission.name">
+                    <label class="mdl-textfield__label">Nazwa</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield">
+                    <input class="mdl-textfield__input" type="text" [(ngModel)]="this.permission.description">
+                    <label class="mdl-textfield__label">Opis</label>
+                </div>
+            </div>
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    (click)="createPermission()">Utwórz
+            </button>
+        </div>
+    </div>
+</div>

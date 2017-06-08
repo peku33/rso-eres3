@@ -1,6 +1,54 @@
-.test {
-    background-color:darkred;
-    width: 50px;
-    height: 50px;
-    margin: 5px;
-} 
+a.mdl-js-ripple-effect {
+    position: relative;
+}
+
+a img{
+    border: 0px;
+}
+
+.mdl-navigation__link{
+    -webkit-font-smoothing: antialiased;
+}
+
+.mdl-navigation__link.top-nav{
+    text-transform: uppercase;
+}
+
+.mdl-textfield--expandable {
+    width: auto;
+}
+
+.mdl-navigation__link.top-nav.current {
+    background-color: #2b4383;
+    color: white;
+}
+
+.mdl-navigation__link.side-nav.current {
+    background-color: #e3e3e3;
+}
+
+.eres-header .mdl-menu__container {
+    z-index: 50;
+}
+
+.user-permission-card.mdl-card {
+  width: 1000px;
+}
+
+.user-data-card.mdl-card {
+  width: 700px;
+}
+
+.center-hori {
+    margin-left: auto; 
+    margin-right: auto;
+}
+
+h4 {
+    text-align: center;
+}
+
+
+h2 {
+    text-align: center;
+}

@@ -1,0 +1,25 @@
+<h2 *ngIf="!this.allowRemoval">Dodaj jednostkę</h2>
+<h2 *ngIf="this.allowRemoval">Edytuj jednostkę</h2>
+<div class="mdl-card mdl-shadow--6dp center-hori">
+    <div class="mdl-card__supporting-text">
+        <!-- Simple Textfield -->
+        <div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.unit.shortName" id="short">
+                <label for="short"><b>Skrót</b></label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.unit.fullName" id="full">
+                <label for="full"><b>Pełna nazwa</b></label>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                (click)="save()">Zapisz
+        </button>
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                *ngIf="this.allowRemoval" (click)="delete()">Usuń
+        </button>
+    </div>
+</div>

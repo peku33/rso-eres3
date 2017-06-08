@@ -1,0 +1,33 @@
+<h2 *ngIf="!this.allowRemoval">Dodaj specjalizację</h2>
+<h2 *ngIf="this.allowRemoval">Edytuj specjalizację</h2>
+<div class="mdl-card mdl-shadow--6dp center-hori">
+    <div class="mdl-card__supporting-text">
+        <!-- Simple Textfield -->
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" [(ngModel)]="specialization.fullName" id="fullName">
+            <label for="fullName"><b>Pełna nazwa</b></label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" [(ngModel)]="specialization.shortName" id='shortName'>
+            <label for="shortName"><b>Skrót</b></label>
+        </div>
+        <div class="mdl-selectfield mdl-js-selectfield">
+            <select class="mdl-selectfield__select" [(ngModel)]="specialization.type" id="type">
+                <option value="FACULTY">Wydział</option>
+                <option value="MAJOR">Kierunek</option>
+                <option value="SPECIALITY">Specjalizacja</option>
+                <option value="PATH">Ściezka</option>
+            </select>
+            <br>
+            <label for="type"><b>Typ</b></label>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                (click)="save()">Zapisz
+        </button>
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                *ngIf="allowRemoval" (click)="delete()">Usuń
+        </button>
+    </div>
+</div>

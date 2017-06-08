@@ -1,0 +1,28 @@
+/* Disable ugly boxes around images in IE10 */
+a img{
+    border: 0px;
+}
+.mdl-navigation__link{
+    -webkit-font-smoothing: antialiased;
+}
+
+.mdl-navigation__link.top-nav{
+    text-transform: uppercase;
+}
+
+.mdl-textfield--expandable {
+    width: auto;
+}
+
+.mdl-navigation__link.top-nav.current {
+    background-color: #2b4383;
+    color: white;
+}
+
+.mdl-navigation__link.side-nav.current {
+    background-color: #e3e3e3;
+}
+
+.eres-header .mdl-menu__container {
+    z-index: 50;
+}

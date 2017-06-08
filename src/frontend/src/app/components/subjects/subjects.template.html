@@ -1,0 +1,52 @@
+<div id="table-container">
+    <h1>Przedmioty</h1>
+    <h2>Lista przedmiotów dla wybranej specjalizacji</h2>
+
+    <div class="table-responsive-vertical shadow-2dp">
+        <table id="table" class="table table-hover table-bordered table-mobile-condensed shadow-2dp">
+            <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Skrót</th>
+                <th class="mdl-data-table__cell--non-numeric">Pełna nazwa</th>
+                <th class="mdl-data-table__cell--non-numeric">JD</th>
+                <th class="mdl-data-table__cell--non-numeric">ECTS</th>
+                <th class="mdl-data-table__cell--non-numeric">Egzamin</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let subject of subjects">
+                <td data-title="Skrót" class="mdl-data-table__cell--non-numeric">
+                    {{subject.shortName}}
+                </td>
+                <td data-title="Pełna nazwa" class="mdl-data-table__cell--non-numeric">
+                    {{subject.fullName}}
+                </td>
+                <td data-title="JD">
+                    {{subject.didacticalUnits}}
+                </td>
+                <td data-title="ECTS">
+                    {{subject.ects}}
+                </td>
+                <td data-title="Egzamin" class="mdl-data-table__cell--non-numeric">
+                    {{subject.type}}
+                </td>
+                <td class="align-right">
+                    <!--<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Edytuj
+                    </button>-->
+                    <!--<button class="mdl-button mdl-js-button mdl-js-ripple-effect button-red">
+                        Usuń
+                    </button>-->
+                </td>
+            </tr>
+            </tbody>
+            <tfoot><p>&nbsp;</p>
+            </tfoot>
+        </table>
+        <button routerLink="add"
+            class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored edge-button">
+            <i class="material-icons">add</i>
+        </button>   
+    </div>
+</div>

@@ -1,30 +1,43 @@
-<div class="container">
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row">
-                <span class="mdl-layout-title">ERES 3.0</span>
-                <div class="mdl-layout-spacer"></div>
-                <nav class="mdl-navigation mdl-layout--large-screen-only">
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                </nav>
-            </div>
-        </header>
-        <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title">ERES 3.0</span>
-            <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="">Link</a>
-                <a class="mdl-navigation__link" href="">Link</a>
-                <a class="mdl-navigation__link" href="">Link</a>
-                <a class="mdl-navigation__link" href="">Link</a>
+<div mdl class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="eres-header mdl-layout__header mdl-layout__header--waterfall">
+        <div class="mdl-layout__header-row">
+          <span class="mdl-layout-title">
+            ERES3
+          </span>
+            <!-- Add spacer, to align navigation to the right in desktop -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation -->
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+                <a class="mdl-navigation__link mdl-js-button mdl-js-ripple-effect top-nav" routerLink="/dashboard"
+                   routerLinkActive="current">Strona główna</a>
+                <a class="mdl-navigation__link mdl-js-button mdl-js-ripple-effect top-nav" routerLink="/persons"
+                   routerLinkActive="current">Użytkownicy</a>
+                <a class="mdl-navigation__link mdl-js-button mdl-js-ripple-effect top-nav" routerLink="/units"
+                   routerLinkActive="current">Jednostki organizacyjne</a>
+                <a class="mdl-navigation__link mdl-js-button mdl-js-ripple-effect top-nav" routerLink="/permissions"
+                   routerLinkActive="current">Uprawnienia</a>
             </nav>
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
+                <i class="material-icons">more_vert</i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
+                <li class="mdl-menu__item" routerLink="/login">Zaloguj się</li>
+            </ul>
         </div>
-        <main class="mdl-layout__content">
-            <div class="page-content">
-                <router-outlet></router-outlet>
-            </div>
-        </main>
+    </header>
+    <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+        <span class="mdl-layout-title">ERES3</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link side-nav" routerLink="/dashboard" routerLinkActive="current">Strona
+                główna</a>
+            <a class="mdl-navigation__link side-nav" routerLink="/persons" routerLinkActive="current">Użytkownicy</a>
+            <a class="mdl-navigation__link side-nav" routerLink="/units" routerLinkActive="current">Jednostki
+                organizacyjne</a>
+        </nav>
     </div>
+    <main class="mdl-layout__content mdl-color--grey-100">
+        <div class="page-content">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
 </div>

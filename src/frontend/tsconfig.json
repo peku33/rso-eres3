@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "",
-    "target": "es6",
+    "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
     "declaration": true,
@@ -16,10 +16,9 @@
     "types": [
       "node"
     ],
-    "lib": [
-      "dom",
-      "es6"
-    ]
+    "lib":[
+      "es6",
+      "DOM"]
   },
   "compileOnSave": false,
   "buildOnSave": false,
@@ -37,6 +36,6 @@
   },
   "angularCompilerOptions": {
     "genDir": ".",
-    "entryModule": "src/app/modules/main.module#MainModule"
+    "entryModule": "src/app/modules/app.module#AppModule"
   }
 }

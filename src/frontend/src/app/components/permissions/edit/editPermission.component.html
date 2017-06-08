@@ -1,0 +1,26 @@
+<div id="table-container">
+    <h2>Edytuj uprawnienia</h2>
+<div class="mdl-card mdl-shadow--6dp center-hori">
+    <div class="mdl-card__supporting-text">
+        <!-- Simple Textfield -->
+        <div>
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.permission.name" id='name' disabled>
+                <label for="name"><b>Nazwa</b></label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input  class="mdl-textfield__input" type="text" [(ngModel)]="this.permission.description" id='opis'>
+                <label for="opis"><b>Opis</b></label>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                (click)="editPermission()">Zapisz zmiany
+        </button>
+        <!--<button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                (click)="deletePermission()">Usuń uprawnienia
+        </button>-->
+    </div>
+</div>
+</div>

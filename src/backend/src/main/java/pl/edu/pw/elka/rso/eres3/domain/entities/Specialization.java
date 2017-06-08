@@ -17,91 +17,111 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import pl.edu.pw.elka.rso.eres3.domain.entities.abstractions.SimpleIdEntity;
+import pl.edu.pw.elka.rso.eres3.dtos.SpecializationDto;
 
 /**
  * Specialization on a faculty.
  */
 @Entity
-@Table(uniqueConstraints=@UniqueConstraint(columnNames={"unit_id", "short_name"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"unit_id", "short_name"}))
 public class Specialization implements Serializable, SimpleIdEntity<Integer> {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-	@NotNull
-	@Size(min = 1, max = 200)
-	@Column(length = 200, nullable = false)
-	private String fullName;
+    @NotNull
+    @Size(min = 1, max = 200)
+    @Column(length = 200, nullable = false)
+    private String fullName;
 
-	@NotNull
-	@Size(min = 1, max = 20)
-	@Column(length = 20, nullable = false, name="short_name")
-	private String shortName;
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(length = 20, nullable = false, name = "short_name")
+    private String shortName;
 
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	private SpecializationType type;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private SpecializationType type;
 
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name="unit_id")
-	private OrganizationalUnit unit;
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "unit_id")
+    private OrganizationalUnit unit;
 
-	@ManyToOne
-	private Specialization superSpecialization;
+    @ManyToOne
+    private Specialization superSpecialization;
 
-	@Override
-	public Integer getId() {
-		return id;
-	}
+    public Specialization() {
+    }
 
-	public void setId(final Integer id) {
-		this.id = id;
-	}
+    public Specialization(String fullName, String shortName,
+                          SpecializationType type, Specialization superSpecialization, OrganizationalUnit unit) {
+        setFullName(fullName);
+        setShortName(shortName);
+        setType(type);
+        setSuperSpecialization(superSpecialization);
+        setUnit(unit);
+    }
 
-	public String getFullName() {
-		return fullName;
-	}
+    @Override
+    public Integer getId() {
+        return id;
+    }
 
-	public void setFullName(final String fullName) {
-		this.fullName = fullName;
-	}
+    public void setId(final Integer id) {
+        this.id = id;
+    }
 
-	public String getShortName() {
-		return shortName;
-	}
+    public String getFullName() {
+        return fullName;
+    }
 
-	public void setShortName(final String shortName) {
-		this.shortName = shortName;
-	}
+    public void setFullName(final String fullName) {
+        this.fullName = fullName;
+    }
 
-	public SpecializationType getType() {
-		return type;
-	}
+    public String getShortName() {
+        return shortName;
+    }
 
-	public void setType(final SpecializationType type) {
-		this.type = type;
-	}
+    public void setShortName(final String shortName) {
+        this.shortName = shortName;
+    }
 
-	public OrganizationalUnit getUnit() {
-		return unit;
-	}
+    public SpecializationType getType() {
+        return type;
+    }
 
-	public void setUnit(final OrganizationalUnit unit) {
-		this.unit = unit;
-	}
+    public void setType(final SpecializationType type) {
+        this.type = type;
+    }
 
-	public Specialization getSuperSpecialization() {
-		return superSpecialization;
-	}
+    public OrganizationalUnit getUnit() {
+        return unit;
+    }
 
-	public void setSuperSpecialization(final Specialization superSpecialization) {
-		this.superSpecialization = superSpecialization;
-	}
+    public void setUnit(final OrganizationalUnit unit) {
+        this.unit = unit;
+    }
 
-	public enum SpecializationType {
-		FACULTY, MAJOR, SPECIALITY, PATH
-	}
+    public Specialization getSuperSpecialization() {
+        return superSpecialization;
+    }
+
+    public void setSuperSpecialization(final Specialization superSpecialization) {
+        this.superSpecialization = superSpecialization;
+    }
+
+    public Specialization updateFromDto(SpecializationDto dto) {
+        setFullName(dto.fullName);
+        setShortName(dto.shortName);
+        setType(dto.type);
+        return this;
+    }
+
+    public enum SpecializationType {
+        FACULTY, MAJOR, SPECIALITY, PATH
+    }
 }
