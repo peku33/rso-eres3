@@ -32,10 +32,13 @@ export class CreditService {
     }
 
     getSubjectRealizationCredits(id: number): Promise<Credit[]> {
-        const url = `${BE_URL}/subjects/${id}/credits`;
+        const url = `${BE_URL}/subjects/versions/realizations/${id}/credits`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as Credit[])
+            .then(response => {
+                console.log(response);
+                return response.json().data as Credit[];
+            })
             .catch(this.handleError);
     }
 

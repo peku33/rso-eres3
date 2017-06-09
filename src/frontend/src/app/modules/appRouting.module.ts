@@ -51,7 +51,7 @@ const routes: Routes = [
     {path: 'persons/:personId/studenttours/add', component: AddStudentTourComponent},
     {path: 'persons/:personId/studenttours/:id', component: EditStudentTourComponent},
     {path: 'studenttours/:id/studenttourssemesters', component: StudentToursSemesterComponent},
-    {path: 'subjects/:id/credits', component: SubjectCreditComponent},
+    {path: 'subjects/versions/realizations/:id/credits', component: SubjectCreditComponent},
     {path: 'studenttours/:id/credits', component: StudentToursCreditComponent},
     {path: 'persons/:personId/studenttours/:tourId/studenttoursemesters', component: StudentToursSemesterComponent},
     {path: 'persons/:personId/studenttours/:tourId/studenttoursemesters/add', component: AddStudentTourSemesterComponent},

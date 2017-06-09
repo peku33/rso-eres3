@@ -6,7 +6,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 @Component({
     selector: "credit",
     templateUrl: "credit.template.html",
-    styleUrls: ["credit.style.css"]
+    styleUrls: ['../../styles/table-styles.css', '../../styles/modal-styles.css', '../../styles/textinput-styles.css']
 })
 export class StudentToursCreditComponent implements OnInit {
     public credits: Credit[];

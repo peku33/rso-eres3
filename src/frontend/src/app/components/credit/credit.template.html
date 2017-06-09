@@ -1,0 +1,34 @@
+<h2>Zaliczenia</h2>
+<div id="table-container">
+    <div class="table-responsive-vertical shadow-2dp">
+        <table id="table" class="table table-hover table-bordered table-mobile-condensed shadow-2dp">
+            <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Nazwa przedmiotu</th>
+                <th class="mdl-data-table__cell--non-numeric">Nazwisko</th>
+                <th class="mdl-data-table__cell--non-numeric"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let credit of credits">
+                <td data-title="Nazwa przedmiotu" class="mdl-data-table__cell--non-numeric">
+                    {{credit.subjectRealization}}
+                </td>
+                <td data-title="Nazwisko" class="mdl-data-table__cell--non-numeric">
+                    {{credit.studentTour.person.lastName}}
+                </td>
+                <td class="align-right">
+                    <!--<button (click)="editPerson(person.id)" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button&#45;&#45;accent">-->
+                        <!--Edytuj-->
+                    <!--</button>-->
+                </td>
+            </tr>
+            </tbody>
+            <tfoot><p>&nbsp;</p>
+            </tfoot>
+        </table>
+        <!--<button (click)="addPerson()" class="mdl-button mdl-js-button mdl-button&#45;&#45;fab mdl-js-ripple-effect mdl-button&#45;&#45;colored edge-button">-->
+            <!--<i class="material-icons">add</i>-->
+        <!--</button>-->
+    </div>
+</div>
