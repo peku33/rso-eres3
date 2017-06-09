@@ -60,6 +60,12 @@ export class UserPermissions implements OnInit{
 			})
 			.catch((err) => {
 				console.log(err)
+				if (err.status === 401) {
+					this.router.navigateByUrl("/login");
+				}
+				if (err.status === 403) {
+					this.router.navigateByUrl("/forbidden")
+				}
 			})
 
 
@@ -79,6 +85,12 @@ export class UserPermissions implements OnInit{
 		})
 		.catch((err) => {
 			console.log(err)
+			if (err.status === 401) {
+				this.router.navigateByUrl("/login");
+			}
+			if (err.status === 403) {
+				this.router.navigateByUrl("/forbidden")
+			}
 		})
     }
 
@@ -97,6 +109,12 @@ export class UserPermissions implements OnInit{
 		})
 		.catch((err) => {
 			console.log(err)
+			if (err.status === 401) {
+				this.router.navigateByUrl("/login");
+			}
+			if (err.status === 403) {
+				this.router.navigateByUrl("/forbidden")
+			}
 		})
 	}
 

@@ -34,9 +34,15 @@ export class AddPersonComponent implements OnInit{
 				console.log("units: ",units)
 				this.units = units
 			})
-			.catch((err) => {
-				console.log(err)
-			})
+            .catch((err) => {
+                console.log(err)
+                if (err.status === 401) {
+                    this.router.navigateByUrl("/login");
+                }
+                if (err.status === 403) {
+                    this.router.navigateByUrl("/forbidden")
+                }
+            })
         });
     }
 
@@ -48,7 +54,15 @@ export class AddPersonComponent implements OnInit{
 
         this.personsService.addPerson(this.person).then(() => {
             this.router.navigateByUrl("/persons");
-        }).catch(console.log);
+        }).catch((err) => {
+            console.log(err)
+            if (err.status === 401) {
+                this.router.navigateByUrl("/login");
+            }
+            if (err.status === 403) {
+                this.router.navigateByUrl("/forbidden")
+            }
+        });
     }
 
         goBack(): void{

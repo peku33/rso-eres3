@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {Subject} from "../../models/subject";
 import {SubjectsService} from "../../services/subjects.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
     selector: "subjects-table",
@@ -12,7 +12,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 export class SubjectsComponent implements OnInit {
     public subjects: Subject[];
 
-    constructor(private subjectsService: SubjectsService, private route: ActivatedRoute) {
+    constructor(private subjectsService: SubjectsService, private route: ActivatedRoute, private router: Router) {
     }
 
 
@@ -23,6 +23,12 @@ export class SubjectsComponent implements OnInit {
                 console.log(this.subjects);
             }).catch((err) => {
                 console.log(err)
+                if (err.status === 401) {
+                    this.router.navigateByUrl("/login");
+                }
+                if (err.status === 403) {
+                    this.router.navigateByUrl("/forbidden")
+                }
             });
         });
     }

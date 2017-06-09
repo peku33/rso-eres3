@@ -17,6 +17,14 @@ export class AddUnitComponent {
     save(): void {
         this.unitsService.addUnit(this.unit).then(() => {
             this.router.navigateByUrl("/units");
-        }).catch(console.log);
+        }).catch((err) => {
+            console.log(err)
+            if (err.status === 401) {
+                this.router.navigateByUrl("/login");
+            }
+            if (err.status === 403) {
+                this.router.navigateByUrl("/forbidden")
+            }
+        });
     }
 }

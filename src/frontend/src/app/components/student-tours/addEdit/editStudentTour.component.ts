@@ -50,6 +50,12 @@ export class EditStudentTourComponent implements OnInit {
                 })
                 .catch((err) => {
                     console.log(err)
+                    if (err.status === 401) {
+                        this.router.navigateByUrl("/login");
+                    }
+                    if (err.status === 403) {
+                        this.router.navigateByUrl("/forbidden")
+                    }
                 })
         });
 
@@ -57,11 +63,27 @@ export class EditStudentTourComponent implements OnInit {
 
     saveStudentTour(): void {
         this.studentTour.unit = this.selectedUnit;
-        this.studentTourService.updateStudentTour(this.studentTour).then(this.goBack).catch(console.log);
+        this.studentTourService.updateStudentTour(this.studentTour).then(this.goBack).catch((err) => {
+            console.log(err)
+            if (err.status === 401) {
+                this.router.navigateByUrl("/login");
+            }
+            if (err.status === 403) {
+                this.router.navigateByUrl("/forbidden")
+            }
+        });
     }
 
     deleteStudentTour(): void {
-        this.studentTourService.deleteStudentTour(this.studentTour.id).then(this.goBack).catch(console.log);
+        this.studentTourService.deleteStudentTour(this.studentTour.id).then(this.goBack).catch((err) => {
+            console.log(err)
+            if (err.status === 401) {
+                this.router.navigateByUrl("/login");
+            }
+            if (err.status === 403) {
+                this.router.navigateByUrl("/forbidden")
+            }
+        });
     }
 
     private goBack = (): void => {

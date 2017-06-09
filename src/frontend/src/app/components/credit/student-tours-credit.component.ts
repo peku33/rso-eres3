@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {CreditService} from "../../services/credit.service";
-import {Credit} from "../../models/credit"
-import {ActivatedRoute, Params} from "@angular/router";
+import {Credit} from "../../models/credit";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
     selector: "credit",
@@ -11,7 +11,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 export class StudentToursCreditComponent implements OnInit {
     public credits: Credit[];
 
-    constructor(private creditService: CreditService, private route: ActivatedRoute) {
+    constructor(private creditService: CreditService, private route: ActivatedRoute, private router: Router) {
 
     }
 
@@ -24,6 +24,12 @@ export class StudentToursCreditComponent implements OnInit {
                 })
                 .catch((err) => {
                     console.log(err)
+                    if (err.status === 401) {
+                        this.router.navigateByUrl("/login");
+                    }
+                    if (err.status === 403) {
+                        this.router.navigateByUrl("/forbidden")
+                    }
                 });
         });
     }

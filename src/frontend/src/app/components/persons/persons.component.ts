@@ -42,7 +42,15 @@ export class PersonsComponent implements OnInit {
     getPersons(): void {
         this.personsService.getAllPersons().then((response: Person[]) => {
             this.persons = response;
-        }).catch((error) => console.error(error));
+        }).catch((err) => {
+            console.log(err)
+            if (err.status === 401) {
+                this.router.navigateByUrl("/login");
+            }
+            if (err.status === 403) {
+                this.router.navigateByUrl("/forbidden")
+            }
+        });
     }
 
     getUnits(): boolean {
@@ -55,7 +63,12 @@ export class PersonsComponent implements OnInit {
             })
             .catch((err) => {
                 console.log(err)
-
+                if (err.status === 401) {
+                    this.router.navigateByUrl("/login");
+                }
+                if (err.status === 403) {
+                    this.router.navigateByUrl("/forbidden")
+                }
             })
         return false
     }
@@ -68,7 +81,15 @@ export class PersonsComponent implements OnInit {
 
         this.personsService.addPerson(this.person).then(() => {
             this.getPersons()
-        }).catch(console.log);
+        }).catch((err) => {
+            console.log(err)
+            if (err.status === 401) {
+                this.router.navigateByUrl("/login");
+            }
+            if (err.status === 403) {
+                this.router.navigateByUrl("/forbidden")
+            }
+        });
     }
 
     edit(id: number): any {
@@ -85,6 +106,12 @@ export class PersonsComponent implements OnInit {
             })
             .catch((err) => {
                 console.log(err)
+                if (err.status === 401) {
+                    this.router.navigateByUrl("/login");
+                }
+                if (err.status === 403) {
+                    this.router.navigateByUrl("/forbidden")
+                }
             })
     }
 
@@ -92,13 +119,29 @@ export class PersonsComponent implements OnInit {
         this.person.unit = this.selectedUnit
         this.personsService.editPerson(this.person).then(() => {
             this.getPersons()
-        }).catch(console.log);
+        }).catch((err) => {
+            console.log(err)
+            if (err.status === 401) {
+                this.router.navigateByUrl("/login");
+            }
+            if (err.status === 403) {
+                this.router.navigateByUrl("/forbidden")
+            }
+        });
     }
 
     delete(): void {
         this.personsService.deletePerson(this.person.id).then(() => {
             this.getPersons()
-        }).catch(console.log);
+        }).catch((err) => {
+            console.log(err)
+            if (err.status === 401) {
+                this.router.navigateByUrl("/login");
+            }
+            if (err.status === 403) {
+                this.router.navigateByUrl("/forbidden")
+            }
+        });
     }
 
     goBack(): void {

@@ -16,6 +16,14 @@ export class AddPermissionComponent {
     createPermission(): void {
         this.permissionService.create(this.permission).then(() => {
             this.router.navigateByUrl("/permissions");
-        }).catch(console.log);
+        }).catch((err) => {
+            console.log(err)
+            if (err.status === 401) {
+                this.router.navigateByUrl("/login");
+            }
+            if (err.status === 403) {
+                this.router.navigateByUrl("/forbidden")
+            }
+        })
     }
 }

@@ -23,7 +23,15 @@ export class AddSpecializationComponent implements OnInit {
     save(): void {
         this.specialization.superSpecializationId = +this.urlParams['id'];
         this.specialization.unitId = +this.urlParams['unitId'];
-        this.specializationsService.createSpecialization(this.specialization).then(this.goBack).catch(console.log);
+        this.specializationsService.createSpecialization(this.specialization).then(this.goBack).catch((err) => {
+            console.log(err)
+            if (err.status === 401) {
+                this.router.navigateByUrl("/login");
+            }
+            if (err.status === 403) {
+                this.router.navigateByUrl("/forbidden")
+            }
+        })
     }
 
     private goBack = (): void => {

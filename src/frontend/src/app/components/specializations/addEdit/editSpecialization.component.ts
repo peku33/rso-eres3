@@ -21,15 +21,39 @@ export class EditSpecializationComponent implements OnInit {
     ngOnInit(): void {
         this.route.params.subscribe((params: Params) => this.urlParams = params);
         this.specializationsService.getSpecialization(+this.urlParams['id'])
-            .then(specialization => this.specialization = specialization);
+            .then(specialization => this.specialization = specialization).catch((err) => {
+            console.log(err)
+            if (err.status === 401) {
+                this.router.navigateByUrl("/login");
+            }
+            if (err.status === 403) {
+                this.router.navigateByUrl("/forbidden")
+            }
+        });
     }
 
     save(): void {
-        this.specializationsService.updateSpecialization(this.specialization).then(this.goBack).catch(console.log);
+        this.specializationsService.updateSpecialization(this.specialization).then(this.goBack).catch((err) => {
+            console.log(err)
+            if (err.status === 401) {
+                this.router.navigateByUrl("/login");
+            }
+            if (err.status === 403) {
+                this.router.navigateByUrl("/forbidden")
+            }
+        });
     }
 
     delete(): void {
-        this.specializationsService.deleteSpecialization(this.specialization.id).then(this.goBack).catch(console.log);
+        this.specializationsService.deleteSpecialization(this.specialization.id).then(this.goBack).catch((err) => {
+            console.log(err)
+            if (err.status === 401) {
+                this.router.navigateByUrl("/login");
+            }
+            if (err.status === 403) {
+                this.router.navigateByUrl("/forbidden")
+            }
+        });
     }
 
     private goBack = (): void => {

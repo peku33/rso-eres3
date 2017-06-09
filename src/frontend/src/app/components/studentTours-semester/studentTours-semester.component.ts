@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {StudentTourSemesterService} from "../../services/studentTour-semester.service";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {StudentTourSemester} from "../../models/studentTour-semester";
 
 @Component({
@@ -14,7 +14,7 @@ export class StudentToursSemesterComponent implements OnInit {
 
 
     constructor(private studentTourSemesterService: StudentTourSemesterService,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute, private router: Router) {
     }
 
     ngOnInit(): void {
@@ -27,7 +27,13 @@ export class StudentToursSemesterComponent implements OnInit {
                 })
                 .catch((err) => {
                     console.log(err)
-                });
+                    if (err.status === 401) {
+                        this.router.navigateByUrl("/login");
+                    }
+                    if (err.status === 403) {
+                        this.router.navigateByUrl("/forbidden")
+                    }
+                })
         });
     }
 }

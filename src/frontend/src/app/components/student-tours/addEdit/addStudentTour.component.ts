@@ -40,6 +40,12 @@ export class AddStudentTourComponent {
                 })
                 .catch((err) => {
                     console.log(err)
+                    if (err.status === 401) {
+                        this.router.navigateByUrl("/login");
+                    }
+                    if (err.status === 403) {
+                        this.router.navigateByUrl("/forbidden")
+                    }
                 })
         });
     }
@@ -48,7 +54,15 @@ export class AddStudentTourComponent {
         this.studentTour.unit = this.selectedUnit;
         this.studentTour.person.id = this.urlParams['personId'];
         console.log('save: '  + this.studentTour.person.id);
-        this.studentTourService.addStudentTour(this.studentTour).then(this.goBack).catch(console.log);
+        this.studentTourService.addStudentTour(this.studentTour).then(this.goBack).catch((err) => {
+            console.log(err)
+            if (err.status === 401) {
+                this.router.navigateByUrl("/login");
+            }
+            if (err.status === 403) {
+                this.router.navigateByUrl("/forbidden")
+            }
+        });
     }
 
     private goBack = (): void => {

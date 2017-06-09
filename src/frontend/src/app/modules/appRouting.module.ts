@@ -26,6 +26,7 @@ import {SubjectCreditComponent} from "../components/credit/subject-credit.compon
 import {StudentToursCreditComponent} from "../components/credit/student-tours-credit.component";
 import {SubjectsComponent} from "../components/subjects/subjects.component";
 import {AddSubjectComponent} from "../components/subjects/add/addSubject.component";
+import {ForbiddenComponent} from "../components/forbidden/forbidden.component";
 
 
 const routes: Routes = [
@@ -56,6 +57,7 @@ const routes: Routes = [
     {path: 'persons/:personId/studenttours/:tourId/studenttoursemesters', component: StudentToursSemesterComponent},
     {path: 'persons/:personId/studenttours/:tourId/studenttoursemesters/add', component: AddStudentTourSemesterComponent},
     {path: 'persons/:personId/studenttours/:tourId/studenttoursemesters/:id', component: EditStudentTourSemesterComponent},
+    {path: 'forbidden', component: ForbiddenComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
 
