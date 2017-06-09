@@ -4,58 +4,74 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost:9000/permissions" />
-<title>permission add</title>
+<title>subject add</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">permission add</td></tr>
+<tr><td rowspan="1" colspan="3">subject add</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/permissions</td>
+	<td>/units</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=table tbody tr:last-of-type button:nth-of-type(2)</td>
 	<td></td>
 </tr>
 <tr>
 	<td>storeCssCount</td>
-	<td>css=table tbody tr</td>
+	<td>css=#table tbody tr</td>
 	<td>rowCount</td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>css=permissions div&gt;button:last-of-type</td>
+	<td>css=#table-container&gt;div&gt;button:last-of-type</td>
+	<td></td>
+</tr>
+<tr>
+	<td>selectWindow</td>
+	<td>null</td>
 	<td></td>
 </tr>
 <tr>
 	<td>sendKeys</td>
-	<td>//input[@type='text']</td>
-	<td>TestName</td>
+	<td>id=shortName</td>
+	<td>TT</td>
 </tr>
 <tr>
 	<td>sendKeys</td>
-	<td>xpath=(//input[@type='text'])[2]</td>
-	<td>Test Desc</td>
+	<td>id=fullName</td>
+	<td>Testowy Przedmiot</td>
 </tr>
 <tr>
-	<td>clickAndWait</td>
+	<td>sendKeys</td>
+	<td>id=didacticalUnits</td>
+	<td>4</td>
+</tr>
+<tr>
+	<td>sendKeys</td>
+	<td>id=ects</td>
+	<td>3</td>
+</tr>
+<tr>
+	<td>click</td>
 	<td>//div/div[2]/button</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyNotCssCount</td>
-	<td>css=table tbody tr</td>
-	<td>${rowCount}</td>
+	<td>css=#table tbody tr</td>
+	<td>rowCount</td>
 </tr>
 <tr>
 	<td>verifyText</td>
-	<td>css=table tr:last-of-type td</td>
-	<td>TestName</td>
+	<td>css=#table tbody tr:last-of-type td:first-of-type</td>
+	<td>TT</td>
 </tr>
-<tr>
-	<td>verifyText</td>
-	<td>css=table tr:last-of-type td:nth-of-type(2)</td>
-	<td>Test Desc</td>
-</tr>
+
 </tbody></table>
 </body>
 </html>
