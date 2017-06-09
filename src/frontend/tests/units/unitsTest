@@ -12,6 +12,8 @@
 <tr><td><a href="tests/unit edit.html">unit edit</a></td></tr>
 <tr><td><a href="tests/unit specializations add.html">unit specializations add.html</a></td></tr>
 <tr><td><a href="tests/unit specializations delete.html">unit specialization delete</a></td></tr>
+<tr><td><a href="tests/subjects add">subject add</a></td></tr>
+<tr><td><a href="tests/subjects delete">subject delete</a></td></tr>
 <tr><td><a href="tests/unit delete.html">unit delete</a></td></tr>
 </tbody></table>
 </body>

@@ -4,38 +4,39 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="http://localhost:9000/permissions" />
-<title>permission delete</title>
+<title>subject delete</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">permission delete</td></tr>
+<tr><td rowspan="1" colspan="3">subject delete</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/permissions</td>
+	<td>/units</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=table tbody tr:last-of-type button:nth-of-type(2)</td>
 	<td></td>
 </tr>
 <tr>
 	<td>storeCssCount</td>
-	<td>css=table tbody tr</td>
+	<td>css=#table tbody tr</td>
 	<td>rowCount</td>
 </tr>
 <tr>
 	<td>click</td>
-	<td>css=tr:last-of-type button</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>//button[2]</td>
+	<td>css=#table tbody tr:last-of-type button:last-of-type</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyNotCssCount</td>
-	<td>css=table tbody tr</td>
-	<td>${rowCount}</td>
+	<td>css=#table tbody tr</td>
+	<td>rowCount</td>
 </tr>
+
 </tbody></table>
 </body>
 </html>
