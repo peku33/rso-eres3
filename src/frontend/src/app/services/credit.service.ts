@@ -19,7 +19,7 @@ export class CreditService {
         const url = `${this.creditsUrl}`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as Credit[])
+            .then(response => response.json() as Credit[])
             .catch(this.handleError);
     }
 
@@ -27,7 +27,7 @@ export class CreditService {
         const url = `${BE_URL}/studenttours/${id}/credits`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as Credit[])
+            .then(response => response.json() as Credit[])
             .catch(this.handleError);
     }
 
@@ -37,7 +37,7 @@ export class CreditService {
             .toPromise()
             .then(response => {
                 console.log(response);
-                return response.json().data as Credit[];
+                return response.json() as Credit[];
             })
             .catch(this.handleError);
     }
@@ -46,7 +46,7 @@ export class CreditService {
         const url = `${this.creditsUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as Credit)
+            .then(response => response.json() as Credit)
             .catch(this.handleError);
     }
 
