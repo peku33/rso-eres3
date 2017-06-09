@@ -156,7 +156,6 @@ export class PersonsComponent implements OnInit {
     }
 
     addPerson(): void {
-        this.person.firstName="";
         this.person = new Person();
         this.getUnits();
         this.addPersonModal.show();

@@ -32,8 +32,11 @@ export class SubjectsService {
         const url = `${this.subjectsUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as Subject)
+            .then(response => {
+                return response.json().data as Subject;
+            })
             .catch(this.handleError);
+
     }
 
     create(subject: Subject): Promise<Subject> {

@@ -112,7 +112,7 @@
 }
 
 .button-red {
-    color: rgb(244, 67, 54);
+    color: rgb(244, 67, 54) !important;
 }
 
 .edge-button {
@@ -123,6 +123,12 @@
 
 .align-right {
     text-align: right !important;
+}
+
+.pagination {
+    width: 100%;
+    padding: 10px 20px;
+    color: #757575;
 }
 
 @media screen and (max-width: 600px) {

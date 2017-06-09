@@ -140,10 +140,14 @@
                     {{person.pesel}}
                 </td>
                 <td class="align-right">
+                    <button routerLink="studenttours" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Tury studiów
+                    </button>
                     <button (click)="editPerson(person.id)" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
                         Edytuj
                     </button>
                 </td>
+
             </tr>
             </tbody>
             <tfoot><p>&nbsp;</p>

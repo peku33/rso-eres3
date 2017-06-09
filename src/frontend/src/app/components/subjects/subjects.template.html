@@ -1,13 +1,124 @@
+<app-modal #addSubjectModal>
+    <div mdl class="app-modal-content">
+        <h2 class="modal-title">Dodaj przedmiot</h2>
+        <div class="mdl-dialog__content">
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.subject.shortName" id="shortName">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="shortName">Oznaczenie</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.subject.fullName" id="fullName">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="fullName">Nazwa</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.subject.didacticalUnits" id="didacticalUnits">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="didacticalUnits">JD</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.subject.ects" id="ects">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="ects">ECTS</label>
+            </div>
+            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="exam-switch">
+                <span class="mdl-switch__label">Egzamin</span>
+                <input type="checkbox" [checked]="exam" (change)="exam = !exam" id="exam-switch" class="mdl-switch__input" checked>
+            </label>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    (click)="add(); addSubjectModal.hide()">Zapisz
+            </button>
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    (click)="addSubjectModal.hide()">Anuluj
+            </button>
+        </div>
+
+    </div>
+</app-modal>
+
+<app-modal #editSubjectModal>
+    <div mdl class="app-modal-content">
+        <h3 class="modal-title">Edytuj przedmiot</h3>
+
+        <div class="mdl-dialog__content">
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.subject.shortName" id="editShortName">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="editShortName">Oznaczenie</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.subject.fullName" id="editFullName">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="editFullName">Nazwa</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.subject.didacticalUnits" id="editDidacticalUnits">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="editDidacticalUnits">JD</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.subject.ects" id="editEcts">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="editEcts">ECTS</label>
+            </div>
+            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="edit-exam-switch">
+                <span class="mdl-switch__label">Egzamin</span>
+                <input type="checkbox" [checked]="exam" (change)="exam = !exam" id="edit-exam-switch" class="mdl-switch__input" checked>
+            </label>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    (click)="save(); editSubjectModal.hide()">Zapisz
+            </button>
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    (click)="editSubjectModal.hide()">Anuluj
+            </button>
+        </div>
+
+    </div>
+</app-modal>
+
+
 <div id="table-container">
     <h1>Przedmioty</h1>
-    <h2>Lista przedmiotów dla wybranej specjalizacji</h2>
+    <h2>{{this.currentUnit.fullName}}</h2>
 
     <div class="table-responsive-vertical shadow-2dp">
-        <table id="table" class="table table-hover table-bordered table-mobile-condensed shadow-2dp">
+        <div *ngIf="this.loading">
+        <table [hidden]="!this.loading" id="tableLoading" class="table table-hover table-bordered table-mobile-condensed shadow-2dp">
+                <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Oznaczenie</th>
+                    <th class="mdl-data-table__cell--non-numeric">Nazwa</th>
+                    <th class="mdl-data-table__cell--non-numeric">JD</th>
+                    <th class="mdl-data-table__cell--non-numeric">ECTS</th>
+                    <th class="mdl-data-table__cell--non-numeric">Egzamin</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="position: fixed; left: 50%; margin: 5px 0;"></div>
+                </tbody>
+                <tfoot><p>&nbsp;</p>
+                </tfoot>
+        </table>
+        </div>
+        <table [hidden]="this.loading" id="table" class="table table-hover table-bordered table-mobile-condensed shadow-2dp">
             <thead>
             <tr>
-                <th class="mdl-data-table__cell--non-numeric">Skrót</th>
-                <th class="mdl-data-table__cell--non-numeric">Pełna nazwa</th>
+                <th class="mdl-data-table__cell--non-numeric">Oznaczenie</th>
+                <th class="mdl-data-table__cell--non-numeric">Nazwa</th>
                 <th class="mdl-data-table__cell--non-numeric">JD</th>
                 <th class="mdl-data-table__cell--non-numeric">ECTS</th>
                 <th class="mdl-data-table__cell--non-numeric">Egzamin</th>
@@ -15,38 +126,46 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let subject of subjects">
-                <td data-title="Skrót" class="mdl-data-table__cell--non-numeric">
-                    {{subject.shortName}}
-                </td>
-                <td data-title="Pełna nazwa" class="mdl-data-table__cell--non-numeric">
-                    {{subject.fullName}}
-                </td>
-                <td data-title="JD">
-                    {{subject.didacticalUnits}}
-                </td>
-                <td data-title="ECTS">
-                    {{subject.ects}}
-                </td>
-                <td data-title="Egzamin" class="mdl-data-table__cell--non-numeric">
-                    {{subject.type}}
-                </td>
-                <td class="align-right">
-                    <!--<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
-                        Edytuj
-                    </button>-->
-                    <!--<button class="mdl-button mdl-js-button mdl-js-ripple-effect button-red">
-                        Usuń
-                    </button>-->
-                </td>
-            </tr>
+                    <tr *ngFor="let subject of subjects">
+                        <td data-title="Oznaczenie" class="mdl-data-table__cell--non-numeric">
+                            {{subject.shortName}}
+                        </td>
+                        <td data-title="Nazwa" class="mdl-data-table__cell--non-numeric">
+                            {{subject.fullName}}
+                        </td>
+                        <td data-title="JD">
+                            {{subject.didacticalUnits}}
+                        </td>
+                        <td data-title="ECTS">
+                            {{subject.ects}}
+                        </td>
+                        <td data-title="Egzamin" class="mdl-data-table__cell--non-numeric">
+                            {{subject.type}}
+                        </td>
+                        <td class="align-right">
+                            <button (click)="editSubject(subject.id)" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                                Edytuj
+                            </button>
+                            <button (click)="delete(subject.id)" class="mdl-button mdl-js-button mdl-js-ripple-effect button-red">
+                                Usuń
+                            </button>
+                        </td>
+                    </tr>
             </tbody>
-            <tfoot><p>&nbsp;</p>
+            <tfoot><div class="pagination">
+                Strona {{currentIndex}} z {{pageNumber}}
+                <button [ngClass]="{'disabled': (currentIndex == 1 || pageNumber == 0)}" class="mdl-button mdl-js-button mdl-button--icon" (click)="prevPage()">
+                    <i class="material-icons">navigate_before</i>
+                </button>
+                <button [ngClass]="{'disabled': (currentIndex == pageNumber || pageNumber == 0)}" class="mdl-button mdl-js-button mdl-button--icon" (click)="nextPage()">
+                    <i class="material-icons">navigate_next</i>
+                </button>
+            </div>
             </tfoot>
         </table>
-        <button routerLink="add"
+        <button (click)="addSubject()"
             class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored edge-button">
             <i class="material-icons">add</i>
-        </button>   
+        </button>
     </div>
 </div>

@@ -1,3 +1,83 @@
+<app-modal #addSpecializationModal>
+    <div mdl class="app-modal-content">
+        <h3 class="modal-title">Dodaj specjalizację</h3>
+        <div class="mdl-dialog__content">
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.specialization.fullName" id="fullName">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="fullName">Pełna nazwa</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.specialization.shortName" id="shortName">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="shortName">Skrót</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield modal-select">
+                <select class="mdl-textfield__input" [(ngModel)]="specialization.type" id="type">
+                    <option value="FACULTY">Wydział</option>
+                    <option value="MAJOR">Kierunek</option>
+                    <option value="SPECIALITY">Specjalizacja</option>
+                    <option value="PATH">Ściezka</option>
+                </select>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="select-label" for="type">Typ</label>
+            </div>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    (click)="save(); addSpecializationModal.hide()">Zapisz
+            </button>
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    (click)="addSpecializationModal.hide()">Anuluj
+            </button>
+        </div>
+
+    </div>
+</app-modal>
+
+<app-modal #editSpecializationModal>
+    <div mdl class="app-modal-content">
+        <h3 class="modal-title">Edytuj specjalizację</h3>
+        <div class="mdl-dialog__content">
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.specialization.fullName" id="editFullName">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="editFullName">Pełna nazwa</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.specialization.shortName" id="editShortName">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="editShortName">Skrót</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield modal-select">
+                <select class="mdl-textfield__input" [(ngModel)]="specialization.type" id="editType">
+                    <option value="FACULTY">Wydział</option>
+                    <option value="MAJOR">Kierunek</option>
+                    <option value="SPECIALITY">Specjalizacja</option>
+                    <option value="PATH">Ściezka</option>
+                </select>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="select-label" for="editType">Typ</label>
+            </div>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    (click)="update(); editSpecializationModal.hide()">Zapisz
+            </button>
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    (click)="editSpecializationModal.hide()">Anuluj
+            </button>
+        </div>
+
+    </div>
+</app-modal>
+
 <div id="table-container">
     <h1>Specjalizacje</h1>
 
@@ -30,10 +110,14 @@
                             class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
                         Dodaj
                     </button>-->
-                    <button routerLink="{{specialization.id}}"
+                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect button-red"
+                            (click)="this.delete(specialization.id)">Usuń
+                    </button>
+                    <button (click)="this.editSpecialization(specialization.id)"
                             class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
                         Edytuj
                     </button>
+
 
                 </td>
             </tr>
@@ -41,7 +125,7 @@
             <tfoot><p>&nbsp;</p>
             </tfoot>
         </table>
-        <button routerLink="0/add"
+        <button (click)="addNewSpecialization()"
                 class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored edge-button">
             <i class="material-icons">add</i>
         </button>
