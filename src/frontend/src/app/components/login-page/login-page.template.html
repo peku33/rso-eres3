@@ -2,28 +2,23 @@
     <div class="login-card mdl-card mdl-shadow--2dp">
         <h3 class="form-title app-name">ERES 3</h3>
         <h4 class="form-title">Logowanie</h4>
-        <form action="#" id="loginform">
+        <form enctype="application/x-www-form-urlencoded" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate id="loginform">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input">
-                <input class="mdl-textfield__input" type="text" id="login">
-                <label class="mdl-textfield__label" for="login">Login</label>
+                <input type="text" class="mdl-textfield__input form-control" name="username" id="username" [(ngModel)]="model.username" #username="ngModel"/>
+                <label class="mdl-textfield__label" for="username">Login</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label form-input">
-                <input class="mdl-textfield__input" type="password" id="password">
+                <input type="password" class="mdl-textfield__input form-control" id="password" name="password" [(ngModel)]="model.password" #password="ngModel"/>
                 <label class="mdl-textfield__label" for="password">Hasło</label>
             </div>
         </form>
-        <button type="submit" form="loginform" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent login-button">
+        <button (click)="login()" [disabled]="loading" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent login-button">
             Zaloguj się
         </button>
+        <div *ngIf="loading" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="position: fixed; left: 50%; margin: 5px 0;"></div>
+        <div *ngIf="badAuth" class="button-red">Błędny login bądź hasło!</div>
     </div>
 
     <div class="form-footer">
-        <button id="language-button" class="mdl-button mdl-js-button mdl-js-ripple-effect language-button">
-            polski &#x25BC;
-        </button>
-        <ul class="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect" for="language-button">
-            <li class="mdl-menu__item">polski</li>
-            <li class="mdl-menu__item">English</li>
-        </ul>
     </div>
 </div>

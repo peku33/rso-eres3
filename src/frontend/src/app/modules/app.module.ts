@@ -49,6 +49,8 @@ import {SubjectsComponent} from "../components/subjects/subjects.component";
 import {ModalComponent} from "../components/modal/modal.component";
 import {AddSubjectComponent} from "../components/subjects/add/addSubject.component";
 import {ForbiddenComponent} from "../components/forbidden/forbidden.component";
+import {AuthenticationService} from "../services/authentication.service";
+import {AlertService} from "../services/alert.service";
 
 @NgModule({
     imports: [
@@ -104,7 +106,9 @@ import {ForbiddenComponent} from "../components/forbidden/forbidden.component";
         StudentTourService,
         StudentTourSemesterService,
         UnitsService,
-        CreditService
+        CreditService,
+        AuthenticationService,
+        AlertService
     ],
     bootstrap: [AppComponent],
 })

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 
+
 @Component({
     selector: 'app',
     templateUrl: 'app.template.html',
@@ -7,4 +8,5 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
     title: string = "ERES 3.0"
+
 }
