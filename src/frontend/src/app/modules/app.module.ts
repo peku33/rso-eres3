@@ -52,7 +52,8 @@ import {AddStudentTourSemesterComponent} from "../components/studentTours-semest
 import {EditStudentTourSemesterComponent} from "../components/studentTours-semester/addEdit/editStudentTourSemester.component";
 
 import {CreditService} from "../services/credit.service";
-import {CreditComponent} from "../components/credit/credit.component";
+import {SubjectCreditComponent} from "../components/credit/subject-credit.component";
+import {StudentToursCreditComponent} from "../components/credit/student-tours-credit.component";
 import {SubjectsComponent} from "../components/subjects/subjects.component";
 import {AddSubjectComponent} from "../components/subjects/add/addSubject.component"
 
@@ -89,7 +90,8 @@ import {AddSubjectComponent} from "../components/subjects/add/addSubject.compone
         StudentToursSemesterComponent,
         AddStudentTourSemesterComponent,
         EditStudentTourSemesterComponent,
-        CreditComponent,
+        SubjectCreditComponent,
+        StudentToursCreditComponent,
         SubjectsComponent,
         AddSubjectComponent
     ],

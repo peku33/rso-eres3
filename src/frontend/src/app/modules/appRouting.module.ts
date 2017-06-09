@@ -22,7 +22,8 @@ import {EditStudentTourComponent} from "../components/student-tours/addEdit/edit
 import {StudentToursSemesterComponent} from "../components/studentTours-semester/studentTours-semester.component";
 import {AddStudentTourSemesterComponent} from "../components/studentTours-semester/addEdit/addStudentTourSemester.component";
 import {EditStudentTourSemesterComponent} from "../components/studentTours-semester/addEdit/editStudentTourSemester.component";
-import {CreditComponent} from "../components/credit/credit.component";
+import {SubjectCreditComponent} from "../components/credit/subject-credit.component";
+import {StudentToursCreditComponent} from "../components/credit/student-tours-credit.component";
 import {SubjectsComponent} from "../components/subjects/subjects.component";
 import {AddSubjectComponent} from "../components/subjects/add/addSubject.component";
 
@@ -50,6 +51,8 @@ const routes: Routes = [
     {path: 'persons/:personId/studenttours/add', component: AddStudentTourComponent},
     {path: 'persons/:personId/studenttours/:id', component: EditStudentTourComponent},
     {path: 'studenttours/:id/studenttourssemesters', component: StudentToursSemesterComponent},
+    {path: 'subjects/:id/credits', component: SubjectCreditComponent},
+    {path: 'studenttours/:id/credits', component: StudentToursCreditComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
 
