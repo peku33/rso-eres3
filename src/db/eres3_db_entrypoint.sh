@@ -37,6 +37,8 @@ trap _term_handler SIGTERM
 echo "Launching with user arguments: $@"
 
 if [ $ACTION == "ndb_mgmd" ]; then
+    echo "Giving other containers a chance"
+    sleep 2
     echo "Starting ndb_mgmd"
     ndb_mgmd -f /etc/mysql-cluster.cnf --nodaemon "$@" &
 
