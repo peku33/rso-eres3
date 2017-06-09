@@ -24,6 +24,7 @@ import {AddStudentTourSemesterComponent} from "../components/studentTours-semest
 import {EditStudentTourSemesterComponent} from "../components/studentTours-semester/addEdit/editStudentTourSemester.component";
 import {CreditComponent} from "../components/credit/credit.component";
 import {SubjectsComponent} from "../components/subjects/subjects.component";
+import {AddSubjectComponent} from "../components/subjects/add/addSubject.component";
 
 
 const routes: Routes = [
@@ -41,12 +42,16 @@ const routes: Routes = [
     {path: 'units/:unitId/specializations/:id', component: EditSpecializationComponent},
     {path: 'units/:unitId/specializations/:id/add', component: AddSpecializationComponent},
     {path: 'units/:unitId/subjects', component: SubjectsComponent},
+    {path: 'units/:unitId/subjects/add', component: AddSubjectComponent},
     {path: 'permissions', component: PermissionsComponent},
     {path: 'permissions/add', component: AddPermissionComponent},
     {path: 'permissions/edit/:name', component: EditPermissionComponent},
     {path: 'persons/:personId/studenttours', component: StudentToursComponent},
-    {path: 'persons/:personId/studenttours/:id/add', component: AddStudentTourComponent},
+    {path: 'persons/:personId/studenttours/add', component: AddStudentTourComponent},
     {path: 'persons/:personId/studenttours/:id', component: EditStudentTourComponent},
+    {path: 'persons/:personId/studenttours/:tourId/studenttoursemesters', component: StudentToursSemesterComponent},
+    {path: 'persons/:personId/studenttours/:tourId/studenttoursemesters/add', component: AddStudentTourSemesterComponent},
+    {path: 'persons/:personId/studenttours/:tourId/studenttoursemesters/:id', component: EditStudentTourSemesterComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
 

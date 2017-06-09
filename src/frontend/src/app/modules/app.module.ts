@@ -55,6 +55,7 @@ import {CreditService} from "../services/credit.service";
 import {CreditComponent} from "../components/credit/credit.component";
 import {SubjectsComponent} from "../components/subjects/subjects.component";
 import {ModalComponent} from "../components/modal/modal.component";
+import {AddSubjectComponent} from "../components/subjects/add/addSubject.component"
 
 @NgModule({
     imports: [
@@ -91,6 +92,7 @@ import {ModalComponent} from "../components/modal/modal.component";
         EditStudentTourSemesterComponent,
         CreditComponent,
         SubjectsComponent,
+        AddSubjectComponent,
         ModalComponent
     ],
     providers: [

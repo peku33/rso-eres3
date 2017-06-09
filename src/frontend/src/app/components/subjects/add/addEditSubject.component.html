@@ -1,0 +1,47 @@
+<h2 *ngIf="!this.allowRemoval">Dodaj przedmiot</h2>
+<h2 *ngIf="this.allowRemoval">Edytuj przedmiot</h2>
+<div class="user-data-card mdl-card mdl-shadow--6dp center-hori">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Informacje o przedmiocie</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        <!-- Simple Textfield -->
+        <div>
+            <div class="mdl-textfield mdl-js-textfield ">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.subject.fullName" id="name">
+                <label for="name"><b>Pełna nazwa</b></label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.subject.shortName" id="otherNames">
+                <label for="otherNames"><b>Skrócona nazwa</b></label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.subject.didacticalUnits" id="surname">
+                <label for="surname"><b>Jednostki dydaktyczne</b></label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.subject.ects" id="pesel">
+                <label for="pesel"><b>ECTSY</b></label>
+            </div>
+            <div class="mdl-select mdl-js-select mdl-select--floating-label mdl-grid">
+                <label class="mdl-select__label mdl-cell mdl-cell--4-col"><b>Typ:</b></label>
+                 <select class="mdl-select__input mdl-cell mdl-cell--4-col"  name="permission" [(ngModel)]="subject.type">
+                    <option value="NO_EXAM">Zaliczeniowy</option>
+                    <option value="EXAM">Egzaminacyjny</option>
+                </select>
+            </div>
+            <!--<div class="mdl-textfield mdl-js-textfield ">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.subject.type" id="login">
+                <label for="login"><b>Typ</b></label>
+            </div>-->
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                (click)="create()">Zapisz
+        </button>
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                *ngIf="this.allowRemoval" (click)="delete()">Usuń
+        </button>
+    </div>
+</div>

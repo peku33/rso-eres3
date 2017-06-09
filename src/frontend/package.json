@@ -12,7 +12,8 @@
     "build": "npm run cleanup && npm run ngc && webpack --config webpack.aot.config.js -p",
     "deploy": "gh-pages -d dist",
     "aot": "npm run cleanup && npm run ngc && concurrently -r \"webpack-dev-server --config webpack.aot.config.js\" \"node ./bin/ngc-watch.js\"",
-    "jit": "npm run cleanup && webpack-dev-server --config webpack.jit.config.js"
+    "jit": "npm run cleanup && webpack-dev-server --config webpack.jit.config.js",
+    "watch": "npm run cleanup && webpack --config webpack.aot.config.js --watch"
   },
   "dependencies": {
     "@angular/animations": "^4.1.0",

@@ -6,7 +6,7 @@ import {Specialization} from "./specialization";
 export class StudentTourSemester {
     id: number;
     nominalSemesterNo:  number;
-    studentTour: StudentTour;
+    tour: StudentTour;
     semester: Semester;
     specialization: Specialization;
 }

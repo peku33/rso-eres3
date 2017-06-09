@@ -6,5 +6,5 @@ export class StudentTour {
     id: number;
     albumNo:  string;
     person: Person;
-    organizationalUnit: OrganizationalUnit;
+    unit: OrganizationalUnit;
 }

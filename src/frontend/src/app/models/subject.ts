@@ -8,5 +8,5 @@ export class Subject {
   didacticalUnits:   number;
   ects:      number;
   type:      string;
-  organizationalUnit: OrganizationalUnit;
+  unit: OrganizationalUnit;
 }

@@ -1,0 +1,38 @@
+<h2 *ngIf="!this.allowRemoval">Dodaj turę studiów</h2>
+<h2 *ngIf="this.allowRemoval">Edytuj turę studiów</h2>
+<div class="user-data-card mdl-card mdl-shadow--6dp center-hori">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Tura studiów</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        <div>
+            <div *ngIf="this.allowRemoval" class="mdl-textfield mdl-js-textfield ">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.studentTour.id" disabled id="tourId">
+                <label for="tourId"><b>Id tury studiów</b></label>
+            </div><br>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.studentTour.albumNo" id="albumNo">
+                <label for="albumNo"><b>Numer albumu</b></label>
+            </div>
+            <div class="mdl-select mdl-js-select">
+                <select class="mdl-select__input" [(ngModel)]="selectedUnit" id="unit">
+                    <option *ngFor="let unit of units" [ngValue]="unit">{{unit.fullName}}</option>
+                </select>
+                <br>
+                <label for="unit"><b>Jednostka organizacyjna</b></label>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                (click)="saveStudentTour()">Zapisz
+        </button>
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                *ngIf="this.allowRemoval" (click)="deleteStudentTour()">Usuń
+        </button>
+        <button routerLink="studenttoursemesters"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                *ngIf="this.allowRemoval">Semestry tury studiów
+        </button>
+    </div>
+</div>
