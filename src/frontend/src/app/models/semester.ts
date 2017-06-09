@@ -1,5 +1,5 @@
 export class Semester {
   id:       number;
-  semesterType:  string;
+  type:     string;
   year:     number;
 }

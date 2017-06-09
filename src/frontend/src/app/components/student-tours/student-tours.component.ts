@@ -12,7 +12,8 @@ import * as _ from "lodash";
 export class StudentToursComponent implements OnInit {
     public studentTours: StudentTour[];
 
-    constructor(private studentTourService: StudentTourService, private route: ActivatedRoute) {
+    constructor(private studentTourService: StudentTourService,
+                private route: ActivatedRoute) {
 
     }
 

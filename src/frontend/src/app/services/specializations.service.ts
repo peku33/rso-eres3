@@ -22,8 +22,7 @@ export class SpecializationsService {
             .toPromise()
             .then((response) => {
                 return response.json() as Specialization[];
-            })
-            .catch(this.handleError);
+            });
     }
 
 

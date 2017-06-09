@@ -19,16 +19,18 @@ export class StudentTourSemesterService {
         const url = `${BE_URL}/studenttours/${id}/studenttoursemesters`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as StudentTourSemester[])
-            .catch(this.handleError);
+            .then((response) => {
+                return response.json() as StudentTourSemester[];
+            });
     }
 
     getStudentTourSemester(id: number): Promise<StudentTourSemester> {
         const url = `${this.studentToursSemesterUrl}/${id}`;
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json().data as StudentTourSemester)
-            .catch(this.handleError);
+            .then((response) => {
+                return response.json() as StudentTourSemester;
+            });
     }
 
     addStudentTourSemester(studentTourSemester: StudentTourSemester): Promise<StudentTourSemester> {

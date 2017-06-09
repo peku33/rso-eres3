@@ -53,6 +53,9 @@ const routes: Routes = [
     {path: 'studenttours/:id/studenttourssemesters', component: StudentToursSemesterComponent},
     {path: 'subjects/:id/credits', component: SubjectCreditComponent},
     {path: 'studenttours/:id/credits', component: StudentToursCreditComponent},
+    {path: 'persons/:personId/studenttours/:tourId/studenttoursemesters', component: StudentToursSemesterComponent},
+    {path: 'persons/:personId/studenttours/:tourId/studenttoursemesters/add', component: AddStudentTourSemesterComponent},
+    {path: 'persons/:personId/studenttours/:tourId/studenttoursemesters/:id', component: EditStudentTourSemesterComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
 

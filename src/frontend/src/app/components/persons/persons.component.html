@@ -1,9 +1,124 @@
+<app-modal #addPersonModal>
+    <div mdl class="app-modal-content">
+        <h3 class="modal-title">Dodaj użytkownika</h3>
+        <div class="mdl-dialog__content">
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.person.firstName" id="name">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="name">Imię</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.person.otherNames" id="otherNames">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="otherNames">Pozostałe imiona</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.person.lastName" id="surname">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="surname">Nazwisko</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.person.pesel" id="pesel">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="pesel">PESEL</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.person.login" id="login">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="login">Login</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield modal-select">
+                <select class="mdl-textfield__input" [(ngModel)]="selectedUnit" id="unit">
+                    <option *ngFor="let unit of units" [ngValue]="unit">{{unit.fullName}}</option>
+                </select>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="select-label" for="unit">Jednostka organizacyjna</label>
+            </div>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    (click)="add(); addPersonModal.hide()">Zapisz
+            </button>
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    (click)="addPersonModal.hide()">Anuluj
+            </button>
+        </div>
+
+    </div>
+</app-modal>
+
+<app-modal #editPersonModal>
+    <div mdl class="app-modal-content">
+        <h3 class="modal-title">Edytuj dane użytkownika</h3>
+
+        <div class="mdl-dialog__content dialog-content">
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.person.firstName" id="editName">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="editName">Imię</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.person.otherNames" id="editOtherNames">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="otherNames">Pozostałe imiona</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.person.lastName" id="editSurname">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="surname">Nazwisko</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.person.pesel" id="editPesel">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="pesel">PESEL</label>
+            </div>
+            <div class="modal-textfield group">
+                <input type="text" [(ngModel)]="this.person.login" id="editLogin">
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label for="login">Login</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield modal-select">
+                <select class="mdl-textfield__input" [(ngModel)]="selectedUnit" id="editUnit">
+                    <option *ngFor="let unit of units" [ngValue]="unit">{{unit.fullName}}</option>
+                </select>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label class="select-label" for="unit">Jednostka organizacyjna</label>
+            </div>
+        </div>
+        <div class="mdl-dialog__actions">
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    (click)="save(); editPersonModal.hide()">Zapisz
+            </button>
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect button-red"
+                    (click)="delete(); editPersonModal.hide()">Usuń
+            </button>
+            <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                    (click)="editPersonModal.hide()">Anuluj
+            </button>
+        </div>
+
+    </div>
+</app-modal>
+
 <h2>Lista użytkowników</h2>
 <div id="table-container">
     <div class="table-responsive-vertical shadow-2dp">
         <table id="table" class="table table-hover table-bordered table-mobile-condensed shadow-2dp">
             <thead>
             <tr>
+                <th class="mdl-data-table__cell--non-numeric">Login</th>
                 <th class="mdl-data-table__cell--non-numeric">Imię</th>
                 <th class="mdl-data-table__cell--non-numeric">Nazwisko</th>
                 <th class="mdl-data-table__cell--non-numeric">PESEL</th>
@@ -12,6 +127,9 @@
             </thead>
             <tbody>
             <tr *ngFor="let person of persons">
+                <td data-title="Login" class="mdl-data-table__cell--non-numeric">
+                    {{person.login}}
+                </td>
                 <td data-title="Imię" class="mdl-data-table__cell--non-numeric">
                     {{person.firstName}}
                 </td>
@@ -22,8 +140,7 @@
                     {{person.pesel}}
                 </td>
                 <td class="align-right">
-                    <button routerLink="{{person.id}}"
-                            class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                    <button (click)="editPerson(person.id)" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
                         Edytuj
                     </button>
                 </td>
@@ -32,8 +149,7 @@
             <tfoot><p>&nbsp;</p>
             </tfoot>
         </table>
-        <button routerLink="add"
-                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored edge-button">
+        <button (click)="addPerson()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored edge-button">
             <i class="material-icons">add</i>
         </button>
     </div>

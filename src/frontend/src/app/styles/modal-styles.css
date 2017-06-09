@@ -1,0 +1,31 @@
+.modal-title {
+    font-weight: 300;
+    line-height: 32px;
+    margin: 0px 0px 5px 0px;
+    padding: 24px 24px 0;
+    font-size: 2.5rem;
+    text-align:center;
+}
+.modal-select {
+    max-width: 400px;
+    width: 100%;
+    top:-15px;
+    left:-1px;
+}
+@media all and (max-width: 600px) {
+    .modal-textfield {
+        max-width: 400px;
+        width: 100%;
+        margin: auto;
+    }
+    .modal-select {
+        max-width: 400px;
+        width: 100%;
+        display: block;
+        margin: auto;
+        left: -1px;
+    }
+    .dialog-content{
+        padding: 20px 24px 0px;
+    }
+}

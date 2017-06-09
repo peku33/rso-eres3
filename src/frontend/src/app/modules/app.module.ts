@@ -55,6 +55,7 @@ import {CreditService} from "../services/credit.service";
 import {SubjectCreditComponent} from "../components/credit/subject-credit.component";
 import {StudentToursCreditComponent} from "../components/credit/student-tours-credit.component";
 import {SubjectsComponent} from "../components/subjects/subjects.component";
+import {ModalComponent} from "../components/modal/modal.component";
 import {AddSubjectComponent} from "../components/subjects/add/addSubject.component"
 
 @NgModule({
@@ -93,7 +94,8 @@ import {AddSubjectComponent} from "../components/subjects/add/addSubject.compone
         SubjectCreditComponent,
         StudentToursCreditComponent,
         SubjectsComponent,
-        AddSubjectComponent
+        AddSubjectComponent,
+        ModalComponent
     ],
     providers: [
         GrantedPermissionsService,

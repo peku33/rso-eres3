@@ -1,0 +1,47 @@
+<h2>Lista semestrów tury studiów</h2>
+<div id="table-container">
+    <div class="table-responsive-vertical shadow-2dp">
+        <table id="table" class="table table-hover table-bordered table-mobile-condensed shadow-2dp">
+            <thead>
+            <tr>
+                <th>Id semestru tury</th>
+                <th>Numer semestru</th>
+                <th>Semestr</th>
+                <th>Specjalizacja</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let studentTourSemester of studentToursSemester">
+                <td data-title="Id semestru tury">
+                    {{studentTourSemester.id}}
+                </td>
+                <td data-title="Numer semestru">
+                    {{studentTourSemester.nominalSemesterNo}}
+                </td>
+                <td *ngIf="studentTourSemester.semester.type === 'WINTER'" data-title="Semestr" class="mdl-data-table__cell--non-numeric">
+                    {{studentTourSemester.semester.year}}Z
+                </td>
+                <td *ngIf="studentTourSemester.semester.type === 'SUMMER'" data-title="Semestr" class="mdl-data-table__cell--non-numeric">
+                    {{studentTourSemester.semester.year}}L
+                </td>
+                <td data-title="Specjalizacja" class="mdl-data-table__cell--non-numeric">
+                    {{studentTourSemester.specialization.shortName}}
+                </td>
+                <td class="align-right">
+                    <button routerLink="{{studentTourSemester.id}}"
+                            class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                        Edytuj
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot><p>&nbsp;</p></tfoot>
+        </table>
+        <button routerLink="add"
+                class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored edge-button">
+            <i class="material-icons">add</i>
+        </button>
+    </div>
+</div>
+

@@ -1,0 +1,44 @@
+<h2 *ngIf="!this.allowRemoval">Dodaj semestr tury studiów</h2>
+<h2 *ngIf="this.allowRemoval">Edytuj semestr tury studiów</h2>
+<div class="user-data-card mdl-card mdl-shadow--6dp center-hori">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Semestr tury</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+        <div>
+            <div *ngIf="this.allowRemoval" class="mdl-textfield mdl-js-textfield ">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.studentTourSemester.id" disabled id="semesterTourId">
+                <label for="semesterTourId"><b>Id semestru tury</b></label>
+            </div><br>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" [(ngModel)]="this.studentTourSemester.nominalSemesterNo" id="nominalSemesterNo">
+                <label for="nominalSemesterNo"><b>Numer semestru</b></label><br>
+            </div>
+            <div class="mdl-select mdl-js-select">
+                <select class="mdl-select__input" [(ngModel)]="selectedSemester" id="tourSemester" style="min-width:150px">
+                    <option *ngFor="let tourSemester of tourSemesters" [ngValue]="tourSemester">
+                        <div *ngIf="tourSemester.type === 'WINTER'">{{tourSemester.year}}Z</div>
+                        <div *ngIf="tourSemester.type === 'SUMMER'">{{tourSemester.year}}L</div>
+                    </option>
+                </select>
+                <br>
+                <label for="tourSemester"><b>Semestr</b></label>
+            </div>
+            <div class="mdl-select mdl-js-select">
+                <select class="mdl-select__input" [(ngModel)]="selectedSpecialization" id="specialization" style="min-width:150px">
+                    <option *ngFor="let specialization of specializations" [ngValue]="specialization">{{specialization.shortName}}</option>
+                </select>
+                <br>
+                <label for="specialization"><b>Specjalizacja</b></label>
+            </div>
+        </div>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                (click)="saveStudentTourSemester()">Zapisz
+        </button>
+        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                *ngIf="this.allowRemoval" (click)="deleteStudentTourSemester()">Usuń
+        </button>
+    </div>
+</div>

@@ -30,5 +30,9 @@
         <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
                 *ngIf="this.allowRemoval" (click)="deleteStudentTour()">Usuń
         </button>
+        <button routerLink="studenttoursemesters"
+                class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                *ngIf="this.allowRemoval">Semestry tury studiów
+        </button>
     </div>
 </div>
