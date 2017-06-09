@@ -1,0 +1,25 @@
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.modal-content {
+    margin: 10% auto; /* 10% from the top and centered */
+    padding: 20px;
+    background-color: white;
+    width: 450px;
+    transition: all 0.5s;
+}
+
+@media all and (max-width: 600px) {
+    .modal-content {
+        width: 100%;
+        height: 100%;
+        padding: 5px 0px 0px 0px;
+    }
+}
