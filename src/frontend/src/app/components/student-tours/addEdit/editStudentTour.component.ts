@@ -22,7 +22,8 @@ export class EditStudentTourComponent implements OnInit {
 
     constructor(private studentTourService: StudentTourService,
                 private unitsService: UnitsService,
-                private router: Router, private route: ActivatedRoute) {
+                private router: Router,
+                private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {

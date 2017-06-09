@@ -49,7 +49,9 @@ const routes: Routes = [
     {path: 'persons/:personId/studenttours', component: StudentToursComponent},
     {path: 'persons/:personId/studenttours/add', component: AddStudentTourComponent},
     {path: 'persons/:personId/studenttours/:id', component: EditStudentTourComponent},
-    {path: 'studenttours/:id/studenttourssemesters', component: StudentToursSemesterComponent},
+    {path: 'persons/:personId/studenttours/:tourId/studenttoursemesters', component: StudentToursSemesterComponent},
+    {path: 'persons/:personId/studenttours/:tourId/studenttoursemesters/add', component: AddStudentTourSemesterComponent},
+    {path: 'persons/:personId/studenttours/:tourId/studenttoursemesters/:id', component: EditStudentTourSemesterComponent},
     {path: '**', component: PageNotFoundComponent}
 ];
 

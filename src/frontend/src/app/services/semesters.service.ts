@@ -17,9 +17,10 @@ export class SemestersService {
 
   getSemesters(): Promise<Semester[]> {
     return this.http.get(this.semesterUrl)
-               .toPromise()
-               .then(response => response.json().data as Semester[])
-               .catch(this.handleError);
+        .toPromise()
+        .then((response) => {
+          return response.json() as Semester[];
+        });
   }
 
   getSemester(id: number): Promise<Semester> {
