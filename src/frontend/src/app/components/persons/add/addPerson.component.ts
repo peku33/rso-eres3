@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
 
 @Component({
     selector: "add-person",
-    templateUrl: "addPerson.component.html"
+    templateUrl: "addEditPerson.component.html"
 })
 
 export class AddPersonComponent implements OnInit{
