@@ -15,8 +15,8 @@
         <button (click)="login()" [disabled]="loading" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent login-button">
             Zaloguj się
         </button>
-        <div *ngIf="loading" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="position: fixed; left: 50%; margin: 5px 0;"></div>
-        <div *ngIf="badAuth" class="button-red">Błędny login bądź hasło!</div>
+        <div *ngIf="loading" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="position: fixed; left: 50%; margin: 0;"></div>
+        <div *ngIf="badAuth" style="color: red">Błędny login lub hasło!</div>
     </div>
 
     <div class="form-footer">
