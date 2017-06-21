@@ -20,6 +20,7 @@ dependencies {
     compile 'org.modelmapper:modelmapper:+'
     compile group: 'com.google.guava', name: 'guava', version: '+'
 	compile group: 'org.assertj', name: 'assertj-core', version: '+'
+	compile group: 'org.springframework.security', name: 'spring-security-test', version: '+'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test:+'
 }
